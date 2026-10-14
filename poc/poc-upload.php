@@ -1,0 +1,1 @@
+<?php echo "POC_".PHP_VERSION;
