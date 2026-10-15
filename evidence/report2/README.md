@@ -24,6 +24,7 @@ Nilai asli (unredacted) hanya tersimpan lokal, tidak masuk repository.
 - `execute-code-langs.redacted.txt` — output eksekusi python/js/php
 - `execute-code-headers.redacted.txt` — header respons (CORS `*`, rate limit, PHP 8.3.35)
 - `execute-code-test.redacted.txt` — tes awal
+- `execute-code-proof-judge0.txt` — bukti terkuat: shell exec, arbitrary file read, env Judge0, isolasi sandbox
 
 ### Temuan 2 — Kebocoran kredensial siswa (Apps Script pengumuman)
 - `pengumuman-3725.redacted.json`, `pengumuman-3726.redacted.json`
@@ -47,6 +48,7 @@ Nilai asli (unredacted) hanya tersimpan lokal, tidak masuk repository.
 
 ### Temuan 7 — kartuujian
 - `kartuujian-3725.redacted.json`, `kartuujian-3726.redacted.json`
+- `kartuujian-scope.txt` — skala dump (262 siswa kelas IX, NIS 3694–3963)
 
 ### Artefak recon
 - `recon-subdomains.txt` — 72 kandidat → 21 DNS hidup

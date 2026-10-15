@@ -1,0 +1,29 @@
+# Skala dump — kartu ujian (Apps Script)
+
+Endpoint: `GET https://script.google.com/macros/s/AKfycbwGkrm8.../exec?nis=<NIS>`
+Tanpa auth. Tanpa param → `{"status":"error","message":"NIS belum dimasukkan."}` (tidak ada mode bulk).
+
+Per NIS valid → `{nis, nama, kelas, noBangku, ruangan, username, downloadUrl}`
+(`downloadUrl` = Google Drive kartu ujian siswa).
+
+## Rentang NIS kelas IX (dari cross-leak tryout-dump, otoritatif)
+- Total: **262 siswa**, NIS **3694–3963**
+- Kelas: IX Alexandria 31, IX Baghdad 30, IX Cordoba 30, IX Damascus 30, IX Egypt 27, IX Fez 27, IX Granada 27, IX Hadramaut 30, IX Istanbul 30
+
+## Probe batas valid (endpoint kartu ujian)
+```
+3680 -> not found     3695 -> VALID (IX Alexandria)
+3685 -> not found     3700 -> VALID (IX Alexandria)
+3690 -> not found     3890 -> VALID (IX Fez)
+3692 -> not found     3895 -> VALID (IX Granada)
+                      3900 -> VALID (IX Granada)
+                      3910 -> VALID (IX Hadramaut)
+                      3920 -> VALID (IX Istanbul)
+                      3950 -> VALID (IX Istanbul)
+4000 -> VALID (VIII Alumunium)
+```
+
+## Kesimpulan
+- kelas IX: **262 record** dapat ditarik pasti (NIS diketahui dari cross-leak tryout).
+- Endpoint menerima NIS seluruh sekolah (VIII terkonfirmasi → juga VII) → enumerasi penuh bila NIS diketahui.
+- Tiap record membocorkan PII + tautan file Google Drive kartu ujian.
