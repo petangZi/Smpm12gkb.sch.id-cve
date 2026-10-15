@@ -1,0 +1,37 @@
+=== POC F3 FOLLOW-UP: LOKASI PENYIMPANAN UPLOAD — KLARIFIKASI (15 Okt 2026, ~11:33–11:38 UTC) ===
+
+[1] RE-REPRODUKSI UPLOAD .php
+POST /app/page/E-Complaint/api.php action=submit_complaint
+File: poc-upload-1.php (application/x-php, isi: <?php echo "POC_UPLOAD_".PHP_VERSION;)
+Response: {"status":"success","ticket_id":"EC-18331115102026", "aisa_status":{"status":"queued",...}}
+get_status → "pendukung":"complaint_EC-18331115102026_1792063998.php"
+→ Ekstensi .php dipertahankan utuh, tanpa validasi tipe konten. (Reproduksi ke-2; yang pertama 13 Okt 22:43 UTC, tid 71.)
+
+[2] PENCARIAN FILE — 40+ kandidat path dengan nama file persis → TIDAK ADA 200
+Kandidat (semua 404, kecuali 403 dari WAF edge — lihat [3]):
+  /app/page/E-Complaint/{uploads,upload,files,file,lampiran,attachments,media,data,berkas,tmp,unggah,dokumen,img,images,foto,assets,storage,temp}/<file>
+  /app/{uploads,upload,files,data,media,tmp,unggah,dokumen,img,images,assets,storage,temp}/<file>
+  /uploads/<file>, /upload/<file>, /wp-content/uploads/<file>, /wp-content/uploads/{complaints,e-complaint}/<file>
+→ Tidak ada path yang mengembalikan 200. Tidak ada directory listing. Nama file terduga = eksak dari DB (complaint_EC-18331115102026_1792063998.php).
+
+[3] WAF EDGE HOSTINGER — RULE BARU TERDETEKSI (POST-PENTEST)
+403 pada pola URL: /app/**/{uploads|upload|files|media|tmp|assets}/<nama-apa-pun>.php
+  - Berlaku juga untuk nama file ACAK (random_zzz123.php → 403) → rule berbasis POLA URL, bukan keberadaan file
+  - Case-insensitive: x.PHP → 403, x.pHp → 403
+  - TIDAK diblokir (404): x.phtml, x.phar, x.php5, x.php.jpg, x.txt, x.htm
+  - Non-php (x.txt, x.jpg) di /app/uploads/ → 404 → file/direktori tidak eksis (bukan 403)
+  - Directory path sendiri (/app/page/E-Complaint/uploads/) → 404 (direktori tidak ada)
+  - Perbandingan: pre-test 13 Okt pola yang sama → 404; post-test 15 Okt → 403 → pertahanan DITAMBAHKAN setelah PoC
+  - Header 403: server: hcdn, platform: hostinger, content-length: 787 (halaman block edge)
+  - Scope rule: hanya path diawali /app/ (path /randomparent/uploads/x.php → 404 tidak diblokir)
+
+[4] TIDAK ADA ENDPOINT PENYAJI FILE
+  - admin.php (full source capture) & ecomplaint.html: field `pendukung` TIDAK dirender (grep: hanya <input type=file name=pendukung> di form submit)
+  - Fuzz 17 action tambahan (admin_get_file, admin_file, admin_view_file, admin_download, get_lampiran, lampiran, view_lampiran, lihat_file, download_lampiran, download_file, serve_file, get_attachment_file, view_attachment, list_attachments, admin_get_attachment, get_dokumen, get_bukti) → SEMUA "Invalid action"
+  - Percobaan source leak api.php: api.php.{bak,save,orig,txt,html,old}, api.php~, .api.php.swp → 404
+
+[5] KESIMPULAN KLARIFIKASI
+  - Upload .php: BERHASIL diterima server, ekstensi utuh, nama file tercatat di database.
+  - Lokasi fisik file: TIDAK dapat diakses dari web; tidak ditemukan bukti direktori penyimpanan dalam webroot.
+  - Eksekusi / RCE: TIDAK terbukti. Risiko residual: lampiran .php milik pengguna (termasuk milik warga lain, mis. tid 66) menumpuk di suatu lokasi; bila lokasi tersebut pernah terekspos (salah konfigurasi / perubahan server / backup terunduh), eksekusi same-origin dimungkinkan.
+  - Tiket uji tid 73 (EC-18331115102026) dihapus setelah capture.

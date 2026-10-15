@@ -10,6 +10,8 @@ Bukti HTTP mentah per temuan. Semua data pribadi (PII) pihak ketiga telah di-red
 | `poc-admin-page.txt` | F1/F2 | Timeline `admin.php`: HTTP 200 tanpa auth (capture #1) → HTTP 302 ke `guard.php` (capture #2) + source sink XSS |
 | `poc-stored-xss.txt` | F2 | Submit payload → refleksi mentah di `get_status` → PII via `search_status` |
 | `poc-upload.txt` | F3 | Upload `.php` → filename `complaint_*.php` tersimpan di database |
+| `poc-upload-repro-2.raw.json` | F3 | Raw `get_status` tiket `EC-18331115102026` — reproduksi ke-2 upload `.php` (15 Okt) |
+| `poc-upload-path-probe.txt` | F3 | Klarifikasi: probe 40+ path penyimpanan (semua 404), karakterisasi WAF edge Hostinger, tidak ada endpoint penyaji lampiran |
 | `poc-pathdisclosure.txt` | F6 | Warning PHP dengan path filesystem lengkap |
 | `poc-wp-enum.txt` | F5 | REST user enumeration + methods XML-RPC (`system.multicall`) |
 | `poc-misc.txt` | F7 | `wp-cron.php`, `dalas/v1/stats`, MCP endpoint, fingerprint subdomain |

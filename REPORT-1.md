@@ -4,7 +4,7 @@
 
 | Field | Value |
 |---|---|
-| **Tanggal pengujian** | 13 Oktober 2026, 21:57–23:00 UTC |
+| **Tanggal pengujian** | 13 Oktober 2026, 21:57–23:00 UTC; klarifikasi lanjutan 15 Oktober 2026, 11:33–11:38 UTC |
 | **Tester** | petangZi |
 | **Metode** | Black-box, unauthenticated, non-destruktif (PoC bukti, tanpa merusak data produksi) |
 | **Scope utama** | https://smpm12gkb.sch.id/ — fokus aplikasi custom `/app/page/` (E-Complaint, AISA Chat) + fingerprint WordPress core/plugin + CVE matching |
@@ -19,7 +19,7 @@
 |---|---|---|---|---|
 | **F1** | Broken Access Control — seluruh API admin E-Complaint tanpa autentikasi (dump massal, ubah status, hapus tiket) | **CRITICAL** | https://smpm12gkb.sch.id/app/page/E-Complaint/api.php | **OPEN** (guard parsial dipasang di tengah tes; API tidak ikut ditutup) |
 | **F2** | Stored XSS via form pengaduan → eksekusi di panel admin (same-origin dengan WordPress) | **HIGH** | https://smpm12gkb.sch.id/app/page/E-Complaint/ | OPEN |
-| **F3** | Unrestricted file upload — ekstensi `.php` dipertahankan server-side | **HIGH** | https://smpm12gkb.sch.id/app/page/E-Complaint/api.php | OPEN |
+| **F3** | Unrestricted file upload — ekstensi `.php` dipertahankan server-side; lokasi simpan tidak terekspos, eksekusi tidak terbukti | **MEDIUM** | https://smpm12gkb.sch.id/app/page/E-Complaint/api.php | OPEN |
 | **F4** | Kebocoran PII — pencarian tiket via email/No HP mengembalikan data komplain lengkap tanpa verifikasi | **MEDIUM** | https://smpm12gkb.sch.id/app/page/E-Complaint/api.php | OPEN |
 | **F5** | Enumerasi user WordPress + XML-RPC aktif (amplifikasi brute-force) | **MEDIUM** | https://smpm12gkb.sch.id/?rest_route=/wp/v2/users & https://smpm12gkb.sch.id/xmlrpc.php | OPEN |
 | **F6** | Path disclosure + `display_errors=On` | **LOW** | https://smpm12gkb.sch.id/app/page/E-Complaint/api.php | OPEN |
@@ -204,7 +204,7 @@ div.innerHTML = `
 
 ---
 
-### F3 — HIGH: Unrestricted file upload — ekstensi `.php` dipertahankan
+### F3 — MEDIUM: Unrestricted file upload — ekstensi `.php` dipertahankan (eksekusi tidak terbukti)
 
 **Deskripsi:** Field lampiran `pendukung` pada form pengaduan tidak divalidasi server-side. File `.php` diterima dan disimpan dengan ekstensi asli dipertahankan. `accept="image/*"` hanya berlaku client-side.
 
@@ -236,7 +236,13 @@ curl -s "https://smpm12gkb.sch.id/app/page/E-Complaint/api.php?action=get_status
  "pendukung":"complaint_EC-39432213102026_1791931419.php","status":"Menunggu"}}
 ```
 
-**Catatan dampak:** Path penyimpanan belum berhasil dilokalisasi pada pengujian ini (kandidat umum seperti `/app/page/E-Complaint/uploads/` mengembalikan 404/403), sehingga eksekusi remote belum terkonfirmasi. Namun validasi ekstensi nol + lampiran `.php` milik pengguna lain yang ada di database (snapshot awal: tid 66 & 67) menjadikan ini risiko tinggi: jika folder penyimpanan pernah terekspos langsung (miskonfigurasi web server, backup, atau path traversal lain), dampaknya menjadi **unauthenticated RCE**. CWE-434.
+**Klarifikasi lanjutan (15 Okt 2026, 11:33–11:38 UTC):**
+1. **Reproduksi ke-2 berhasil** — upload `.php` diterima lagi (tiket `EC-18331115102026`, file `complaint_EC-18331115102026_1792063998.php`). Tiket uji dibersihkan setelah capture. Validasi ekstensi memang nol.
+2. **Lokasi simpan tidak terekspos** — 40+ kandidat path (termasuk `/app/page/E-Complaint/{uploads,upload,files,media,tmp,assets,dokumen,img,...}<file>` dan varieasinya) diprobe dengan nama file eksak dari DB: **tidak ada satu pun yang mengembalikan HTTP 200**. Tidak ada directory listing.
+3. **WAF edge Hostinger mendeteksi pasca-PoC** — pola URL `/app/**/{uploads|upload|files|media|tmp|assets}/<nama-apa-pun>.php` sekarang → **403** (berlaku untuk nama acak sekalipun → rule berbasis pola URL, case-insensitive: `.PHP`/`.pHp` juga 403). Sebelum PoC pola sama → 404. Artinya server menambahkan proteksi setelah PoC dijalankan.
+4. **Tidak ada endpoint penyaji file** — field `pendukung` tidak dirender sama sekali oleh admin panel (`admin.php`) maupun halaman publik; fuzz 17 nama action tambahan (`admin_get_file`, `get_lampiran`, `download_file`, dll.) → semua `Invalid action`.
+
+**Catatan dampak (revisi HIGH → MEDIUM):** ekstensi `.php` diterima tanpa validasi (CWE-434) dan lampiran `.php` milik pengguna lain menumpuk di database (mis. tid 66). Namun lokasi fisik file tidak dapat diakses dari web dan tidak ditemukan bukti eksekusi — **RCE tidak terbukti**. Ini tetap risiko **latent**: jika folder penyimpanan pernah terekspos (miskonfigurasi web server, perubahan konfigurasi, atau backup terunduh), dampaknya menjadi unauthenticated code execution same-origin. Bukti lengkap: `evidence/poc-upload-path-probe.txt`.
 
 **Rekomendasi:**
 1. Whitelist ekstensi + MIME type server-side (mis. hanya jpg/png/pdf).
@@ -364,6 +370,7 @@ curl -s -X POST "https://smpm12gkb.sch.id/app/page/E-Complaint/api.php" \
 | [`evidence/poc-admin-page.txt`](./evidence/poc-admin-page.txt) | F1: status `admin.php` (200 → 302 guard) + sink XSS |
 | [`evidence/poc-stored-xss.txt`](./evidence/poc-stored-xss.txt) | PoC F2: submit payload, raw reflection, PII search |
 | [`evidence/poc-upload.txt`](./evidence/poc-upload.txt) | PoC F3: upload `.php` + filename tersimpan |
+| [`evidence/poc-upload-path-probe.txt`](./evidence/poc-upload-path-probe.txt) | Klarifikasi F3: probe 40+ path, karakterisasi WAF edge, kesimpulan eksekusi tidak terbukti |
 | [`evidence/poc-pathdisclosure.txt`](./evidence/poc-pathdisclosure.txt) | PoC F6: warning path lengkap |
 | [`evidence/poc-wp-enum.txt`](./evidence/poc-wp-enum.txt) | PoC F5: user enum + XML-RPC methods |
 | [`evidence/poc-misc.txt`](./evidence/poc-misc.txt) | F7: wp-cron, dalas stats, mcp, subdomain fingerprint |
