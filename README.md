@@ -1,21 +1,31 @@
-# Smpm12gkb.sch.id — Security Assessment
+# smpm12gkb.sch.id — Security Research
 
-Kumpulan laporan keamanan (non-destruktif) untuk `https://smpm12gkb.sch.id/`.
+Penetration test findings untuk **https://smpm12gkb.sch.id/** (SMP Muhammadiyah 12 GKB Gresik).
 
-| Report | Fokus | Severity tertinggi | Tanggal |
-|--------|-------|--------------------|---------|
-| [REPORT-1](REPORT-1.md) | WordPress stack + aplikasi custom E-Complaint | KRITIS (CVSS 9.8) | 13 Okt 2026 |
+## Laporan
 
-## Ringkas REPORT-1
+- **[REPORT-1](./REPORT-1.md)** — E-Complaint (custom PHP): Broken Access Control pada API admin (CRITICAL), Stored XSS (HIGH), Unrestricted file upload `.php` (HIGH), PII disclosure (MEDIUM), WP user enum + XML-RPC (MEDIUM). *13 Oktober 2026.*
 
-- WordPress 7.1.3 + seluruh plugin **ter-patch penuh** (tidak ada CVE exploitable).
-- Temuan kritis ada di aplikasi custom `/app/page/E-Complaint/`:
-  - **F1** Admin API tanpa autentikasi (dump/hapus/ubah seluruh tiket) — KRITIS
-  - **F2** Stored XSS dieksekusi di panel admin — TINGGI
-  - **F3** Unrestricted file upload (`.php` dipertahankan) — TINGGI
-  - **F4** Kebocoran PII via pencarian tanpa verifikasi — SEDANG
-  - **F5** Permukaan brute-force WordPress — SEDANG
-  - **F6** Path disclosure — RENDAH
-  - **F7** wp-cron / dalas stats / AISA sanitasi lemah — RENDAH
+Report selanjutnya (REPORT-2, dst.) akan ditambahkan seiring pengujian lanjutan.
 
-PoC lengkap: direktori [`poc/`](poc/).
+## Struktur
+
+```
+.
+├── REPORT-1.md                  # laporan utama
+├── evidence/                    # bukti HTTP mentah per temuan (PII redacted)
+│   ├── poc-admin-api.txt
+│   ├── poc-admin-get-all.redacted.json
+│   ├── poc-admin-page.txt
+│   ├── poc-stored-xss.txt
+│   ├── poc-upload.txt
+│   ├── poc-pathdisclosure.txt
+│   ├── poc-wp-enum.txt
+│   └── poc-misc.txt
+└── poc/
+    └── poc-ecomplaint.sh        # script PoC runnable
+```
+
+## Metode
+
+Black-box, unauthenticated, non-destruktif. Seluruh tiket uji yang dibuat selama pembuktian sudah dihapus. PII pihak ketiga di-redact di seluruh repository.

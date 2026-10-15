@@ -1,0 +1,18 @@
+=== wp-cron.php ===
+GET https://smpm12gkb.sch.id/wp-cron.php -> 200
+
+=== dalas/v1/stats unauth ===
+{"id":"5","data":{"views":"1","likes":"0","shares":"0","comments":"0"},"raw":{"views":1,"likes":0,"shares":0,"comments":"0"}}
+
+=== mcp endpoint (terproteksi) ===
+GET https://smpm12gkb.sch.id/wp-json/mcp/mcp-adapter-default-server -> 401
+
+=== subdomain fingerprints ===
+HTTP/2 303 
+x-powered-by: PHP/8.2.34
+location: https://virtualclass.smpm12gkb.sch.id/login/index.php
+HTTP/2 200 
+x-powered-by: PHP/8.3.35
+set-cookie: SenayanMember=7t2cv1m8sqvul6diq2l1rte3cc; expires=Thu, 15 Oct 2026 23:23:31 GMT; Max-Age=43200; path=/; HttpOnly; secure
+HTTP/2 301 
+location: http://quickconnect.to/spemdalas

@@ -1,0 +1,122 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "tid": "52",
+      "no_tiket": "[REDACTED]",
+      "tgl": "2026-09-15 09:52:57",
+      "nama": "[REDACTED]",
+      "telp": "[REDACTED]",
+      "email": "[REDACTED]",
+      "jenis": "Siswa",
+      "lingkup": "Kurikulum / Pembelajaran",
+      "keluhan": "[REDACTED]",
+      "pendukung": "",
+      "status": "Menunggu"
+    },
+    {
+      "tid": "49",
+      "no_tiket": "[REDACTED]",
+      "tgl": "2026-09-03 02:24:22",
+      "nama": "[REDACTED]",
+      "telp": "[REDACTED]",
+      "email": "[REDACTED]",
+      "jenis": "Siswa",
+      "lingkup": "Sarana Prasarana",
+      "keluhan": "[REDACTED]",
+      "pendukung": "",
+      "status": "Selesai"
+    },
+    {
+      "tid": "23",
+      "no_tiket": "[REDACTED]",
+      "tgl": "2026-07-10 12:24:56",
+      "nama": "[REDACTED]",
+      "telp": "[REDACTED]",
+      "email": "[REDACTED]",
+      "jenis": "Wali Murid",
+      "lingkup": "Humas",
+      "keluhan": "[REDACTED]",
+      "pendukung": "",
+      "status": "Selesai"
+    },
+    {
+      "tid": "22",
+      "no_tiket": "[REDACTED]",
+      "tgl": "2026-07-04 16:41:15",
+      "nama": "[REDACTED]",
+      "telp": "[REDACTED]",
+      "email": "[REDACTED]",
+      "jenis": "Wali Murid",
+      "lingkup": "Lainnya",
+      "keluhan": "[REDACTED]",
+      "pendukung": "complaint_EC-15411604072026_1783158075.jpg",
+      "status": "Selesai"
+    },
+    {
+      "tid": "20",
+      "no_tiket": "[REDACTED]",
+      "tgl": "2026-05-04 08:52:08",
+      "nama": "[REDACTED]",
+      "telp": "[REDACTED]",
+      "email": "[REDACTED]",
+      "jenis": "Guru/Karyawan",
+      "lingkup": "Administrasi / Keuangan",
+      "keluhan": "[REDACTED]",
+      "pendukung": "complaint_EC-08520804052026_1777859528.jpg",
+      "status": "Selesai"
+    },
+    {
+      "tid": "19",
+      "no_tiket": "[REDACTED]",
+      "tgl": "2026-04-17 14:56:29",
+      "nama": "[REDACTED]",
+      "telp": "[REDACTED]",
+      "email": "[REDACTED]",
+      "jenis": "Siswa",
+      "lingkup": "Lainnya",
+      "keluhan": "[REDACTED]",
+      "pendukung": "",
+      "status": "Selesai"
+    },
+    {
+      "tid": "17",
+      "no_tiket": "[REDACTED]",
+      "tgl": "2026-03-27 20:17:36",
+      "nama": "[REDACTED]",
+      "telp": "[REDACTED]",
+      "email": "[REDACTED]",
+      "jenis": "Siswa",
+      "lingkup": "Sarana Prasarana",
+      "keluhan": "[REDACTED]",
+      "pendukung": "",
+      "status": "Selesai"
+    },
+    {
+      "tid": "16",
+      "no_tiket": "[REDACTED]",
+      "tgl": "2026-03-27 20:14:38",
+      "nama": "[REDACTED]",
+      "telp": "[REDACTED]",
+      "email": "[REDACTED]",
+      "jenis": "Siswa",
+      "lingkup": "Lainnya",
+      "keluhan": "[REDACTED]",
+      "pendukung": "",
+      "status": "Selesai"
+    },
+    {
+      "tid": "15",
+      "no_tiket": "[REDACTED]",
+      "tgl": "2026-03-27 18:15:52",
+      "nama": "[REDACTED]",
+      "telp": "[REDACTED]",
+      "email": "[REDACTED]",
+      "jenis": "Siswa",
+      "lingkup": "Lainnya",
+      "keluhan": "[REDACTED]",
+      "pendukung": "",
+      "status": "Selesai"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+=== EVIDENCE F1/F2: admin.php ===
+--- Capture #1 (13 Okt ~22:10 UTC): admin.php HTTP 200 TANPA AUTH, panel admin ter-render (17.193 byte) ---
+Full panel HTML tersimpan lokal saat capture (admin.html 17193 byte).
+
+Sink XSS — potongan source ter-render (renderTable):
+            tbody.innerHTML = '';
+            
+            data.forEach(item => {
+                const statusClass = item.status === 'Selesai' ? 'status-selesai' : (item.status === 'Proses' ? 'status-proses' : 'status-menunggu');
+                
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.tgl}</td>
+                    <td>${item.jenis}</td>
+                    <td>${item.lingkup}</td>
+                    <td style="max-width:300px; word-wrap:break-word; white-space:pre-wrap;">
+                        ${item.keluhan}
+                    </td>
+                    <td><span class="status-badge ${statusClass}">${item.status || 'Menunggu'}</span></td>
+                    <td style="max-width:250px; word-wrap:break-word; white-space:pre-wrap;">${item.tindak_lanjut || '-'}</td>
+                    <td>
+
+--- Capture #2 (13 Okt ~22:50 UTC): admin.php HTTP 302 -> guard.php (perubahan di tengah pengujian) ---
+HTTP/2 302 
+location: https://smpm12gkb.sch.id/app/guard.php?redirect=/app/page/E-Complaint/admin.php
+
+guard.php = halaman login "Master Guard" (form POST password):
+<title>🔒 Master Guard - Pusat Akses Admin
+
+--- PENTING: setelah guard aktif, API api.php TETAP TERBUKA (lihat poc-admin-api.txt & live check) ---
+GET https://smpm12gkb.sch.id/app/page/E-Complaint/api.php?action=admin_get_all -> 200 {"status":"success","data":[...9 record...]}
+POST admin_delete tid=99999 -> {"status":"success"}
+POST admin_update_status tid=99999 -> {"status":"success"}
