@@ -1,0 +1,6 @@
+# python
+{"success":true,"output":"4\n","error":"","exit_code":0}
+# javascript
+{"success":true,"output":"42\n","error":"","exit_code":0}
+# php
+{"success":true,"output":"42","error":"","exit_code":0}

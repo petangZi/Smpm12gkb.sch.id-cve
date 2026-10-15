@@ -1,0 +1,259 @@
+{
+ "success": true,
+ "data": {
+  "id": 5,
+  "title": "Pemerograman C",
+  "slug": "pemerograman-c-hwJzM",
+  "description": "Modul pemerograman C",
+  "category": "Umum",
+  "level": "beginner",
+  "chaptersCount": 6,
+  "studentsCount": 6,
+  "teacherName": "REDACTED_359",
+  "teacherInitials": "AA",
+  "teacherBio": "<REDACTED>",
+  "teacherColor": "#22C55E",
+  "teacherAvatar": null,
+  "isEnrolled": false,
+  "isFree": true,
+  "price": 0,
+  "progress": 0,
+  "thumbnail": "courses/thumbnails/jtA55kUohNy8bo6bimGbiyC8Db8EWQO0W1Liqvxh.jpg",
+  "thumbnailUrl": "https://pedagogiai.smpm12gkb.sch.id/storage/courses/thumbnails/jtA55kUohNy8bo6bimGbiyC8Db8EWQO0W1Liqvxh.jpg",
+  "hasThumbnail": true,
+  "gradientColors": [
+   "#14532D",
+   "#166534"
+  ],
+  "accentColor": "#22C55E",
+  "chapters": [
+   {
+    "id": 14,
+    "title": "Pengantar Pemerograman C",
+    "description": null,
+    "order": 1,
+    "subChapters": [
+     {
+      "id": 37,
+      "title": "Mengenal bahasa Pemerograman C",
+      "description": null,
+      "duration": 15,
+      "order": 1,
+      "isCompleted": false,
+      "quizPassed": false,
+      "isLocked": false,
+      "quizRequired": true,
+      "hasPeerAssessment": false
+     }
+    ]
+   },
+   {
+    "id": 15,
+    "title": "Get Started",
+    "description": null,
+    "order": 2,
+    "subChapters": [
+     {
+      "id": 38,
+      "title": "Cara memulai Pemerograman C",
+      "description": null,
+      "duration": 15,
+      "order": 1,
+      "isCompleted": false,
+      "quizPassed": false,
+      "isLocked": true,
+      "quizRequired": false,
+      "hasPeerAssessment": false
+     }
+    ]
+   },
+   {
+    "id": 16,
+    "title": "Syntax Pemerograman C",
+    "description": null,
+    "order": 3,
+    "subChapters": [
+     {
+      "id": 24,
+      "title": "Syntax",
+      "description": null,
+      "duration": 15,
+      "order": 1,
+      "isCompleted": false,
+      "quizPassed": false,
+      "isLocked": true,
+      "quizRequired": true,
+      "hasPeerAssessment": false
+     },
+     {
+      "id": 25,
+      "title": "Stetments",
+      "description": null,
+      "duration": 15,
+      "order": 2,
+      "isCompleted": false,
+      "quizPassed": false,
+      "isLocked": true,
+      "quizRequired": true,
+      "hasPeerAssessment": false
+     },
+     {
+      "id": 26,
+      "title": "Tantangan Kode C",
+      "description": null,
+      "duration": 15,
+      "order": 3,
+      "isCompleted": false,
+      "quizPassed": false,
+      "isLocked": true,
+      "quizRequired": true,
+      "hasPeerAssessment": false
+     }
+    ]
+   },
+   {
+    "id": 17,
+    "title": "Output Pemerograman C",
+    "description": null,
+    "order": 4,
+    "subChapters": [
+     {
+      "id": 27,
+      "title": "Menampilkan text",
+      "description": null,
+      "duration": 15,
+      "order": 1,
+      "isCompleted": false,
+      "quizPassed": false,
+      "isLocked": true,
+      "quizRequired": true,
+      "hasPeerAssessment": false
+     },
+     {
+      "id": 28,
+      "title": "Line Baru",
+      "description": null,
+      "duration": 15,
+      "order": 2,
+      "isCompleted": false,
+      "quizPassed": false,
+      "isLocked": true,
+      "quizRequired": true,
+      "hasPeerAssessment": false
+     },
+     {
+      "id": 29,
+      "title": "Tantangan Kode",
+      "description": null,
+      "duration": 15,
+      "order": 3,
+      "isCompleted": false,
+      "quizPassed": false,
+      "isLocked": true,
+      "quizRequired": false,
+      "hasPeerAssessment": false
+     }
+    ]
+   },
+   {
+    "id": 18,
+    "title": "Komen di Pemerograman C",
+    "description": null,
+    "order": 5,
+    "subChapters": [
+     {
+      "id": 44,
+      "title": "Pengertian komentar dalam pemrograman C",
+      "description": null,
+      "duration": 15,
+      "order": 1,
+      "isCompleted": false,
+      "quizPassed": false,
+      "isLocked": true,
+      "quizRequired": true,
+      "hasPeerAssessment": false
+     },
+     {
+      "id": 45,
+      "title": "Fungsi dan manfaat komentar dalam kode program",
+      "description": null,
+      "duration": 15,
+      "order": 2,
+      "isCompleted": false,
+      "quizPassed": false,
+      "isLocked": true,
+      "quizRequired": true,
+      "hasPeerAssessment": false
+     },
+     {
+      "id": 46,
+      "title": "Jenis-jenis komentar dalam C",
+      "description": null,
+      "duration": 15,
+      "order": 3,
+      "isCompleted": false,
+      "quizPassed": false,
+      "isLocked": true,
+      "quizRequired": false,
+      "hasPeerAssessment": false
+     },
+     {
+      "id": 48,
+      "title": "Perbedaan komentar dan perintah program",
+      "description": null,
+      "duration": 15,
+      "order": 5,
+      "isCompleted": false,
+      "quizPassed": false,
+      "isLocked": true,
+      "quizRequired": false,
+      "hasPeerAssessment": false
+     },
+     {
+      "id": 49,
+      "title": "Contoh penggunaan komentar pada kode C",
+      "description": null,
+      "duration": 15,
+      "order": 6,
+      "isCompleted": false,
+      "quizPassed": false,
+      "isLocked": true,
+      "quizRequired": false,
+      "hasPeerAssessment": false
+     },
+     {
+      "id": 50,
+      "title": "Praktik menambahkan komentar pada program sederhana",
+      "description": null,
+      "duration": 15,
+      "order": 7,
+      "isCompleted": false,
+      "quizPassed": false,
+      "isLocked": true,
+      "quizRequired": false,
+      "hasPeerAssessment": false
+     },
+     {
+      "id": 51,
+      "title": "Quiz Komentar dalam pemerograman C",
+      "description": null,
+      "duration": 15,
+      "order": 8,
+      "isCompleted": false,
+      "quizPassed": false,
+      "isLocked": true,
+      "quizRequired": true,
+      "hasPeerAssessment": false
+     }
+    ]
+   },
+   {
+    "id": 19,
+    "title": "Variabel Pemerograman C",
+    "description": null,
+    "order": 6,
+    "subChapters": []
+   }
+  ]
+ }
+}

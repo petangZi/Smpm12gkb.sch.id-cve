@@ -6,7 +6,7 @@ Penetration test findings untuk **https://smpm12gkb.sch.id/** (SMP Muhammadiyah 
 
 - **[REPORT-1](./REPORT-1.md)** — E-Complaint (custom PHP): Broken Access Control pada API admin (CRITICAL), Stored XSS (HIGH), Unrestricted file upload `.php` (HIGH), PII disclosure (MEDIUM), WP user enum + XML-RPC (MEDIUM). *13 Oktober 2026.*
 
-Report selanjutnya (REPORT-2, dst.) akan ditambahkan seiring pengujian lanjutan.
+**[REPORT-2](./evidence/report2/) (recon)** — inventaris subdomain/endpoint + bukti. Laporan penuh menyusul.
 
 ## Struktur
 
@@ -21,7 +21,8 @@ Report selanjutnya (REPORT-2, dst.) akan ditambahkan seiring pengujian lanjutan.
 │   ├── poc-upload.txt
 │   ├── poc-pathdisclosure.txt
 │   ├── poc-wp-enum.txt
-│   └── poc-misc.txt
+│   ├── poc-misc.txt
+│   └── report2/                 # bukti recon Report 2 (lihat report2/README.md)
 └── poc/
     └── poc-ecomplaint.sh        # script PoC runnable
 ```

@@ -1,0 +1,95 @@
+{
+ "success": true,
+ "data": [
+  {
+   "id": 5,
+   "user_id": 2,
+   "isMine": false,
+   "status": "published",
+   "title": "Pemerograman C",
+   "slug": "pemerograman-c-hwJzM",
+   "description": "Modul pemerograman C",
+   "category": "Umum",
+   "level": "beginner",
+   "chaptersCount": 6,
+   "studentsCount": 6,
+   "teacherName": "REDACTED_359",
+   "teacherInitials": "AA",
+   "teacherColor": "#6366F1",
+   "teacherAvatar": null,
+   "isEnrolled": false,
+   "isFree": true,
+   "price": 0,
+   "progress": 0,
+   "thumbnail": "courses/thumbnails/jtA55kUohNy8bo6bimGbiyC8Db8EWQO0W1Liqvxh.jpg",
+   "thumbnailUrl": "https://pedagogiai.smpm12gkb.sch.id/storage/courses/thumbnails/jtA55kUohNy8bo6bimGbiyC8Db8EWQO0W1Liqvxh.jpg",
+   "hasThumbnail": true,
+   "gradientColors": [
+    "#1C2E5A",
+    "#2B3B8B"
+   ],
+   "accentColor": "#6366F1"
+  },
+  {
+   "id": 4,
+   "user_id": 2,
+   "isMine": false,
+   "status": "published",
+   "title": "Mengenal micro:bit",
+   "slug": "mengenal-microbit-lGf6t",
+   "description": "Peserta didik mampu mengenal micro:bit, memahami fungsi bagian-bagian utamanya, serta menggunakan micro:bit untuk menjalankan program sederhana.",
+   "category": "SMP Kelas 7",
+   "level": "intermediate",
+   "chaptersCount": 3,
+   "studentsCount": 19,
+   "teacherName": "REDACTED_359",
+   "teacherInitials": "AA",
+   "teacherColor": "#10B981",
+   "teacherAvatar": null,
+   "isEnrolled": false,
+   "isFree": true,
+   "price": 0,
+   "progress": 0,
+   "thumbnail": "courses/thumbnails/0DNasTLrePkEAQc3CuIalap13p5FdkPOihAWbNPj.jpg",
+   "thumbnailUrl": "https://pedagogiai.smpm12gkb.sch.id/storage/courses/thumbnails/0DNasTLrePkEAQc3CuIalap13p5FdkPOihAWbNPj.jpg",
+   "hasThumbnail": true,
+   "gradientColors": [
+    "#064E3B",
+    "#065F46"
+   ],
+   "accentColor": "#10B981"
+  },
+  {
+   "id": 3,
+   "user_id": 2,
+   "isMine": false,
+   "status": "published",
+   "title": "Pengenalan Dunia Pemrograman",
+   "slug": "pengenalan-dunia-pemrograman-Wf8p2",
+   "description": "Pengenalan dunia coding dan pemrograman untuk siswa SMP kelas 7, mencakup konsep dasar, contoh aplikasi, bahasa pemrograman, compiler/interpreter, arsitektur aplikasi, serta praktik menulis program perkenalan diri.",
+   "category": "SMP Kelas 7",
+   "level": "intermediate",
+   "chaptersCount": 4,
+   "studentsCount": 26,
+   "teacherName": "REDACTED_359",
+   "teacherInitials": "AA",
+   "teacherColor": "#A855F7",
+   "teacherAvatar": null,
+   "isEnrolled": false,
+   "isFree": true,
+   "price": 0,
+   "progress": 0,
+   "thumbnail": "courses/thumbnails/PmlVfoZ00j5Mz8JBE569VsJ1zIfgU9Mxba1OZypT.jpg",
+   "thumbnailUrl": "https://pedagogiai.smpm12gkb.sch.id/storage/courses/thumbnails/PmlVfoZ00j5Mz8JBE569VsJ1zIfgU9Mxba1OZypT.jpg",
+   "hasThumbnail": true,
+   "gradientColors": [
+    "#3B0764",
+    "#581C87"
+   ],
+   "accentColor": "#A855F7"
+  }
+ ],
+ "meta": {
+  "total": 3
+ }
+}

@@ -1,0 +1,1159 @@
+{
+ "ambil": "33",
+ "kembali": "29",
+ "penerima": "96",
+ "totalHak": "917",
+ "jumlahBelumAmbil": 63,
+ "totalHakBelumAmbil": 456,
+ "belumAmbilData": [
+  {
+   "id_penerima": "14",
+   "qr_code": "*********",
+   "nama": "REDACTED_264",
+   "jumlah_hak": "1",
+   "nama_unit": "Umum"
+  },
+  {
+   "id_penerima": "26",
+   "qr_code": "*********",
+   "nama": "REDACTED_265",
+   "jumlah_hak": "1",
+   "nama_unit": "Umum"
+  },
+  {
+   "id_penerima": "69",
+   "qr_code": "*********",
+   "nama": "REDACTED_266",
+   "jumlah_hak": "1",
+   "nama_unit": "Umum"
+  },
+  {
+   "id_penerima": "70",
+   "qr_code": "*********",
+   "nama": "REDACTED_267",
+   "jumlah_hak": "1",
+   "nama_unit": "Umum"
+  },
+  {
+   "id_penerima": "43",
+   "qr_code": "*********",
+   "nama": "REDACTED_268",
+   "jumlah_hak": "1",
+   "nama_unit": "Tukang"
+  },
+  {
+   "id_penerima": "9",
+   "qr_code": "*********",
+   "nama": "REDACTED_269",
+   "jumlah_hak": "1",
+   "nama_unit": "Security"
+  },
+  {
+   "id_penerima": "12",
+   "qr_code": "*********",
+   "nama": "REDACTED_270",
+   "jumlah_hak": "1",
+   "nama_unit": "Security"
+  },
+  {
+   "id_penerima": "42",
+   "qr_code": "*********",
+   "nama": "REDACTED_271",
+   "jumlah_hak": "1",
+   "nama_unit": "Pramubakti"
+  },
+  {
+   "id_penerima": "57",
+   "qr_code": "*********",
+   "nama": "REDACTED_272",
+   "jumlah_hak": "1",
+   "nama_unit": "Pramubakti"
+  },
+  {
+   "id_penerima": "61",
+   "qr_code": "*********",
+   "nama": "REDACTED_273",
+   "jumlah_hak": "1",
+   "nama_unit": "Pramubakti"
+  },
+  {
+   "id_penerima": "66",
+   "qr_code": "*********",
+   "nama": "REDACTED_274",
+   "jumlah_hak": "1",
+   "nama_unit": "Pramubakti"
+  },
+  {
+   "id_penerima": "68",
+   "qr_code": "*********",
+   "nama": "REDACTED_275",
+   "jumlah_hak": "1",
+   "nama_unit": "Pramubakti"
+  },
+  {
+   "id_penerima": "93",
+   "qr_code": "*********",
+   "nama": "REDACTED_276",
+   "jumlah_hak": "1",
+   "nama_unit": "Pramubakti"
+  },
+  {
+   "id_penerima": "96",
+   "qr_code": "*********",
+   "nama": "REDACTED_277",
+   "jumlah_hak": "1",
+   "nama_unit": "Pramubakti"
+  },
+  {
+   "id_penerima": "106",
+   "qr_code": "*********",
+   "nama": "REDACTED_278",
+   "jumlah_hak": "4",
+   "nama_unit": "MEK"
+  },
+  {
+   "id_penerima": "107",
+   "qr_code": "*********",
+   "nama": "REDACTED_279",
+   "jumlah_hak": "5",
+   "nama_unit": "Masjid Taqwa"
+  },
+  {
+   "id_penerima": "100",
+   "qr_code": "*********",
+   "nama": "REDACTED_280",
+   "jumlah_hak": "1",
+   "nama_unit": "Magang"
+  },
+  {
+   "id_penerima": "105",
+   "qr_code": "*********",
+   "nama": "REDACTED_281",
+   "jumlah_hak": "3",
+   "nama_unit": "LazisMu"
+  },
+  {
+   "id_penerima": "19",
+   "qr_code": "*********",
+   "nama": "REDACTED_282",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_penerima": "21",
+   "qr_code": "*********",
+   "nama": "REDACTED_283",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_penerima": "22",
+   "qr_code": "*********",
+   "nama": "REDACTED_284",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_penerima": "34",
+   "qr_code": "*********",
+   "nama": "REDACTED_285",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_penerima": "37",
+   "qr_code": "*********",
+   "nama": "REDACTED_286",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_penerima": "40",
+   "qr_code": "*********",
+   "nama": "REDACTED_287",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_penerima": "111",
+   "qr_code": "*********",
+   "nama": "REDACTED_288",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_penerima": "47",
+   "qr_code": "*********",
+   "nama": "REDACTED_289",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_penerima": "52",
+   "qr_code": "*********",
+   "nama": "REDACTED_290",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_penerima": "65",
+   "qr_code": "*********",
+   "nama": "REDACTED_291",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_penerima": "72",
+   "qr_code": "*********",
+   "nama": "REDACTED_292",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_penerima": "18",
+   "qr_code": "*********",
+   "nama": "REDACTED_293",
+   "jumlah_hak": "1",
+   "nama_unit": "KS+BAS"
+  },
+  {
+   "id_penerima": "99",
+   "qr_code": "*********",
+   "nama": "REDACTED_294",
+   "jumlah_hak": "1",
+   "nama_unit": "KS+BAS"
+  },
+  {
+   "id_penerima": "10",
+   "qr_code": "*********",
+   "nama": "REDACTED_295",
+   "jumlah_hak": "1",
+   "nama_unit": "Kesiswaan"
+  },
+  {
+   "id_penerima": "11",
+   "qr_code": "*********",
+   "nama": "REDACTED_296",
+   "jumlah_hak": "1",
+   "nama_unit": "Kesiswaan"
+  },
+  {
+   "id_penerima": "20",
+   "qr_code": "*********",
+   "nama": "REDACTED_297",
+   "jumlah_hak": "1",
+   "nama_unit": "Kesiswaan"
+  },
+  {
+   "id_penerima": "49",
+   "qr_code": "*********",
+   "nama": "REDACTED_298",
+   "jumlah_hak": "1",
+   "nama_unit": "Kesiswaan"
+  },
+  {
+   "id_penerima": "71",
+   "qr_code": "*********",
+   "nama": "REDACTED_299",
+   "jumlah_hak": "1",
+   "nama_unit": "Kesiswaan"
+  },
+  {
+   "id_penerima": "73",
+   "qr_code": "*********",
+   "nama": "REDACTED_300",
+   "jumlah_hak": "1",
+   "nama_unit": "Kesiswaan"
+  },
+  {
+   "id_penerima": "85",
+   "qr_code": "*********",
+   "nama": "REDACTED_301",
+   "jumlah_hak": "31",
+   "nama_unit": "Kelas 9I"
+  },
+  {
+   "id_penerima": "76",
+   "qr_code": "*********",
+   "nama": "REDACTED_302",
+   "jumlah_hak": "31",
+   "nama_unit": "Kelas 9H"
+  },
+  {
+   "id_penerima": "36",
+   "qr_code": "*********",
+   "nama": "REDACTED_303",
+   "jumlah_hak": "28",
+   "nama_unit": "Kelas 9E"
+  },
+  {
+   "id_penerima": "94",
+   "qr_code": "*********",
+   "nama": "REDACTED_304",
+   "jumlah_hak": "31",
+   "nama_unit": "Kelas 9D"
+  },
+  {
+   "id_penerima": "60",
+   "qr_code": "*********",
+   "nama": "REDACTED_305",
+   "jumlah_hak": "31",
+   "nama_unit": "Kelas 9B"
+  },
+  {
+   "id_penerima": "23",
+   "qr_code": "*********",
+   "nama": "REDACTED_306",
+   "jumlah_hak": "30",
+   "nama_unit": "Kelas 8I"
+  },
+  {
+   "id_penerima": "56",
+   "qr_code": "*********",
+   "nama": "REDACTED_307",
+   "jumlah_hak": "31",
+   "nama_unit": "Kelas 8H"
+  },
+  {
+   "id_penerima": "28",
+   "qr_code": "*********",
+   "nama": "REDACTED_308",
+   "jumlah_hak": "27",
+   "nama_unit": "Kelas 8F"
+  },
+  {
+   "id_penerima": "50",
+   "qr_code": "*********",
+   "nama": "REDACTED_309",
+   "jumlah_hak": "34",
+   "nama_unit": "Kelas 8B"
+  },
+  {
+   "id_penerima": "83",
+   "qr_code": "*********",
+   "nama": "REDACTED_310",
+   "jumlah_hak": "33",
+   "nama_unit": "Kelas 7I"
+  },
+  {
+   "id_penerima": "46",
+   "qr_code": "*********",
+   "nama": "REDACTED_311",
+   "jumlah_hak": "28",
+   "nama_unit": "Kelas 7G"
+  },
+  {
+   "id_penerima": "45",
+   "qr_code": "*********",
+   "nama": "REDACTED_312",
+   "jumlah_hak": "29",
+   "nama_unit": "Kelas 7E"
+  },
+  {
+   "id_penerima": "92",
+   "qr_code": "*********",
+   "nama": "REDACTED_313",
+   "jumlah_hak": "33",
+   "nama_unit": "Kelas 7B"
+  },
+  {
+   "id_penerima": "15",
+   "qr_code": "*********",
+   "nama": "REDACTED_314",
+   "jumlah_hak": "1",
+   "nama_unit": "Ismuba"
+  },
+  {
+   "id_penerima": "27",
+   "qr_code": "*********",
+   "nama": "REDACTED_315",
+   "jumlah_hak": "1",
+   "nama_unit": "Ismuba"
+  },
+  {
+   "id_penerima": "31",
+   "qr_code": "*********",
+   "nama": "REDACTED_316",
+   "jumlah_hak": "1",
+   "nama_unit": "Ismuba"
+  },
+  {
+   "id_penerima": "48",
+   "qr_code": "*********",
+   "nama": "REDACTED_317",
+   "jumlah_hak": "1",
+   "nama_unit": "Ismuba"
+  },
+  {
+   "id_penerima": "59",
+   "qr_code": "*********",
+   "nama": "REDACTED_318",
+   "jumlah_hak": "1",
+   "nama_unit": "Ismuba"
+  },
+  {
+   "id_penerima": "67",
+   "qr_code": "*********",
+   "nama": "REDACTED_319",
+   "jumlah_hak": "1",
+   "nama_unit": "Ismuba"
+  },
+  {
+   "id_penerima": "74",
+   "qr_code": "*********",
+   "nama": "REDACTED_320",
+   "jumlah_hak": "1",
+   "nama_unit": "Ismuba"
+  },
+  {
+   "id_penerima": "8",
+   "qr_code": "*********",
+   "nama": "REDACTED_321",
+   "jumlah_hak": "1",
+   "nama_unit": "Humas"
+  },
+  {
+   "id_penerima": "35",
+   "qr_code": "*********",
+   "nama": "REDACTED_322",
+   "jumlah_hak": "1",
+   "nama_unit": "Humas"
+  },
+  {
+   "id_penerima": "63",
+   "qr_code": "*********",
+   "nama": "REDACTED_323",
+   "jumlah_hak": "1",
+   "nama_unit": "Humas"
+  },
+  {
+   "id_penerima": "77",
+   "qr_code": "*********",
+   "nama": "REDACTED_324",
+   "jumlah_hak": "1",
+   "nama_unit": "Humas"
+  },
+  {
+   "id_penerima": "80",
+   "qr_code": "*********",
+   "nama": "REDACTED_325",
+   "jumlah_hak": "1",
+   "nama_unit": "Driver"
+  },
+  {
+   "id_penerima": "89",
+   "qr_code": "*********",
+   "nama": "REDACTED_326",
+   "jumlah_hak": "1",
+   "nama_unit": "Driver"
+  }
+ ],
+ "jumlahBelumKembali": 4,
+ "totalHakBelumKembali": 4,
+ "belumKembaliData": [
+  {
+   "id_penerima": "38",
+   "qr_code": "*********",
+   "nama": "REDACTED_327",
+   "jumlah_hak": "1",
+   "nama_unit": "KS+BAS"
+  },
+  {
+   "id_penerima": "79",
+   "qr_code": "*********",
+   "nama": "REDACTED_328",
+   "jumlah_hak": "1",
+   "nama_unit": "KS+BAS"
+  },
+  {
+   "id_penerima": "81",
+   "qr_code": "*********",
+   "nama": "REDACTED_329",
+   "jumlah_hak": "1",
+   "nama_unit": "KS+BAS"
+  },
+  {
+   "id_penerima": "109",
+   "qr_code": "*********",
+   "nama": "REDACTED_330",
+   "jumlah_hak": "1",
+   "nama_unit": "Humas"
+  }
+ ],
+ "totalAmbilHariIni": 461,
+ "sudahAmbilData": [
+  {
+   "id_transaksi": "5833",
+   "jumlah": "34",
+   "tanggal_transaksi": "2026-10-15 12:41:12",
+   "qr_code": "*********",
+   "nama": "REDACTED_331",
+   "jumlah_hak": "34",
+   "nama_unit": "Kelas 8A"
+  },
+  {
+   "id_transaksi": "5826",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 12:33:59",
+   "qr_code": "*********",
+   "nama": "REDACTED_332",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_transaksi": "5824",
+   "jumlah": "33",
+   "tanggal_transaksi": "2026-10-15 12:32:27",
+   "qr_code": "*********",
+   "nama": "REDACTED_333",
+   "jumlah_hak": "33",
+   "nama_unit": "Kelas 7D"
+  },
+  {
+   "id_transaksi": "5822",
+   "jumlah": "32",
+   "tanggal_transaksi": "2026-10-15 12:31:45",
+   "qr_code": "*********",
+   "nama": "REDACTED_263",
+   "jumlah_hak": "32",
+   "nama_unit": "Kelas 9A"
+  },
+  {
+   "id_transaksi": "5819",
+   "jumlah": "33",
+   "tanggal_transaksi": "2026-10-15 12:30:01",
+   "qr_code": "*********",
+   "nama": "REDACTED_334",
+   "jumlah_hak": "33",
+   "nama_unit": "Kelas 7H"
+  },
+  {
+   "id_transaksi": "5817",
+   "jumlah": "33",
+   "tanggal_transaksi": "2026-10-15 12:29:24",
+   "qr_code": "*********",
+   "nama": "REDACTED_335",
+   "jumlah_hak": "33",
+   "nama_unit": "Kelas 7A"
+  },
+  {
+   "id_transaksi": "5814",
+   "jumlah": "27",
+   "tanggal_transaksi": "2026-10-15 12:22:01",
+   "qr_code": "*********",
+   "nama": "REDACTED_336",
+   "jumlah_hak": "27",
+   "nama_unit": "Kelas 8D"
+  },
+  {
+   "id_transaksi": "5812",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 12:16:19",
+   "qr_code": "*********",
+   "nama": "REDACTED_337",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_transaksi": "5810",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 12:13:01",
+   "qr_code": "*********",
+   "nama": "REDACTED_338",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_transaksi": "5809",
+   "jumlah": "28",
+   "tanggal_transaksi": "2026-10-15 12:12:09",
+   "qr_code": "*********",
+   "nama": "REDACTED_339",
+   "jumlah_hak": "28",
+   "nama_unit": "Kelas 9F"
+  },
+  {
+   "id_transaksi": "5808",
+   "jumlah": "27",
+   "tanggal_transaksi": "2026-10-15 12:10:04",
+   "qr_code": "*********",
+   "nama": "REDACTED_340",
+   "jumlah_hak": "27",
+   "nama_unit": "Kelas 8G"
+  },
+  {
+   "id_transaksi": "5806",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 12:09:09",
+   "qr_code": "*********",
+   "nama": "REDACTED_341",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_transaksi": "5805",
+   "jumlah": "34",
+   "tanggal_transaksi": "2026-10-15 12:08:19",
+   "qr_code": "*********",
+   "nama": "REDACTED_342",
+   "jumlah_hak": "34",
+   "nama_unit": "Kelas 8E"
+  },
+  {
+   "id_transaksi": "5804",
+   "jumlah": "28",
+   "tanggal_transaksi": "2026-10-15 12:06:11",
+   "qr_code": "*********",
+   "nama": "REDACTED_343",
+   "jumlah_hak": "28",
+   "nama_unit": "Kelas 9G"
+  },
+  {
+   "id_transaksi": "5803",
+   "jumlah": "29",
+   "tanggal_transaksi": "2026-10-15 12:04:49",
+   "qr_code": "*********",
+   "nama": "REDACTED_344",
+   "jumlah_hak": "29",
+   "nama_unit": "Kelas 7F"
+  },
+  {
+   "id_transaksi": "5801",
+   "jumlah": "34",
+   "tanggal_transaksi": "2026-10-15 12:03:36",
+   "qr_code": "*********",
+   "nama": "REDACTED_345",
+   "jumlah_hak": "34",
+   "nama_unit": "Kelas 8C"
+  },
+  {
+   "id_transaksi": "5799",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 12:03:21",
+   "qr_code": "*********",
+   "nama": "REDACTED_346",
+   "jumlah_hak": "1",
+   "nama_unit": "Pramubakti"
+  },
+  {
+   "id_transaksi": "5798",
+   "jumlah": "33",
+   "tanggal_transaksi": "2026-10-15 12:03:20",
+   "qr_code": "*********",
+   "nama": "REDACTED_347",
+   "jumlah_hak": "33",
+   "nama_unit": "Kelas 7C"
+  },
+  {
+   "id_transaksi": "5797",
+   "jumlah": "31",
+   "tanggal_transaksi": "2026-10-15 12:02:14",
+   "qr_code": "*********",
+   "nama": "REDACTED_348",
+   "jumlah_hak": "31",
+   "nama_unit": "Kelas 9C"
+  },
+  {
+   "id_transaksi": "5795",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 11:12:30",
+   "qr_code": "*********",
+   "nama": "REDACTED_330",
+   "jumlah_hak": "1",
+   "nama_unit": "Humas"
+  },
+  {
+   "id_transaksi": "5794",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 11:12:23",
+   "qr_code": "*********",
+   "nama": "REDACTED_327",
+   "jumlah_hak": "1",
+   "nama_unit": "KS+BAS"
+  },
+  {
+   "id_transaksi": "5793",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 11:12:16",
+   "qr_code": "*********",
+   "nama": "REDACTED_328",
+   "jumlah_hak": "1",
+   "nama_unit": "KS+BAS"
+  },
+  {
+   "id_transaksi": "5792",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 11:12:09",
+   "qr_code": "*********",
+   "nama": "REDACTED_349",
+   "jumlah_hak": "1",
+   "nama_unit": "KS+BAS"
+  },
+  {
+   "id_transaksi": "5791",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 11:12:02",
+   "qr_code": "*********",
+   "nama": "REDACTED_329",
+   "jumlah_hak": "1",
+   "nama_unit": "KS+BAS"
+  },
+  {
+   "id_transaksi": "5789",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 11:10:33",
+   "qr_code": "*********",
+   "nama": "REDACTED_350",
+   "jumlah_hak": "1",
+   "nama_unit": "Dikdasmen"
+  },
+  {
+   "id_transaksi": "5787",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 11:03:03",
+   "qr_code": "*********",
+   "nama": "REDACTED_351",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_transaksi": "5785",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 10:44:37",
+   "qr_code": "*********",
+   "nama": "REDACTED_352",
+   "jumlah_hak": "1",
+   "nama_unit": "Umum"
+  },
+  {
+   "id_transaksi": "5783",
+   "jumlah": "7",
+   "tanggal_transaksi": "2026-10-15 10:25:44",
+   "qr_code": "*********",
+   "nama": "REDACTED_353",
+   "jumlah_hak": "7",
+   "nama_unit": "Dikdasmen"
+  },
+  {
+   "id_transaksi": "5777",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 10:06:34",
+   "qr_code": "*********",
+   "nama": "REDACTED_354",
+   "jumlah_hak": "1",
+   "nama_unit": "Security"
+  },
+  {
+   "id_transaksi": "5776",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 10:05:30",
+   "qr_code": "*********",
+   "nama": "REDACTED_355",
+   "jumlah_hak": "1",
+   "nama_unit": "Security"
+  },
+  {
+   "id_transaksi": "5775",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 10:05:20",
+   "qr_code": "*********",
+   "nama": "REDACTED_356",
+   "jumlah_hak": "1",
+   "nama_unit": "Security"
+  },
+  {
+   "id_transaksi": "5774",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 10:05:07",
+   "qr_code": "*********",
+   "nama": "REDACTED_357",
+   "jumlah_hak": "1",
+   "nama_unit": "Security"
+  },
+  {
+   "id_transaksi": "5773",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 10:04:57",
+   "qr_code": "*********",
+   "nama": "REDACTED_358",
+   "jumlah_hak": "1",
+   "nama_unit": "Security"
+  }
+ ],
+ "totalKembaliHariIni": 457,
+ "sudahKembaliData": [
+  {
+   "id_transaksi": "5834",
+   "jumlah": "34",
+   "tanggal_transaksi": "2026-10-15 12:41:23",
+   "qr_code": "*********",
+   "nama": "REDACTED_331",
+   "jumlah_hak": "34",
+   "nama_unit": "Kelas 8A"
+  },
+  {
+   "id_transaksi": "5832",
+   "jumlah": "33",
+   "tanggal_transaksi": "2026-10-15 12:36:55",
+   "qr_code": "*********",
+   "nama": "REDACTED_347",
+   "jumlah_hak": "33",
+   "nama_unit": "Kelas 7C"
+  },
+  {
+   "id_transaksi": "5831",
+   "jumlah": "28",
+   "tanggal_transaksi": "2026-10-15 12:36:41",
+   "qr_code": "*********",
+   "nama": "REDACTED_339",
+   "jumlah_hak": "28",
+   "nama_unit": "Kelas 9F"
+  },
+  {
+   "id_transaksi": "5830",
+   "jumlah": "34",
+   "tanggal_transaksi": "2026-10-15 12:35:40",
+   "qr_code": "*********",
+   "nama": "REDACTED_342",
+   "jumlah_hak": "34",
+   "nama_unit": "Kelas 8E"
+  },
+  {
+   "id_transaksi": "5829",
+   "jumlah": "27",
+   "tanggal_transaksi": "2026-10-15 12:35:13",
+   "qr_code": "*********",
+   "nama": "REDACTED_340",
+   "jumlah_hak": "27",
+   "nama_unit": "Kelas 8G"
+  },
+  {
+   "id_transaksi": "5828",
+   "jumlah": "29",
+   "tanggal_transaksi": "2026-10-15 12:34:41",
+   "qr_code": "*********",
+   "nama": "REDACTED_344",
+   "jumlah_hak": "29",
+   "nama_unit": "Kelas 7F"
+  },
+  {
+   "id_transaksi": "5827",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 12:34:04",
+   "qr_code": "*********",
+   "nama": "REDACTED_332",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_transaksi": "5825",
+   "jumlah": "33",
+   "tanggal_transaksi": "2026-10-15 12:32:35",
+   "qr_code": "*********",
+   "nama": "REDACTED_333",
+   "jumlah_hak": "33",
+   "nama_unit": "Kelas 7D"
+  },
+  {
+   "id_transaksi": "5823",
+   "jumlah": "32",
+   "tanggal_transaksi": "2026-10-15 12:31:56",
+   "qr_code": "*********",
+   "nama": "REDACTED_263",
+   "jumlah_hak": "32",
+   "nama_unit": "Kelas 9A"
+  },
+  {
+   "id_transaksi": "5821",
+   "jumlah": "33",
+   "tanggal_transaksi": "2026-10-15 12:30:09",
+   "qr_code": "*********",
+   "nama": "REDACTED_334",
+   "jumlah_hak": "33",
+   "nama_unit": "Kelas 7H"
+  },
+  {
+   "id_transaksi": "5820",
+   "jumlah": "28",
+   "tanggal_transaksi": "2026-10-15 12:30:03",
+   "qr_code": "*********",
+   "nama": "REDACTED_343",
+   "jumlah_hak": "28",
+   "nama_unit": "Kelas 9G"
+  },
+  {
+   "id_transaksi": "5818",
+   "jumlah": "33",
+   "tanggal_transaksi": "2026-10-15 12:29:32",
+   "qr_code": "*********",
+   "nama": "REDACTED_335",
+   "jumlah_hak": "33",
+   "nama_unit": "Kelas 7A"
+  },
+  {
+   "id_transaksi": "5816",
+   "jumlah": "31",
+   "tanggal_transaksi": "2026-10-15 12:23:20",
+   "qr_code": "*********",
+   "nama": "REDACTED_348",
+   "jumlah_hak": "31",
+   "nama_unit": "Kelas 9C"
+  },
+  {
+   "id_transaksi": "5815",
+   "jumlah": "27",
+   "tanggal_transaksi": "2026-10-15 12:22:06",
+   "qr_code": "*********",
+   "nama": "REDACTED_336",
+   "jumlah_hak": "27",
+   "nama_unit": "Kelas 8D"
+  },
+  {
+   "id_transaksi": "5813",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 12:16:25",
+   "qr_code": "*********",
+   "nama": "REDACTED_337",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_transaksi": "5811",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 12:13:05",
+   "qr_code": "*********",
+   "nama": "REDACTED_338",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_transaksi": "5807",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 12:09:25",
+   "qr_code": "*********",
+   "nama": "REDACTED_341",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_transaksi": "5802",
+   "jumlah": "34",
+   "tanggal_transaksi": "2026-10-15 12:04:15",
+   "qr_code": "*********",
+   "nama": "REDACTED_345",
+   "jumlah_hak": "34",
+   "nama_unit": "Kelas 8C"
+  },
+  {
+   "id_transaksi": "5800",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 12:03:27",
+   "qr_code": "*********",
+   "nama": "REDACTED_346",
+   "jumlah_hak": "1",
+   "nama_unit": "Pramubakti"
+  },
+  {
+   "id_transaksi": "5796",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 11:29:39",
+   "qr_code": "*********",
+   "nama": "REDACTED_349",
+   "jumlah_hak": "1",
+   "nama_unit": "KS+BAS"
+  },
+  {
+   "id_transaksi": "5790",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 11:10:41",
+   "qr_code": "*********",
+   "nama": "REDACTED_350",
+   "jumlah_hak": "1",
+   "nama_unit": "Dikdasmen"
+  },
+  {
+   "id_transaksi": "5788",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 11:03:14",
+   "qr_code": "*********",
+   "nama": "REDACTED_351",
+   "jumlah_hak": "1",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_transaksi": "5786",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 10:45:06",
+   "qr_code": "*********",
+   "nama": "REDACTED_352",
+   "jumlah_hak": "1",
+   "nama_unit": "Umum"
+  },
+  {
+   "id_transaksi": "5784",
+   "jumlah": "7",
+   "tanggal_transaksi": "2026-10-15 10:26:04",
+   "qr_code": "*********",
+   "nama": "REDACTED_353",
+   "jumlah_hak": "7",
+   "nama_unit": "Dikdasmen"
+  },
+  {
+   "id_transaksi": "5782",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 10:07:57",
+   "qr_code": "*********",
+   "nama": "REDACTED_355",
+   "jumlah_hak": "1",
+   "nama_unit": "Security"
+  },
+  {
+   "id_transaksi": "5781",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 10:07:46",
+   "qr_code": "*********",
+   "nama": "REDACTED_354",
+   "jumlah_hak": "1",
+   "nama_unit": "Security"
+  },
+  {
+   "id_transaksi": "5780",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 10:07:40",
+   "qr_code": "*********",
+   "nama": "REDACTED_356",
+   "jumlah_hak": "1",
+   "nama_unit": "Security"
+  },
+  {
+   "id_transaksi": "5779",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 10:07:34",
+   "qr_code": "*********",
+   "nama": "REDACTED_358",
+   "jumlah_hak": "1",
+   "nama_unit": "Security"
+  },
+  {
+   "id_transaksi": "5778",
+   "jumlah": "1",
+   "tanggal_transaksi": "2026-10-15 10:07:21",
+   "qr_code": "*********",
+   "nama": "REDACTED_357",
+   "jumlah_hak": "1",
+   "nama_unit": "Security"
+  }
+ ],
+ "riwayat": [
+  {
+   "id_transaksi": "5834",
+   "id_penerima": "97",
+   "jenis_transaksi": "pengembalian",
+   "jumlah": "34",
+   "tanggal_operasional": "2026-10-15",
+   "tanggal_transaksi": "2026-10-15 12:41:23",
+   "id_user": "2",
+   "nama": "REDACTED_331",
+   "nama_unit": "Kelas 8A"
+  },
+  {
+   "id_transaksi": "5833",
+   "id_penerima": "97",
+   "jenis_transaksi": "pengambilan",
+   "jumlah": "34",
+   "tanggal_operasional": "2026-10-15",
+   "tanggal_transaksi": "2026-10-15 12:41:12",
+   "id_user": "2",
+   "nama": "REDACTED_331",
+   "nama_unit": "Kelas 8A"
+  },
+  {
+   "id_transaksi": "5832",
+   "id_penerima": "75",
+   "jenis_transaksi": "pengembalian",
+   "jumlah": "33",
+   "tanggal_operasional": "2026-10-15",
+   "tanggal_transaksi": "2026-10-15 12:36:55",
+   "id_user": "2",
+   "nama": "REDACTED_347",
+   "nama_unit": "Kelas 7C"
+  },
+  {
+   "id_transaksi": "5831",
+   "id_penerima": "44",
+   "jenis_transaksi": "pengembalian",
+   "jumlah": "28",
+   "tanggal_operasional": "2026-10-15",
+   "tanggal_transaksi": "2026-10-15 12:36:41",
+   "id_user": "2",
+   "nama": "REDACTED_339",
+   "nama_unit": "Kelas 9F"
+  },
+  {
+   "id_transaksi": "5830",
+   "id_penerima": "82",
+   "jenis_transaksi": "pengembalian",
+   "jumlah": "34",
+   "tanggal_operasional": "2026-10-15",
+   "tanggal_transaksi": "2026-10-15 12:35:40",
+   "id_user": "2",
+   "nama": "REDACTED_342",
+   "nama_unit": "Kelas 8E"
+  },
+  {
+   "id_transaksi": "5829",
+   "id_penerima": "33",
+   "jenis_transaksi": "pengembalian",
+   "jumlah": "27",
+   "tanggal_operasional": "2026-10-15",
+   "tanggal_transaksi": "2026-10-15 12:35:13",
+   "id_user": "2",
+   "nama": "REDACTED_340",
+   "nama_unit": "Kelas 8G"
+  },
+  {
+   "id_transaksi": "5828",
+   "id_penerima": "17",
+   "jenis_transaksi": "pengembalian",
+   "jumlah": "29",
+   "tanggal_operasional": "2026-10-15",
+   "tanggal_transaksi": "2026-10-15 12:34:41",
+   "id_user": "2",
+   "nama": "REDACTED_344",
+   "nama_unit": "Kelas 7F"
+  },
+  {
+   "id_transaksi": "5827",
+   "id_penerima": "54",
+   "jenis_transaksi": "pengembalian",
+   "jumlah": "1",
+   "tanggal_operasional": "2026-10-15",
+   "tanggal_transaksi": "2026-10-15 12:34:04",
+   "id_user": "2",
+   "nama": "REDACTED_332",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_transaksi": "5826",
+   "id_penerima": "54",
+   "jenis_transaksi": "pengambilan",
+   "jumlah": "1",
+   "tanggal_operasional": "2026-10-15",
+   "tanggal_transaksi": "2026-10-15 12:33:59",
+   "id_user": "2",
+   "nama": "REDACTED_332",
+   "nama_unit": "Kurikulum"
+  },
+  {
+   "id_transaksi": "5825",
+   "id_penerima": "24",
+   "jenis_transaksi": "pengembalian",
+   "jumlah": "33",
+   "tanggal_operasional": "2026-10-15",
+   "tanggal_transaksi": "2026-10-15 12:32:35",
+   "id_user": "2",
+   "nama": "REDACTED_333",
+   "nama_unit": "Kelas 7D"
+  }
+ ]
+}

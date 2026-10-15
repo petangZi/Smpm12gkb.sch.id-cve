@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dashboard</title>
+    
+    <!-- Favicon - REDACTED_412 -->
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABh0lEQVR4nO2Wv0sCYRjHPyogh2jIwcHBIegfqKWh7b9BmhpKcwg3h3ZxCgcHh4aGhlqawqEhOoIG4YI6nCKKJ88br9d7F3m9eS+83xce7r3n7vPc7/3xvO97giRJkmQEGUAf2AS2UCmlgCs4BRaAuz8G9weegQvgBPhGU1VgC5hKXQeF1eRYAjL0aChj4CeD3A0wTucR27wFNLh/GcgDxOoVQA/4ApaBCaCaMhBBrA7IbA8YAg1GAQjYVSSsLgUMAi3G7IfYrJ5P2jY6Aah2WGVyCCShLm7aVgYkCbOjSOzqJKBGmB1FYldPApXCRKBCuyfE2tVJQLUwEaiQJbHuUQQoEWZHEU7eJAAVwuzGE85tEoBSYX4jCVc3CUCZML8l4V6eBKBEmJ3dIIDnjQBgZj8B/NSLbq0Is99IuI6uQhFm59idNHf2SRZ2T4AA3sotIOFPPgHy7rUwC8PST3OF/gM4lkt+hHt8yd+2JH8q/gIgSZIkiQn+AHWw/6Sg1Lh+AAAAAElFTkSuQmCC">
+    
+    <!-- Alternatif favicon menggunakan SVG dengan emoji makanan -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍱</text></svg>">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body><!-- REDACTED_421 - REDACTED_387 -->
+<nav class="navbar navbar-expand-lg top-navbar">
+    <div class="container-fluid">
+        <!-- REDACTED_405 + Brand -->
+        <div class="d-flex align-items-center gap-2">
+            <button class="mobile-toggle d-lg-none" type="button" onclick="toggleSidebar()">
+                <i class="bi bi-list"></i>
+            </button>
+            <a class="navbar-brand mb-0" href="#">
+                <i class="bi bi-box-seam text-primary me-2"></i>
+                REDACTED_423
+            </a>
+        </div>
+
+        <!-- REDACTED_422 -->
+        <div class="d-flex align-items-center gap-3">
+            <!-- REDACTED_427 -->
+            <div class="dropdown user-dropdown">
+                <a href="#" class="d-flex align-items-center gap-2 text-decoration-none dropdown-toggle" 
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="user-avatar-sm">G</div>
+                    <div class="d-none d-md-block text-start">
+                        <div class="fw-semibold text-dark small">Guest</div>
+                        <div class="text-muted" style="font-size: 0.75rem;">Guest</div>
+                    </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li class="dropdown-header px-3 py-2">
+                        <div class="fw-semibold">Guest</div>
+                        <small class="text-muted">Guest</small>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                                            <li>
+                            <a class="dropdown-item" href="../auth/login.php">
+                                <i class="bi bi-box-arrow-in-right"></i> Login
+                            </a>
+                        </li>
+                                    </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- REDACTED_374 -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+<div class="container-fluid p-0">
+    <div class="row g-0">
+        <!-- Sidebar -->
+        <div class="col-auto sidebar p-0">
+            <div class="sidebar-brand">
+                <h4>REDACTED_426</h4>
+                <small>REDACTED_380</small>
+            </div>
+            <div class="d-flex flex-column">
+                <a href="dashboard.php" class="nav-link active">
+                    <i class="bi bi-speedometer2"></i> Dashboard
+                </a>
+                <a href="dashboard2.php" class="nav-link">
+                    <i class="bi bi-grid-3x3-gap"></i> REDACTED_429
+                </a>
+                <a href="riwayat.php" class="nav-link">
+                    <i class="bi bi-clock-history"></i> Riwayat
+                </a>
+            </div>
+            <div class="sidebar-footer">
+                <small>REDACTED_431 v1.0</small>
+            </div>
+        </div>
+
+        <!-- REDACTED_414 -->
+        <div class="col main-wrapper">
+            <div class="content-area">
+                
+                <h4 class="mb-4 text-primary-dark">
+                    <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                </h4>
+
+                <!-- Row 1: REDACTED_403 -->
+                <div class="row g-4 mb-4">
+                    <!-- Card Total Penerima -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="stat-card info">
+                            <i class="bi bi-people stat-icon"></i>
+                            <div class="stat-label">Total Penerima</div>
+                            <div class="stat-value">
+                                <span id="total-hak">917</span> <span style="font-size: 0.6em; opacity: 0.8;">Ompreng</span>
+                            </div>
+                            <!--<div class="mt-2" style="font-size: 0.9rem; opacity: 0.9;">
+                                <i class="bi bi-people-fill"></i> <span id="stat-penerima">96</span> Penerima
+                            </div>-->
+                            <div class="mt-2" style="font-size: 0.75rem; opacity: 0.7;">
+                                <i class="bi bi-info-circle"></i> REDACTED_425 di <a style="text-decoration: none; color: rgba(255, 255, 255, 0.7);" href="riwayat.php">Riwayat Penerima</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- REDACTED_395 -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="stat-card" style="background: linear-gradient(135deg, #dc3545 0%, #a71d2a 100%); cursor: pointer;" 
+                             data-bs-toggle="modal" data-bs-target="#modalBelumAmbil">
+                            <i class="bi bi-x-circle stat-icon"></i>
+                            <div class="stat-label">REDACTED_369</div>
+                            <div class="stat-value">
+                                <span id="total-hak-belum-ambil">456</span> <span style="font-size: 0.6em; opacity: 0.8;">Ompreng</span>
+                            </div>
+                            <!--<div class="mt-2" style="font-size: 0.9rem; opacity: 0.9;">
+                                <i class="bi bi-person-x"></i> <span id="stat-belum-ambil">63</span> Penerima
+                            </div>-->
+                            <div class="mt-2" style="font-size: 0.75rem; opacity: 0.7;">
+                                <i class="bi bi-hand-index"></i> Klik untuk lihat detail
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- REDACTED_386 -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="stat-card" style="background: linear-gradient(135deg, #fd7e14 0%, #c45a08 100%); cursor: pointer;" 
+                             data-bs-toggle="modal" data-bs-target="#modalBelumKembali">
+                            <i class="bi bi-arrow-counterclockwise stat-icon"></i>
+                            <div class="stat-label">REDACTED_362</div>
+                            <div class="stat-value">
+                                <span id="total-hak-belum-kembali">4</span> <span style="font-size: 0.6em; opacity: 0.8;">Ompreng</span>
+                            </div>
+                            <!-- <div class="mt-2" style="font-size: 0.9rem; opacity: 0.9;">
+                                <i class="bi bi-person-x"></i> <span id="stat-belum-kembali">4</span> Penerima
+                            </div> -->
+                            <div class="mt-2" style="font-size: 0.75rem; opacity: 0.7;">
+                                <i class="bi bi-hand-index"></i> Klik untuk lihat detail
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2: REDACTED_428 (Klikable) -->
+                <div class="row g-4 mb-4">
+                    <!-- REDACTED_367 -->
+                    <div class="col-md-6 col-sm-6">
+                        <div class="stat-card primary" style="cursor: pointer;" 
+                             data-bs-toggle="modal" data-bs-target="#modalSudahAmbil">
+                            <i class="bi bi-box-arrow-up stat-icon"></i>
+                            <div class="stat-label">REDACTED_376</div>
+                            <div class="stat-value">
+                                <span id="total-ambil-hari-ini">461</span> <span style="font-size: 0.6em; opacity: 0.8;">Ompreng</span>
+                            </div>
+                            <!--<div class="mt-2" style="font-size: 0.9rem; opacity: 0.9;">
+                                <i class="bi bi-box-arrow-up"></i> <span id="stat-ambil">33</span> Transaksi
+                            </div>-->
+                            <div class="mt-2" style="font-size: 0.75rem; opacity: 0.7;">
+                                <i class="bi bi-hand-index"></i> Klik untuk lihat detail
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- REDACTED_364 -->
+                    <div class="col-md-6 col-sm-6">
+                        <div class="stat-card success" style="cursor: pointer;" 
+                             data-bs-toggle="modal" data-bs-target="#modalSudahKembali">
+                            <i class="bi bi-box-arrow-in-down stat-icon"></i>
+                            <div class="stat-label">REDACTED_375</div>
+                            <div class="stat-value">
+                                <span id="total-kembali-hari-ini">457</span> <span style="font-size: 0.6em; opacity: 0.8;">Ompreng</span>
+                            </div>
+                            <!--<div class="mt-2" style="font-size: 0.9rem; opacity: 0.9;">
+                                <i class="bi bi-box-arrow-in-down"></i> <span id="stat-kembali">29</span> Transaksi
+                            </div>-->
+                            <div class="mt-2" style="font-size: 0.75rem; opacity: 0.7;">
+                                <i class="bi bi-hand-index"></i> Klik untuk lihat detail
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Riwayat -->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="bi bi-clock-history me-2"></i>Riwayat Transaksi Terbaru
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Unit</th>
+                                        <th>Jenis</th>
+                                        <th>Jumlah</th>
+                                        <th>Waktu</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="riwayat-tbody">
+                                                                        <tr>
+                                        <td>1</td>
+                                        <td>REDACTED_331</td>
+                                        <td>Kelas 8A</td>
+                                        <td>
+                                            <span class="badge bg-success">
+                                                Pengembalian                                            </span>
+                                        </td>
+                                        <td>34 Ompreng</td>
+                                        <td>15/10/2026 12:41</td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>2</td>
+                                        <td>REDACTED_331</td>
+                                        <td>Kelas 8A</td>
+                                        <td>
+                                            <span class="badge bg-primary">
+                                                Pengambilan                                            </span>
+                                        </td>
+                                        <td>34 Ompreng</td>
+                                        <td>15/10/2026 12:41</td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>3</td>
+                                        <td>REDACTED_347</td>
+                                        <td>Kelas 7C</td>
+                                        <td>
+                                            <span class="badge bg-success">
+                                                Pengembalian                                            </span>
+                                        </td>
+                                        <td>33 Ompreng</td>
+                                        <td>15/10/2026 12:36</td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>4</td>
+                                        <td>REDACTED_339</td>
+                                        <td>Kelas 9F</td>
+                                        <td>
+                                            <span class="badge bg-success">
+                                                Pengembalian                                            </span>
+                                        </td>
+                                        <td>28 Ompreng</td>
+                                        <td>15/10/2026 12:36</td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>5</td>
+                                        <td>REDACTED_342</td>
+                                        <td>Kelas 8E</td>
+                                        <td>
+                                            <span class="badge bg-success">
+                                                Pengembalian                                            </span>
+                                        </td>
+                                        <td>34 Ompreng</td>
+                                        <td>15/10/2026 12:35</td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>6</td>
+                                        <td>REDACTED_340</td>
+                                        <td>Kelas 8G</td>
+                                        <td>
+                                            <span class="badge bg-success">
+                                                Pengembalian                                            </span>
+                                        </td>
+                                        <td>27 Ompreng</td>
+                                        <td>15/10/2026 12:35</td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>7</td>
+                                        <td>REDACTED_344</td>
+                                        <td>Kelas 7F</td>
+                                        <td>
+                                            <span class="badge bg-success">
+                                                Pengembalian                                            </span>
+                                        </td>
+                                        <td>29 Ompreng</td>
+                                        <td>15/10/2026 12:34</td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>8</td>
+                                        <td>REDACTED_332</td>
+                                        <td>Kurikulum</td>
+                                        <td>
+                                            <span class="badge bg-success">
+                                                Pengembalian                                            </span>
+                                        </td>
+                                        <td>1 Ompreng</td>
+                                        <td>15/10/2026 12:34</td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>9</td>
+                                        <td>REDACTED_332</td>
+                                        <td>Kurikulum</td>
+                                        <td>
+                                            <span class="badge bg-primary">
+                                                Pengambilan                                            </span>
+                                        </td>
+                                        <td>1 Ompreng</td>
+                                        <td>15/10/2026 12:33</td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>10</td>
+                                        <td>REDACTED_333</td>
+                                        <td>Kelas 7D</td>
+                                        <td>
+                                            <span class="badge bg-success">
+                                                Pengembalian                                            </span>
+                                        </td>
+                                        <td>33 Ompreng</td>
+                                        <td>15/10/2026 12:32</td>
+                                    </tr>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: REDACTED_400 -->
+<div class="modal fade" id="modalBelumAmbil" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">
+                    <i class="bi bi-x-circle me-2"></i>REDACTED_369
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger">
+                    <strong id="modal-jumlah-belum-ambil">63</strong> penerima belum mengambil | 
+                    Total: <strong id="modal-total-hak-belum-ambil">456</strong> Ompreng
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>REDACTED_430</th>
+                                <th>Nama</th>
+                                <th>Unit</th>
+                                <th>Jumlah</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modal-belum-ambil-tbody">
+                                                        <tr>
+                                <td>1</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_264</td>
+                                <td>Umum</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>2</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_265</td>
+                                <td>Umum</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>3</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_266</td>
+                                <td>Umum</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>4</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_267</td>
+                                <td>Umum</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>5</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_268</td>
+                                <td>Tukang</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>6</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_269</td>
+                                <td>Security</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>7</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_270</td>
+                                <td>Security</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>8</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_271</td>
+                                <td>Pramubakti</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>9</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_272</td>
+                                <td>Pramubakti</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>10</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_273</td>
+                                <td>Pramubakti</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>11</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_274</td>
+                                <td>Pramubakti</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>12</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_275</td>
+                                <td>Pramubakti</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>13</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_276</td>
+                                <td>Pramubakti</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>14</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_277</td>
+                                <td>Pramubakti</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>15</td>
+                                <td><code>12MEKGKB1</code></td>
+                                <td>REDACTED_278</td>
+                                <td>MEK</td>
+                                <td><span class="badge bg-danger">4 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>16</td>
+                                <td><code>12TQWGKB1</code></td>
+                                <td>REDACTED_279</td>
+                                <td>REDACTED_415</td>
+                                <td><span class="badge bg-danger">5 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>17</td>
+                                <td><code>12MHSMG1</code></td>
+                                <td>REDACTED_280</td>
+                                <td>Magang</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>18</td>
+                                <td><code>12LZSGKB1</code></td>
+                                <td>REDACTED_281</td>
+                                <td>LazisMu</td>
+                                <td><span class="badge bg-danger">3 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>19</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_282</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>20</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_283</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>21</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_284</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>22</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_285</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>23</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_286</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>24</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_287</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>25</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_288</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>26</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_289</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>27</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_290</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>28</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_291</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>29</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_292</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>30</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_293</td>
+                                <td>KS+BAS</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>31</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_294</td>
+                                <td>KS+BAS</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>32</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_295</td>
+                                <td>Kesiswaan</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>33</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_296</td>
+                                <td>Kesiswaan</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>34</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_297</td>
+                                <td>Kesiswaan</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>35</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_298</td>
+                                <td>Kesiswaan</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>36</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_299</td>
+                                <td>Kesiswaan</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>37</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_300</td>
+                                <td>Kesiswaan</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>38</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_301</td>
+                                <td>Kelas 9I</td>
+                                <td><span class="badge bg-danger">31 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>39</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_302</td>
+                                <td>Kelas 9H</td>
+                                <td><span class="badge bg-danger">31 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>40</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_303</td>
+                                <td>Kelas 9E</td>
+                                <td><span class="badge bg-danger">28 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>41</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_304</td>
+                                <td>Kelas 9D</td>
+                                <td><span class="badge bg-danger">31 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>42</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_305</td>
+                                <td>Kelas 9B</td>
+                                <td><span class="badge bg-danger">31 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>43</td>
+                                <td><code>*********</code></td>
+                                <td>Ashifa\&#039;un Najah, S.Pd.</td>
+                                <td>Kelas 8I</td>
+                                <td><span class="badge bg-danger">30 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>44</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_307</td>
+                                <td>Kelas 8H</td>
+                                <td><span class="badge bg-danger">31 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>45</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_308</td>
+                                <td>Kelas 8F</td>
+                                <td><span class="badge bg-danger">27 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>46</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_309</td>
+                                <td>Kelas 8B</td>
+                                <td><span class="badge bg-danger">34 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>47</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_310</td>
+                                <td>Kelas 7I</td>
+                                <td><span class="badge bg-danger">33 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>48</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_311</td>
+                                <td>Kelas 7G</td>
+                                <td><span class="badge bg-danger">28 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>49</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_312</td>
+                                <td>Kelas 7E</td>
+                                <td><span class="badge bg-danger">29 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>50</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_313</td>
+                                <td>Kelas 7B</td>
+                                <td><span class="badge bg-danger">33 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>51</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_314</td>
+                                <td>Ismuba</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>52</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_315</td>
+                                <td>Ismuba</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>53</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_316</td>
+                                <td>Ismuba</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>54</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_317</td>
+                                <td>Ismuba</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>55</td>
+                                <td><code>*********</code></td>
+                                <td>Mar\&#039;atus Sholikah, S.Pd.</td>
+                                <td>Ismuba</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>56</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_319</td>
+                                <td>Ismuba</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>57</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_320</td>
+                                <td>Ismuba</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>58</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_321</td>
+                                <td>Humas</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>59</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_322</td>
+                                <td>Humas</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>60</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_323</td>
+                                <td>Humas</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>61</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_324</td>
+                                <td>Humas</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>62</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_325</td>
+                                <td>Driver</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>63</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_326</td>
+                                <td>Driver</td>
+                                <td><span class="badge bg-danger">1 Ompreng</span></td>
+                            </tr>
+                                                                                </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: REDACTED_382 -->
+<div class="modal fade" id="modalBelumKembali" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title">
+                    <i class="bi bi-arrow-counterclockwise me-2"></i>REDACTED_362
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning">
+                    <strong id="modal-jumlah-belum-kembali">4</strong> penerima belum mengembalikan | 
+                    Total: <strong id="modal-total-hak-belum-kembali">4</strong> Ompreng
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>REDACTED_430</th>
+                                <th>Nama</th>
+                                <th>Unit</th>
+                                <th>Jumlah</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modal-belum-kembali-tbody">
+                                                        <tr>
+                                <td>1</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_327</td>
+                                <td>KS+BAS</td>
+                                <td><span class="badge bg-warning text-dark">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>2</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_328</td>
+                                <td>KS+BAS</td>
+                                <td><span class="badge bg-warning text-dark">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>3</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_329</td>
+                                <td>KS+BAS</td>
+                                <td><span class="badge bg-warning text-dark">1 Ompreng</span></td>
+                            </tr>
+                                                        <tr>
+                                <td>4</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_330</td>
+                                <td>Humas</td>
+                                <td><span class="badge bg-warning text-dark">1 Ompreng</span></td>
+                            </tr>
+                                                                                </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: REDACTED_368 -->
+<div class="modal fade" id="modalSudahAmbil" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">
+                    <i class="bi bi-box-arrow-up me-2"></i>REDACTED_376
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-primary">
+                    <strong id="modal-jumlah-sudah-ambil">33</strong> transaksi pengambilan | 
+                    Total: <strong id="modal-total-ambil-hari-ini">461</strong> Ompreng
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>REDACTED_430</th>
+                                <th>Nama</th>
+                                <th>Unit</th>
+                                <th>Jumlah</th>
+                                <th>Waktu</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modal-sudah-ambil-tbody">
+                                                        <tr>
+                                <td>1</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_331</td>
+                                <td>Kelas 8A</td>
+                                <td><span class="badge bg-primary">34 Ompreng</span></td>
+                                <td>12:41</td>
+                            </tr>
+                                                        <tr>
+                                <td>2</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_332</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>12:33</td>
+                            </tr>
+                                                        <tr>
+                                <td>3</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_333</td>
+                                <td>Kelas 7D</td>
+                                <td><span class="badge bg-primary">33 Ompreng</span></td>
+                                <td>12:32</td>
+                            </tr>
+                                                        <tr>
+                                <td>4</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_263</td>
+                                <td>Kelas 9A</td>
+                                <td><span class="badge bg-primary">32 Ompreng</span></td>
+                                <td>12:31</td>
+                            </tr>
+                                                        <tr>
+                                <td>5</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_334</td>
+                                <td>Kelas 7H</td>
+                                <td><span class="badge bg-primary">33 Ompreng</span></td>
+                                <td>12:30</td>
+                            </tr>
+                                                        <tr>
+                                <td>6</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_335</td>
+                                <td>Kelas 7A</td>
+                                <td><span class="badge bg-primary">33 Ompreng</span></td>
+                                <td>12:29</td>
+                            </tr>
+                                                        <tr>
+                                <td>7</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_336</td>
+                                <td>Kelas 8D</td>
+                                <td><span class="badge bg-primary">27 Ompreng</span></td>
+                                <td>12:22</td>
+                            </tr>
+                                                        <tr>
+                                <td>8</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_337</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>12:16</td>
+                            </tr>
+                                                        <tr>
+                                <td>9</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_338</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>12:13</td>
+                            </tr>
+                                                        <tr>
+                                <td>10</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_339</td>
+                                <td>Kelas 9F</td>
+                                <td><span class="badge bg-primary">28 Ompreng</span></td>
+                                <td>12:12</td>
+                            </tr>
+                                                        <tr>
+                                <td>11</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_340</td>
+                                <td>Kelas 8G</td>
+                                <td><span class="badge bg-primary">27 Ompreng</span></td>
+                                <td>12:10</td>
+                            </tr>
+                                                        <tr>
+                                <td>12</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_341</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>12:09</td>
+                            </tr>
+                                                        <tr>
+                                <td>13</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_342</td>
+                                <td>Kelas 8E</td>
+                                <td><span class="badge bg-primary">34 Ompreng</span></td>
+                                <td>12:08</td>
+                            </tr>
+                                                        <tr>
+                                <td>14</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_343</td>
+                                <td>Kelas 9G</td>
+                                <td><span class="badge bg-primary">28 Ompreng</span></td>
+                                <td>12:06</td>
+                            </tr>
+                                                        <tr>
+                                <td>15</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_344</td>
+                                <td>Kelas 7F</td>
+                                <td><span class="badge bg-primary">29 Ompreng</span></td>
+                                <td>12:04</td>
+                            </tr>
+                                                        <tr>
+                                <td>16</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_345</td>
+                                <td>Kelas 8C</td>
+                                <td><span class="badge bg-primary">34 Ompreng</span></td>
+                                <td>12:03</td>
+                            </tr>
+                                                        <tr>
+                                <td>17</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_346</td>
+                                <td>Pramubakti</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>12:03</td>
+                            </tr>
+                                                        <tr>
+                                <td>18</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_347</td>
+                                <td>Kelas 7C</td>
+                                <td><span class="badge bg-primary">33 Ompreng</span></td>
+                                <td>12:03</td>
+                            </tr>
+                                                        <tr>
+                                <td>19</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_348</td>
+                                <td>Kelas 9C</td>
+                                <td><span class="badge bg-primary">31 Ompreng</span></td>
+                                <td>12:02</td>
+                            </tr>
+                                                        <tr>
+                                <td>20</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_330</td>
+                                <td>Humas</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>11:12</td>
+                            </tr>
+                                                        <tr>
+                                <td>21</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_327</td>
+                                <td>KS+BAS</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>11:12</td>
+                            </tr>
+                                                        <tr>
+                                <td>22</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_328</td>
+                                <td>KS+BAS</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>11:12</td>
+                            </tr>
+                                                        <tr>
+                                <td>23</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_349</td>
+                                <td>KS+BAS</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>11:12</td>
+                            </tr>
+                                                        <tr>
+                                <td>24</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_329</td>
+                                <td>KS+BAS</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>11:12</td>
+                            </tr>
+                                                        <tr>
+                                <td>25</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_350</td>
+                                <td>Dikdasmen</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>11:10</td>
+                            </tr>
+                                                        <tr>
+                                <td>26</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_351</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>11:03</td>
+                            </tr>
+                                                        <tr>
+                                <td>27</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_352</td>
+                                <td>Umum</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>10:44</td>
+                            </tr>
+                                                        <tr>
+                                <td>28</td>
+                                <td><code>12MPDMGKB1</code></td>
+                                <td>REDACTED_353</td>
+                                <td>Dikdasmen</td>
+                                <td><span class="badge bg-primary">7 Ompreng</span></td>
+                                <td>10:25</td>
+                            </tr>
+                                                        <tr>
+                                <td>29</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_354</td>
+                                <td>Security</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>10:06</td>
+                            </tr>
+                                                        <tr>
+                                <td>30</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_355</td>
+                                <td>Security</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>10:05</td>
+                            </tr>
+                                                        <tr>
+                                <td>31</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_356</td>
+                                <td>Security</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>10:05</td>
+                            </tr>
+                                                        <tr>
+                                <td>32</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_357</td>
+                                <td>Security</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>10:05</td>
+                            </tr>
+                                                        <tr>
+                                <td>33</td>
+                                <td><code>*********</code></td>
+                                <td>Safi\&#039;i</td>
+                                <td>Security</td>
+                                <td><span class="badge bg-primary">1 Ompreng</span></td>
+                                <td>10:04</td>
+                            </tr>
+                                                                                </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: REDACTED_361 -->
+<div class="modal fade" id="modalSudahKembali" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">
+                    <i class="bi bi-box-arrow-in-down me-2"></i>REDACTED_375
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success">
+                    <strong id="modal-jumlah-sudah-kembali">29</strong> transaksi pengembalian | 
+                    Total: <strong id="modal-total-kembali-hari-ini">457</strong> Ompreng
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>REDACTED_430</th>
+                                <th>Nama</th>
+                                <th>Unit</th>
+                                <th>Jumlah</th>
+                                <th>Waktu</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modal-sudah-kembali-tbody">
+                                                        <tr>
+                                <td>1</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_331</td>
+                                <td>Kelas 8A</td>
+                                <td><span class="badge bg-success">34 Ompreng</span></td>
+                                <td>12:41</td>
+                            </tr>
+                                                        <tr>
+                                <td>2</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_347</td>
+                                <td>Kelas 7C</td>
+                                <td><span class="badge bg-success">33 Ompreng</span></td>
+                                <td>12:36</td>
+                            </tr>
+                                                        <tr>
+                                <td>3</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_339</td>
+                                <td>Kelas 9F</td>
+                                <td><span class="badge bg-success">28 Ompreng</span></td>
+                                <td>12:36</td>
+                            </tr>
+                                                        <tr>
+                                <td>4</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_342</td>
+                                <td>Kelas 8E</td>
+                                <td><span class="badge bg-success">34 Ompreng</span></td>
+                                <td>12:35</td>
+                            </tr>
+                                                        <tr>
+                                <td>5</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_340</td>
+                                <td>Kelas 8G</td>
+                                <td><span class="badge bg-success">27 Ompreng</span></td>
+                                <td>12:35</td>
+                            </tr>
+                                                        <tr>
+                                <td>6</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_344</td>
+                                <td>Kelas 7F</td>
+                                <td><span class="badge bg-success">29 Ompreng</span></td>
+                                <td>12:34</td>
+                            </tr>
+                                                        <tr>
+                                <td>7</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_332</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-success">1 Ompreng</span></td>
+                                <td>12:34</td>
+                            </tr>
+                                                        <tr>
+                                <td>8</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_333</td>
+                                <td>Kelas 7D</td>
+                                <td><span class="badge bg-success">33 Ompreng</span></td>
+                                <td>12:32</td>
+                            </tr>
+                                                        <tr>
+                                <td>9</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_263</td>
+                                <td>Kelas 9A</td>
+                                <td><span class="badge bg-success">32 Ompreng</span></td>
+                                <td>12:31</td>
+                            </tr>
+                                                        <tr>
+                                <td>10</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_334</td>
+                                <td>Kelas 7H</td>
+                                <td><span class="badge bg-success">33 Ompreng</span></td>
+                                <td>12:30</td>
+                            </tr>
+                                                        <tr>
+                                <td>11</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_343</td>
+                                <td>Kelas 9G</td>
+                                <td><span class="badge bg-success">28 Ompreng</span></td>
+                                <td>12:30</td>
+                            </tr>
+                                                        <tr>
+                                <td>12</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_335</td>
+                                <td>Kelas 7A</td>
+                                <td><span class="badge bg-success">33 Ompreng</span></td>
+                                <td>12:29</td>
+                            </tr>
+                                                        <tr>
+                                <td>13</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_348</td>
+                                <td>Kelas 9C</td>
+                                <td><span class="badge bg-success">31 Ompreng</span></td>
+                                <td>12:23</td>
+                            </tr>
+                                                        <tr>
+                                <td>14</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_336</td>
+                                <td>Kelas 8D</td>
+                                <td><span class="badge bg-success">27 Ompreng</span></td>
+                                <td>12:22</td>
+                            </tr>
+                                                        <tr>
+                                <td>15</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_337</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-success">1 Ompreng</span></td>
+                                <td>12:16</td>
+                            </tr>
+                                                        <tr>
+                                <td>16</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_338</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-success">1 Ompreng</span></td>
+                                <td>12:13</td>
+                            </tr>
+                                                        <tr>
+                                <td>17</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_341</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-success">1 Ompreng</span></td>
+                                <td>12:09</td>
+                            </tr>
+                                                        <tr>
+                                <td>18</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_345</td>
+                                <td>Kelas 8C</td>
+                                <td><span class="badge bg-success">34 Ompreng</span></td>
+                                <td>12:04</td>
+                            </tr>
+                                                        <tr>
+                                <td>19</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_346</td>
+                                <td>Pramubakti</td>
+                                <td><span class="badge bg-success">1 Ompreng</span></td>
+                                <td>12:03</td>
+                            </tr>
+                                                        <tr>
+                                <td>20</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_349</td>
+                                <td>KS+BAS</td>
+                                <td><span class="badge bg-success">1 Ompreng</span></td>
+                                <td>11:29</td>
+                            </tr>
+                                                        <tr>
+                                <td>21</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_350</td>
+                                <td>Dikdasmen</td>
+                                <td><span class="badge bg-success">1 Ompreng</span></td>
+                                <td>11:10</td>
+                            </tr>
+                                                        <tr>
+                                <td>22</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_351</td>
+                                <td>Kurikulum</td>
+                                <td><span class="badge bg-success">1 Ompreng</span></td>
+                                <td>11:03</td>
+                            </tr>
+                                                        <tr>
+                                <td>23</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_352</td>
+                                <td>Umum</td>
+                                <td><span class="badge bg-success">1 Ompreng</span></td>
+                                <td>10:45</td>
+                            </tr>
+                                                        <tr>
+                                <td>24</td>
+                                <td><code>12MPDMGKB1</code></td>
+                                <td>REDACTED_353</td>
+                                <td>Dikdasmen</td>
+                                <td><span class="badge bg-success">7 Ompreng</span></td>
+                                <td>10:26</td>
+                            </tr>
+                                                        <tr>
+                                <td>25</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_355</td>
+                                <td>Security</td>
+                                <td><span class="badge bg-success">1 Ompreng</span></td>
+                                <td>10:07</td>
+                            </tr>
+                                                        <tr>
+                                <td>26</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_354</td>
+                                <td>Security</td>
+                                <td><span class="badge bg-success">1 Ompreng</span></td>
+                                <td>10:07</td>
+                            </tr>
+                                                        <tr>
+                                <td>27</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_356</td>
+                                <td>Security</td>
+                                <td><span class="badge bg-success">1 Ompreng</span></td>
+                                <td>10:07</td>
+                            </tr>
+                                                        <tr>
+                                <td>28</td>
+                                <td><code>*********</code></td>
+                                <td>Safi\&#039;i</td>
+                                <td>Security</td>
+                                <td><span class="badge bg-success">1 Ompreng</span></td>
+                                <td>10:07</td>
+                            </tr>
+                                                        <tr>
+                                <td>29</td>
+                                <td><code>*********</code></td>
+                                <td>REDACTED_357</td>
+                                <td>Security</td>
+                                <td><span class="badge bg-success">1 Ompreng</span></td>
+                                <td>10:07</td>
+                            </tr>
+                                                                                </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== REDACTED_385 ===== -->
+<script>
+let isUpdating = false;
+
+function formatNumber(num) {
+    return new Intl.NumberFormat('id-ID').format(num);
+}
+
+function formatTime(datetime) {
+    let d = new Date(datetime);
+    return d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+}
+
+function updateDashboard() {
+    if (isUpdating) return;
+    isUpdating = true;
+
+    fetch('ajax_dashboard_data.php')
+        .then(response => {
+            if (!response.ok) throw new Error('Network error');
+            return response.json();
+        })
+        .then(data => {
+            // ===== Card Total Penerima =====
+            document.getElementById('total-hak').textContent = formatNumber(data.totalHak);
+            document.getElementById('stat-penerima').textContent = data.penerima;
+
+            // ===== REDACTED_395 =====
+            document.getElementById('total-hak-belum-ambil').textContent = formatNumber(data.totalHakBelumAmbil);
+            document.getElementById('stat-belum-ambil').textContent = data.jumlahBelumAmbil;
+            document.getElementById('modal-jumlah-belum-ambil').textContent = data.jumlahBelumAmbil;
+            document.getElementById('modal-total-hak-belum-ambil').textContent = formatNumber(data.totalHakBelumAmbil);
+
+            // Update modal REDACTED_417 - tbody
+            let tbodyAmbil = document.getElementById('modal-belum-ambil-tbody');
+            if (data.belumAmbilData.length > 0) {
+                let html = '';
+                data.belumAmbilData.forEach((p, index) => {
+                    html += `<tr>
+                        <td>${index + 1}</td>
+                        <td><code>${p.qr_code}</code></td>
+                        <td>${p.nama}</td>
+                        <td>${p.nama_unit ?? '-'}</td>
+                        <td><span class="badge bg-danger">${p.jumlah_hak} Ompreng</span></td>
+                    </tr>`;
+                });
+                tbodyAmbil.innerHTML = html;
+            } else {
+                tbodyAmbil.innerHTML = '<tr><td colspan="5" class="text-center text-muted">Semua penerima sudah mengambil</td></tr>';
+            }
+
+            // ===== REDACTED_386 =====
+            document.getElementById('total-hak-belum-kembali').textContent = formatNumber(data.totalHakBelumKembali);
+            document.getElementById('stat-belum-kembali').textContent = data.jumlahBelumKembali;
+            document.getElementById('modal-jumlah-belum-kembali').textContent = data.jumlahBelumKembali;
+            document.getElementById('modal-total-hak-belum-kembali').textContent = formatNumber(data.totalHakBelumKembali);
+
+            // Update modal REDACTED_406 - tbody
+            let tbodyKembali = document.getElementById('modal-belum-kembali-tbody');
+            if (data.belumKembaliData.length > 0) {
+                let html = '';
+                data.belumKembaliData.forEach((p, index) => {
+                    html += `<tr>
+                        <td>${index + 1}</td>
+                        <td><code>${p.qr_code}</code></td>
+                        <td>${p.nama}</td>
+                        <td>${p.nama_unit ?? '-'}</td>
+                        <td><span class="badge bg-warning text-dark">${p.jumlah_hak} Ompreng</span></td>
+                    </tr>`;
+                });
+                tbodyKembali.innerHTML = html;
+            } else {
+                tbodyKembali.innerHTML = '<tr><td colspan="5" class="text-center text-muted">Semua penerima sudah mengembalikan</td></tr>';
+            }
+
+            // ===== REDACTED_367 =====
+            document.getElementById('total-ambil-hari-ini').textContent = formatNumber(data.totalAmbilHariIni);
+            document.getElementById('stat-ambil').textContent = data.ambil;
+            document.getElementById('modal-jumlah-sudah-ambil').textContent = data.ambil;
+            document.getElementById('modal-total-ambil-hari-ini').textContent = formatNumber(data.totalAmbilHariIni);
+
+            let tbodySudahAmbil = document.getElementById('modal-sudah-ambil-tbody');
+            if (data.sudahAmbilData.length > 0) {
+                let html = '';
+                data.sudahAmbilData.forEach((p, index) => {
+                    html += `<tr>
+                        <td>${index + 1}</td>
+                        <td><code>${p.qr_code}</code></td>
+                        <td>${p.nama}</td>
+                        <td>${p.nama_unit ?? '-'}</td>
+                        <td><span class="badge bg-primary">${p.jumlah} Ompreng</span></td>
+                        <td>${formatTime(p.tanggal_transaksi)}</td>
+                    </tr>`;
+                });
+                tbodySudahAmbil.innerHTML = html;
+            } else {
+                tbodySudahAmbil.innerHTML = '<tr><td colspan="6" class="text-center text-muted">Belum ada pengambilan hari ini</td></tr>';
+            }
+
+            // ===== REDACTED_364 =====
+            document.getElementById('total-kembali-hari-ini').textContent = formatNumber(data.totalKembaliHariIni);
+            document.getElementById('stat-kembali').textContent = data.kembali;
+            document.getElementById('modal-jumlah-sudah-kembali').textContent = data.kembali;
+            document.getElementById('modal-total-kembali-hari-ini').textContent = formatNumber(data.totalKembaliHariIni);
+
+            let tbodySudahKembali = document.getElementById('modal-sudah-kembali-tbody');
+            if (data.sudahKembaliData.length > 0) {
+                let html = '';
+                data.sudahKembaliData.forEach((p, index) => {
+                    html += `<tr>
+                        <td>${index + 1}</td>
+                        <td><code>${p.qr_code}</code></td>
+                        <td>${p.nama}</td>
+                        <td>${p.nama_unit ?? '-'}</td>
+                        <td><span class="badge bg-success">${p.jumlah} Ompreng</span></td>
+                        <td>${formatTime(p.tanggal_transaksi)}</td>
+                    </tr>`;
+                });
+                tbodySudahKembali.innerHTML = html;
+            } else {
+                tbodySudahKembali.innerHTML = '<tr><td colspan="6" class="text-center text-muted">Belum ada pengembalian hari ini</td></tr>';
+            }
+
+            // ===== Riwayat =====
+            let tbodyRiwayat = document.getElementById('riwayat-tbody');
+            if (data.riwayat.length > 0) {
+                let html = '';
+                data.riwayat.forEach((r, index) => {
+                    let badgeClass = r.jenis_transaksi == 'pengambilan' ? 'primary' : 'success';
+                    let waktu = new Date(r.tanggal_transaksi);
+                    let waktuStr = waktu.toLocaleString('id-ID', {
+                        day: '2-digit', month: '2-digit', year: 'numeric',
+                        hour: '2-digit', minute: '2-digit'
+                    }).replace(/\./g, ':');
+                    
+                    html += `<tr>
+                        <td>${index + 1}</td>
+                        <td>${r.nama}</td>
+                        <td>${r.nama_unit ?? '-'}</td>
+                        <td><span class="badge bg-${badgeClass}">${r.jenis_transaksi.charAt(0).toUpperCase() + r.jenis_transaksi.slice(1)}</span></td>
+                        <td>${r.jumlah} Ompreng</td>
+                        <td>${waktuStr}</td>
+                    </tr>`;
+                });
+                tbodyRiwayat.innerHTML = html;
+            } else {
+                tbodyRiwayat.innerHTML = '<tr><td colspan="6" class="text-center text-muted">Belum ada transaksi</td></tr>';
+            }
+        })
+        .catch(error => {
+            console.error('Error updating dashboard:', error);
+        })
+        .finally(() => {
+            isUpdating = false;
+        });
+}
+
+// Auto reload setiap 1 detik
+setInterval(updateDashboard, 1000);
+
+// Load pertama kali
+document.addEventListener('DOMContentLoaded', updateDashboard);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Mobile sidebar toggle
+function toggleSidebar() {
+    document.querySelector('.sidebar').classList.toggle('show');
+    document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+
+// Close sidebar on resize to desktop
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 991) {
+        document.querySelector('.sidebar').classList.remove('show');
+        document.getElementById('sidebarOverlay').classList.remove('show');
+    }
+});
+</script>
+</body>
+</html>

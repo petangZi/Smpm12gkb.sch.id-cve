@@ -1,0 +1,68 @@
+LIVE | kartuujian.smpm12gkb.sch.id | A=77.37.48.165,179.61.189.40 | CNAME=
+LIVE | konsumsi.smpm12gkb.sch.id | A=91.108.100.115,77.37.48.191 | CNAME=
+LIVE | mbg.smpm12gkb.sch.id | A=191.101.228.163,91.108.100.243 | CNAME=
+LIVE | pedagogiai.smpm12gkb.sch.id | A=2.57.91.131,84.32.84.198 | CNAME=
+LIVE | pengumumankelas2627.smpm12gkb.sch.id | A=91.108.100.182,77.37.48.161 | CNAME=
+LIVE | ppdb.smpm12gkb.sch.id | A=93.127.219.37 | CNAME=
+LIVE | spemdalas.smpm12gkb.sch.id | A=91.108.100.183,77.37.48.42 | CNAME=
+LIVE | synology.smpm12gkb.sch.id | A=93.127.219.37 | CNAME=
+LIVE | tamanilmu.smpm12gkb.sch.id | A=93.127.219.37 | CNAME=
+LIVE | tictactoe.smpm12gkb.sch.id | A=84.32.84.25,2.57.91.79 | CNAME=
+LIVE | undangan.smpm12gkb.sch.id | A=191.101.228.83,77.37.48.27 | CNAME=
+LIVE | virtualclass.smpm12gkb.sch.id | A=93.127.219.37 | CNAME=
+LIVE | www.mbg.smpm12gkb.sch.id | A=84.32.84.147,88.222.222.112 | CNAME=www.mbg.smpm12gkb.sch.id.cdn.hstgr.net.
+LIVE | www.pedagogiai.smpm12gkb.sch.id | A=84.32.84.228,2.57.91.172 | CNAME=www.pedagogiai.smpm12gkb.sch.id.cdn.hstgr.net.
+LIVE | www.pengumumankelas2627.smpm12gkb.sch.id | A=2.57.91.165,88.222.222.62 | CNAME=www.pengumumankelas2627.smpm12gkb.sch.id.cdn.hstgr.net.
+LIVE | www.smpm12gkb.sch.id | A=91.108.119.89,185.124.137.75 | CNAME=www.smpm12gkb.sch.id.cdn.hstgr.net.
+dead | .mail.smpm12gkb.sch.id
+dead | .perpus.smpm12gkb.sch.id
+dead | .virtualclass.smpm12gkb.sch.id
+dead | .www.perpus.smpm12gkb.sch.id
+dead | .www.smpm12gkb.sch.id
+dead | .www.virtualclass.smpm12gkb.sch.id
+dead | azam-lomba-acer.smpm12gkb.sch.id
+dead | dtcp.smpm12gkb.sch.id
+dead | dtcp.spemdalas.com.smpm12gkb.sch.id
+dead | finalmoment.smpm12gkb.sch.id
+dead | finalmomentxxii.smpm12gkb.sch.id
+dead | haiscience.my.canva.site.smpm12gkb.sch.id
+dead | indenmobil.smpm12gkb.sch.id
+dead | indenpubilkasi.smpm12gkb.sch.id
+dead | indenpublikasi.smpm12gkb.sch.id
+dead | ipv6.smpm12gkb.sch.id
+dead | katalog.smpm12gkb.sch.id
+dead | kelulusan.smpm12gkb.sch.id
+dead | keuangan.smpm12gkb.sch.id
+dead | mail.smpm12gkb.sch.id
+dead | moodle.smpm12gkb.sch.id
+dead | ordermobil.smpm12gkb.sch.id
+dead | paket.smpm12gkb.sch.id
+dead | pemanggilan.smpm12gkb.sch.id
+dead | perpus.smpm12gkb.sch.id
+dead | s.smpm12gkb.sch.id
+dead | spemdalas.new.smpm12gkb.sch.id
+dead | spemdalasnew.smpm12gkb.sch.id
+dead | undanganwisuda.smpm12gkb.sch.id
+dead | wisuda.smpm12gkb.sch.id
+dead | www.azam-lomba-acer.smpm12gkb.sch.id
+dead | www.dtcp.smpm12gkb.sch.id
+dead | www.dtcp.spemdalas.com.smpm12gkb.sch.id
+dead | www.haiscience.my.canva.site.smpm12gkb.sch.id
+dead | www.indenmobil.smpm12gkb.sch.id
+dead | www.indenpubilkasi.smpm12gkb.sch.id
+dead | www.indenpublikasi.smpm12gkb.sch.id
+dead | www.katalog.smpm12gkb.sch.id
+dead | www.kelulusan.smpm12gkb.sch.id
+dead | www.keuangan.smpm12gkb.sch.id
+dead | www.ordermobil.smpm12gkb.sch.id
+dead | www.paket.smpm12gkb.sch.id
+dead | www.perpus.smpm12gkb.sch.id
+dead | www.ppdb.smpm12gkb.sch.id
+dead | www.s.smpm12gkb.sch.id
+dead | www.spemdalas.new.smpm12gkb.sch.id
+dead | www.spemdalasnew.smpm12gkb.sch.id
+dead | www.synology.smpm12gkb.sch.id
+dead | www.tamanilmu.smpm12gkb.sch.id
+dead | www.undanganwisuda.smpm12gkb.sch.id
+dead | www.virtualclass.smpm12gkb.sch.id
+dead | www.wisuda.smpm12gkb.sch.id

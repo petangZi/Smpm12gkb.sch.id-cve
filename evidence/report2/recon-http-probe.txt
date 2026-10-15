@@ -1,0 +1,41 @@
+HOST=autoconfig.smpm12gkb.sch.id | 000|https://autoconfig.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=autodiscover.smpm12gkb.sch.id | 000|https://autodiscover.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=azam-lomba-acer.smpm12gkb.sch.id | 000|https://azam-lomba-acer.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=dtcp.smpm12gkb.sch.id | 000|https://dtcp.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=finalmoment.smpm12gkb.sch.id | 000|https://finalmoment.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=finalmomentxxii.smpm12gkb.sch.id | 000|https://finalmomentxxii.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=indenmobil.smpm12gkb.sch.id | 000|https://indenmobil.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=indenpublikasi.smpm12gkb.sch.id | 000|https://indenpublikasi.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=kartuujian.smpm12gkb.sch.id | 200|https://kartuujian.smpm12gkb.sch.id/ | 14663b | srv=hcdn | Cek Ruang Ujian STS 2026/2027 - SMPM 12 GKB Gresik
+HOST=katalog.smpm12gkb.sch.id | 000|https://katalog.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=kelulusan.smpm12gkb.sch.id | 000|https://kelulusan.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=keuangan.smpm12gkb.sch.id | 000|https://keuangan.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=konsumsi.smpm12gkb.sch.id | 200|https://konsumsi.smpm12gkb.sch.id/login | 3961b | srv=hcdn | Order Konsumsi Spemdalas
+HOST=mail.smpm12gkb.sch.id | 000|https://mail.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=mbg.smpm12gkb.sch.id | 200|https://mbg.smpm12gkb.sch.id/guest/dashboard.php | 91557b | srv=hcdn | Dashboard
+HOST=moodle.smpm12gkb.sch.id | 000|https://moodle.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=ordermobil.smpm12gkb.sch.id | 000|https://ordermobil.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=paket.smpm12gkb.sch.id | 000|https://paket.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=pedagogiai.smpm12gkb.sch.id | 200|https://pedagogiai.smpm12gkb.sch.id/ | 564044b | srv=hcdn | PedaGogiAI — Modern Learning &amp; Coding Platform
+HOST=pemanggilan.smpm12gkb.sch.id | 000|https://pemanggilan.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=pengumumankelas2627.smpm12gkb.sch.id | 200|https://pengumumankelas2627.smpm12gkb.sch.id/ | 7146b | srv=hcdn | Pengumuman Kelas Siswa TA 2026/2027
+HOST=perpus.smpm12gkb.sch.id | 000|https://perpus.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=ppdb.smpm12gkb.sch.id | 200|https://ppdb.smpm12gkb.sch.id/ | 304b | srv=LiteSpeed | 
+HOST=s.smpm12gkb.sch.id | 000|https://s.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=smpm12gkb.sch.id | 200|https://smpm12gkb.sch.id/ | 272602b | srv=hcdn | SMP Muhammadiyah 12 GKB Spemdalas Spemdalas
+HOST=spemdalas.smpm12gkb.sch.id | 200|https://spemdalas.smpm12gkb.sch.id/ | 13041619b | srv=hcdn | Spemdalas
+HOST=spemdalasnew.smpm12gkb.sch.id | 000|https://spemdalasnew.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=synology.smpm12gkb.sch.id | 200|http://spemdalas.quickconnect.to/ | 82086b | srv=LiteSpeed | Access via Synology
+HOST=tamanilmu.smpm12gkb.sch.id | 200|https://tamanilmu.smpm12gkb.sch.id/ | 32564b | srv=LiteSpeed | SMPM 12 GKB GRESIK | Taman Ilmu Spemdalas
+HOST=tictactoe.smpm12gkb.sch.id | 200|https://tictactoe.smpm12gkb.sch.id/ | 4293b | srv=hcdn | Tic Tac Toe - Multi Round
+HOST=tryoutkelas9.smpm12gkb.sch.id | 200|https://tryoutkelas9.smpm12gkb.sch.id/ | 16657b | srv=hcdn | Hasil Try Out Kelas IX - SMPM 12 GKB
+HOST=undangan.smpm12gkb.sch.id | 200|https://undangan.smpm12gkb.sch.id/ | 127919184b | srv=hcdn | Undangan Final Moment Spemdalas 23 - Nama Siswa Tidak Ditemukan
+HOST=undanganwisuda.smpm12gkb.sch.id | 000|https://undanganwisuda.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=virtualclass.smpm12gkb.sch.id | 200|https://virtualclass.smpm12gkb.sch.id/login/index.php | 22613b | srv=LiteSpeed | Log in to the site | Spemdalas
+HOST=wifi.smpm12gkb.sch.id | 000|https://wifi.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=wisuda.smpm12gkb.sch.id | 000|https://wisuda.smpm12gkb.sch.id/ | 0b | srv= | 
+HOST=www.mbg.smpm12gkb.sch.id | 200|https://www.mbg.smpm12gkb.sch.id/guest/dashboard.php | 91557b | srv=hcdn | Dashboard
+HOST=www.pedagogiai.smpm12gkb.sch.id | 200|https://www.pedagogiai.smpm12gkb.sch.id/ | 564676b | srv=hcdn | PedaGogiAI — Modern Learning &amp; Coding Platform
+HOST=www.pengumumankelas2627.smpm12gkb.sch.id | 200|https://www.pengumumankelas2627.smpm12gkb.sch.id/ | 7146b | srv=hcdn | Pengumuman Kelas Siswa TA 2026/2027
+HOST=www.smpm12gkb.sch.id | 200|https://smpm12gkb.sch.id/ | 272602b | srv=hcdn | SMP Muhammadiyah 12 GKB Spemdalas Spemdalas
+HOST=www.tryoutkelas9.smpm12gkb.sch.id | 200|https://www.tryoutkelas9.smpm12gkb.sch.id/ | 16657b | srv=hcdn | Hasil Try Out Kelas IX - SMPM 12 GKB
