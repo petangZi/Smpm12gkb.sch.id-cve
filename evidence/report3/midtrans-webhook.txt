@@ -1,0 +1,7 @@
+# POST /api/midtrans/notification — TANPA AUTHENTIKASI
+# body: {}
+# HTTP 500
+# Respons membocorkan nama DB, skema tabel midtrans_webhook_logs, dan SQL lengkap
+# (APP_DEBUG=true menampilkan detail exception; is_valid_signature tertulis literal 0)
+
+{"status":"error","message":"SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'payload' cannot be null (Connection: mysql, Host: <REDACTED_IP>, Port: 3306, Database: u5*******_pedagogiai, SQL: insert into `midtrans_webhook_logs` (`order_id`, `transaction_id`, `event_type`, `transaction_status`, `payment_type`, `gross_amount`, `status_code`, `fraud_status`, `payload`, `is_valid_signature`, `ip_address`, `processed_at`, `updated_at`, `created_at`) values (?, ?, notification, ?, ?, ?, ?, ?, ?, 0, <REDACTED_IPV6>, 2026-10-16 16:22:21, 2026-10-16 16:22:21, 2026-10-16 16:22:21))"}

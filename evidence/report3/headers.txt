@@ -1,0 +1,9 @@
+# Header respons /login
+
+server: hcdn
+x-powered-by: PHP/8.3.35
+x-frame-options: SAMEORIGIN
+x-content-type-options: nosniff
+referrer-policy: strict-origin-when-cross-origin
+permissions-policy: camera=(self), microphone=(), geolocation=(self), payment=(self "https://app.midtrans.com" "https://app.sandbox.midtrans.com")
+content-security-policy: upgrade-insecure-requests
