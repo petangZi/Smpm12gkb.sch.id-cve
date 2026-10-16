@@ -6,7 +6,9 @@ Penetration test findings untuk **https://smpm12gkb.sch.id/** (SMP Muhammadiyah 
 
 - **[REPORT-1](./REPORT-1.md)** — E-Complaint (custom PHP): Broken Access Control pada API admin (CRITICAL), Stored XSS (HIGH), Unrestricted file upload `.php` (HIGH), PII disclosure (MEDIUM), WP user enum + XML-RPC (MEDIUM). *13 Oktober 2026.*
 
-**[REPORT-2](./evidence/report2/) (recon)** — inventaris subdomain/endpoint + bukti. Laporan penuh menyusul.
+- **[REPORT-2](./REPORT-2.md)** — *"truncated AI slop"*: Unrestricted file upload → RCE tanpa autentikasi pada E-Complaint (CRITICAL), kebocoran hardcoded `BRIDGE_SECRET_KEY` pada `bridge.php` (CRITICAL). *16 Oktober 2026.*
+
+- **[REPORT-3](./REPORT-3.md)** — *"PedagogiAI is slop"*: Eksekusi kode jarak jauh tanpa autentikasi (`/api/execute-code`, CRITICAL), IDOR kwitansi pembayaran tanpa autentikasi (HIGH), mode debug aktif (MEDIUM), pembocoran info worker (MEDIUM). *16 Oktober 2026.*
 
 ## Struktur
 

