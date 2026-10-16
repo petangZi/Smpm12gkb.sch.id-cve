@@ -1,0 +1,12 @@
+# Folder privat / bukti mentah — JANGAN commit (repo ini publik)
+PREVATE/
+**/PREVATE/
+raw/
+*.raw.json
+tryout-dump.json
+pengumuman-*.json
+kartuujian-3*.json
+mbg-*.json
+mbg-*.html
+wp-posts.json
+wp-users.json
