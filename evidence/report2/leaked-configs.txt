@@ -1,0 +1,44 @@
+# Report-2 / F3 — Kredensial DB Hardcoded (sama di banyak config.php) + fallback root/nopass
+# Nilai rahasia di-redact.
+
+===== app/page/E-Complaint/db_config.php =====
+<?php
+$host = "153.92.15.33";
+$username = "u576897008_orderpublikasi";
+$password = "<REDACTED_DB_PASSWORD>";
+$database = "u576897008_orderpublikasi";
+$conn = new mysqli($host, $username, $password, $database);
+if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); }
+
+===== app/page/AISA Chat/config.php (kutipan) =====
+$db_user = "u576897008_orderpublikasi";
+$db_pass = "<REDACTED_DB_PASSWORD>";
+$db_name = "u576897008_orderpublikasi";
+$hosts_to_try = [
+    ["host" => "localhost", "user" => $db_user, "pass" => $db_pass, "db" => $db_name],
+    ["host" => "127.0.0.1", "user" => $db_user, "pass" => $db_pass, "db" => $db_name],
+    ["host" => "153.92.15.33", "user" => $db_user, "pass" => $db_pass, "db" => $db_name],
+    ["host" => "127.0.0.1", "user" => "root", "pass" => "", "db" => $db_name],   // <-- root tanpa password
+    ["host" => "localhost", "user" => "root", "pass" => "", "db" => $db_name],   // <-- root tanpa password
+];
+
+===== app/page/Discovery/config.php (kutipan) =====
+$db_user = "u576897008_orderpublikasi";
+$db_pass = "<REDACTED_DB_PASSWORD>";
+$db_name = "u576897008_orderpublikasi";
+$hosts_to_try = [ ... sama, termasuk root/nopass ... ];
+
+===== app/page/formulir inden/config.php (kutipan) =====
+$user = "u576897008_orderpublikasi";
+$pass = "<REDACTED_DB_PASSWORD>";
+$db   = "u576897008_orderpublikasi";
+$hosts_to_try = ["localhost", "127.0.0.1", "153.92.15.33"];
+...
+if (!defined('REGISTRATION_SECRET_SALT')) {
+    define('REGISTRATION_SECRET_SALT', '<REDACTED_HMAC_SALT>');  // salt HMAC statis
+}
+
+KESIMPULAN:
+- Satu kredensial DB dipakai ulang di seluruh aplikasi /app/ -> 1 kebocoran = kompromi semua.
+- Fallback kredensial root tanpa password tertanam di source.
+- Salt HMAC statis untuk segel kode pendaftaran inden (dapat difalsukan bila diketahui).

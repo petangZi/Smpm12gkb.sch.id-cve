@@ -1,0 +1,34 @@
+# Report-2 / F1 — Matriks ekstensi upload pada /app/page/files/<ar>.<ext>
+# Semua ekstensi DITERIMA (disimpan apa adanya). Kolom "Hasil GET" = request ke file.
+
+Ekstensi      HTTP PUT   Hasil GET (/app/page/files/<file>.<ext>)     Catatan
+------------------------------------------------------------------------------
+.php          200        ** 200 -> DIEKSEKUSI (via bypass trailing slash) **
+.phtml        200        403 (WAF blokir pola)
+.php3         200        403 (WAF)
+.php4         200        403 (WAF)
+.php5         200        403 (WAF)
+.php7         200        403 (WAF)
+.php8         200        200 served RAW (content-type text/plain, bukan dieksekusi)
+.phps         200        403 (WAF)
+.pht          200        200 served RAW
+.phar         200        200 served RAW
+.phtm         200        200 served RAW
+.phtm5        200        200 served RAW
+.shtml        200        200 served RAW (text/html, isi mentah)
+.cgi          200        403 (WAF)
+.pl           200        403 (WAF)
+.sh           200        403 (WAF)
+.asp          200        200 served RAW
+.aspx         200        200 served RAW
+.jsp          200        200 served RAW
+.py           200        200 served RAW
+.asa          200        200 served RAW
+.txt          200        200 (isi utuh -> bukti direktori web-accessible)
+.jpg          200        200 (30MB diterima)
+
+RINGKASAN:
+- Validasi ekstensi/MIME = NOL. Data uji dump: semua ekstensi tersimpan (CWE-434).
+- Direktori /app/page/files/ web-accessible (terbukti via .txt 200 + isi utuh).
+- Hanya keluarga .php dieksekusi host; WAF memblokir .php via pola URL, tetapi
+  trailing slash / PATH_INFO ("<file>.php/", ".php/.", ".php/x") melewatinya -> RCE.
