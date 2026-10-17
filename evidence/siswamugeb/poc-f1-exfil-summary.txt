@@ -1,0 +1,22 @@
+# Ringkasan Exfil F1 — SISWA MGKB (pcmgkb.my.id/siswamugeb)
+
+Target : https://pcmgkb.my.id/siswamugeb
+Auth   : TIDAK ADA (tanpa cookie/kredensial)
+Script : poc/poc_f1_pii_exfil.py
+Tanggal: 17 Oktober 2026
+
+Folder yang dimasuki & diunduh:
+  files/files_ktp/        -> KTP/KIA siswa + kartu NISN (PDF)
+  files/files_ijazah/     -> ijazah (gambar + PDF)
+  files/files_fotosiswa/  -> foto siswa
+
+Hasil unduhan nyata:
+  186 berkas · 499554611 bytes (476.41 MiB) — TANPA autentikasi
+
+Verifikasi isi (bukan halaman error):
+  JPEG image data, Exif standard ...        (foto asli)
+  PDF document, version 1.4, 1 page(s)      (kartu NISN)
+  PDF document, version 1.7, 2 page(s)      (ijazah)
+
+Loot dihapus setelah verifikasi; repositori hanya menyimpan manifest
+(evidence/siswamugeb/poc-f1-exfil.txt) dengan nama berkas disensor.
