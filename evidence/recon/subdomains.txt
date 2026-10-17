@@ -1,0 +1,57 @@
+# Subdomain recon — 17 Okt 2026
+# sumber: crt.sh (CT log) + dns.google (DoH) + HTTP probe
+
+## pcmgkb.my.id — live
+pcmgkb.my.id                    103.112.245.9   302  placeholder -> mercusuar.uzone.id
+www.pcmgkb.my.id                103.112.245.9   302  placeholder
+cpanel.pcmgkb.my.id             103.112.245.9   200  cPanel Login
+webmail.pcmgkb.my.id            103.112.245.9   200  Webmail Login
+frontaccounting.pcmgkb.my.id    103.112.245.9   200  FrontAccounting 2.4.14 (Index of /)
+webdisk.pcmgkb.my.id            103.112.245.9   401
+cpcalendars.pcmgkb.my.id        103.112.245.9   401
+cpcontacts.pcmgkb.my.id         103.112.245.9   401
+mail.pcmgkb.my.id               103.112.245.9   200
+autoconfig.pcmgkb.my.id         103.112.245.9   200
+autodiscover.pcmgkb.my.id       103.112.245.9   400
+
+## pcmgkb.my.id — CT only (tanpa A record saat tes)
+car.pcmgkb.my.id
+sdm2gkb.pcmgkb.my.id
+
+## smpm12gkb.sch.id — live
+smpm12gkb.sch.id                200  Situs utama (Spemdalas)
+www.smpm12gkb.sch.id            200  Situs utama
+ppdb.smpm12gkb.sch.id           200  PPDB
+pedagogiai.smpm12gkb.sch.id     200  PedaGogiAI (Laravel)
+virtualclass.smpm12gkb.sch.id   303  Moodle
+kartuujian.smpm12gkb.sch.id     200  Cek Ruang Ujian STS 2026/2027
+pengumumankelas2627.smpm12gkb.sch.id  200  Pengumuman Kelas Siswa TA 2026/2027
+undangan.smpm12gkb.sch.id       200  Undangan Final Moment Spemdalas 23
+konsumsi.smpm12gkb.sch.id       302  Order Konsumsi
+mbg.smpm12gkb.sch.id            302  Dashboard
+spemdalas.smpm12gkb.sch.id      200  Spemdalas
+spemdalasnew.smpm12gkb.sch.id   200  Spemdalas
+spemdalas.new.smpm12gkb.sch.id  200  Spemdalas
+synology.smpm12gkb.sch.id       200  Access via Synology (NAS)
+tamanilmu.smpm12gkb.sch.id      200  Taman Ilmu Spemdalas
+tictactoe.smpm12gkb.sch.id      200  Tic Tac Toe (demo)
+
+## smpm12gkb.sch.id — CT only (belum ada A record saat tes)
+keuangan.smpm12gkb.sch.id
+katalog.smpm12gkb.sch.id
+indenpublikasi.smpm12gkb.sch.id
+indenmobil.smpm12gkb.sch.id
+ordermobil.smpm12gkb.sch.id
+paket.smpm12gkb.sch.id
+pemanggilan.smpm12gkb.sch.id
+finalmoment.smpm12gkb.sch.id
+finalmomentxxii.smpm12gkb.sch.id
+dtcp.smpm12gkb.sch.id
+wisuda.smpm12gkb.sch.id
+undanganwisuda.smpm12gkb.sch.id
+kelulusan.smpm12gkb.sch.id
+moodle.smpm12gkb.sch.id
+perpus.smpm12gkb.sch.id
+ipv6.smpm12gkb.sch.id
+s.smpm12gkb.sch.id
+azam-lomba-acer.smpm12gkb.sch.id

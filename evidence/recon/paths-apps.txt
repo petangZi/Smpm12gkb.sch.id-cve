@@ -1,0 +1,71 @@
+# Path & app recon — pcmgkb.my.id — 17 Okt 2026
+
+## Path root
+/                    302 -> https://mercusuar.uzone.id/
+/app/                200  MENU MGKB-APPS (daftar 28 app)
+/dashboardmgkb/      200 -> login.php
+/siswamugeb/         200  (PII — REPORT-3)
+/cpanel              200  cPanel Redirect
+/webmail             200  cPanel Redirect
+/.git/config         403  (ada, diblokir)
+/phpmyadmin/ /admin/ /backup/ /files/ /uploads/ /api/   404
+
+## 28 aplikasi internal (dari menu /app/)
+aset
+clean
+infaq
+ost
+pengajian
+perangkat
+siswamugeb
+supervisi
+uks
+agenda
+bk
+dhuha
+feedback_pelatihan
+ismuba
+kerja
+kontrol
+lab
+mugebcar
+ngaji
+perpus
+ppdbmugeb
+presensi
+prestasi
+rapat
+ruang
+sdm
+security
+dashboardmgkb
+
+## Pola path tiap app (semua tanpa autentikasi)
+/<app>/                200
+/<app>/include/        200  <- AUTOINDEX (nama file sumber PHP)
+/<app>/images/         200  <- autoindex
+/<app>/styles/         200  <- autoindex
+/<app>/login.php       200  (PHPRunner)
+
+include/ jumlah entri (contoh):
+  sdm 693 · siswamugeb 463 · presensi 455 · security 352 · ppdbmugeb 247
+  uks 222 · ost 218 · bk 175 · ngaji 162 · infaq 157 · dhuha 149 · aset 139
+  clean 135 · agenda 128 · kerja 120 · prestasi 109 · perangkat 107 · mugebcar 103
+  rapat 101 · supervisi 97 · ruang 90 · perpus 89 · kontrol 87 · dashboardmgkb 85
+  lab 82 · feedback_pelatihan 78 · pengajian/ismuba 4
+
+## App dengan /files/ (200)
+clean, ost, pengajian, perangkat, siswamugeb, supervisi, bk, ismuba, ppdbmugeb, sdm
+
+## PII (hanya siswamugeb)
+/siswamugeb/files/files_ktp/        (8)   KTP/KIA + NISN
+/siswamugeb/files/files_ijazah/     (4)
+/siswamugeb/files/files_fotosiswa/  (174)
+/siswamugeb/files/files_barang/     (inventaris)
+
+## File koneksi DB yang dapat diakses langsung
+/ngaji/koneksi.php   200 (body kosong — include langsung)
+
+## frontaccounting.pcmgkb.my.id
+/            Index of /  (berisi /front/ /cgi-bin/)
+/front/      FrontAccounting 2.4.14 - Login
