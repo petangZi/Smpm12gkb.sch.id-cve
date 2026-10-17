@@ -1,0 +1,32 @@
+[*] Target    : https://pcmgkb.my.id/siswamugeb
+[*] Kredensial: TIDAK ADA (tanpa cookie, tanpa login)
+
+== files/files_ktp/  (listing HTTP 200, 8 berkas)
+   [200] 17….jpg        image/jpeg         2097528 bytes  magic=JPEG
+   [200] 3E…jpeg        image/jpeg          700045 bytes  magic=JPEG
+   [200] 58…jpeg        image/jpeg           14588 bytes  magic=JPEG
+   [200] fi….png        image/png             2277 bytes  magic=PNG
+   [200] IM….jpg        image/jpeg           80248 bytes  magic=JPEG
+   [200] KI….jpg        image/jpeg          793994 bytes  magic=JPEG
+   [200] KI….jpg        image/jpeg          660647 bytes  magic=JPEG
+   [200] ZF….pdf        application/pdf      85790 bytes  magic=PDF
+
+== files/files_ijazah/  (listing HTTP 200, 4 berkas)
+   [200] 66…jpeg        image/jpeg          791701 bytes  magic=JPEG
+   [200] C6…jpeg        image/jpeg          836232 bytes  magic=JPEG
+   [200] fi….png        image/png             2277 bytes  magic=PNG
+   [200] ZF….pdf        application/pdf     194481 bytes  magic=PDF
+
+== files/files_fotosiswa/  (listing HTTP 200, 174 berkas)
+   [200] 20….jpg        image/jpeg         3168077 bytes  magic=JPEG
+   [200] 24…jpeg        image/jpeg         1279672 bytes  magic=JPEG
+   [200] 98…jpeg        image/jpeg          700045 bytes  magic=JPEG
+   [200] Ab….JPG        image/jpeg         3489496 bytes  magic=JPEG
+   [200] Ad….JPG        image/jpeg         2849833 bytes  magic=JPEG
+   [200] Ad….JPG        image/jpeg         3161998 bytes  magic=JPEG
+   [200] Ai….JPG        image/jpeg         3156217 bytes  magic=JPEG
+   [200] Ak….JPG        image/jpeg         2827886 bytes  magic=JPEG
+   … (+166 berkas lain, semua diverifikasi)
+
+[+] 186 entri listing · 185 benar-benar terkirim (HTTP 200) & isi asli terverifikasi · 1 entri tidak konsisten (basi/404) — semua TANPA autentikasi.
+[!] Dokumen identitas siswa (KTP/ijazah/foto/NISN) terbuka untuk publik.

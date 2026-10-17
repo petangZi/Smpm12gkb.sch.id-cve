@@ -1,0 +1,20 @@
+{
+  "base_url": "https://pcmgkb.my.id/siswamugeb",
+  "dirs": {
+    "files/files_ktp": {
+      "count": 8,
+      "ok": 8
+    },
+    "files/files_ijazah": {
+      "count": 4,
+      "ok": 4
+    },
+    "files/files_fotosiswa": {
+      "count": 174,
+      "ok": 173
+    }
+  },
+  "total": 186,
+  "ok": 185,
+  "stale": 0
+}
