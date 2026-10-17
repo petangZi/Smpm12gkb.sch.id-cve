@@ -1,0 +1,37 @@
+# Bukti F1 — Unduhan PII siswa tanpa autentikasi (nama diredact)
+
+Direktori                    jumlah  contoh (status/tipe/ukuran)
+
+files/files_ktp                 8
+  [200] 175…j5.jpg       image/jpeg         2097528 bytes
+  [200] 3EB…m.jpeg       image/jpeg         700045 bytes
+  [200] 583…j.jpeg       image/jpeg         14588 bytes
+  [200] fil…j0.png       image/png          2277 bytes
+  [200] IMG…3n.jpg       image/jpeg         80248 bytes
+  [200] KIA…n2.jpg       image/jpeg         793994 bytes
+  [200] KIA…8d.jpg       image/jpeg         660647 bytes
+  [200] ZF-…lw.pdf       application/pdf    85790 bytes
+
+files/files_ijazah              4
+  [200] 664…z.jpeg       image/jpeg         791701 bytes
+  [200] C68…h.jpeg       image/jpeg         836232 bytes
+  [200] fil…i1.png       image/png          2277 bytes
+  [200] ZF-…2i.pdf       application/pdf    194481 bytes
+
+files/files_fotosiswa         174
+  [200] 202…se.jpg       image/jpeg         3168077 bytes
+  [200] 245…2.jpeg       image/jpeg         1279672 bytes
+  [200] 98C…1.jpeg       image/jpeg         700045 bytes
+  [200] Abd…ks.JPG       image/jpeg         3489496 bytes
+  [200] Adi…p2.JPG       image/jpeg         2849833 bytes
+  [200] Adi…nc.JPG       image/jpeg         3161998 bytes
+  [200] Ais…td.JPG       image/jpeg         3156217 bytes
+  [200] Aka…u7.JPG       image/jpeg         2827886 bytes
+  [200] Alb…xp.JPG       image/jpeg         3206238 bytes
+  [200] Alf…72.JPG       image/jpeg         3274468 bytes
+  [200] Ali…pe.JPG       image/jpeg         2773322 bytes
+  [200] Ali…x5.JPG       image/jpeg         3120231 bytes
+
+files/files_barang              0
+
+Catatan: seluruh 200 = berkas benar-benar terkirim tanpa cookie/login apa pun.

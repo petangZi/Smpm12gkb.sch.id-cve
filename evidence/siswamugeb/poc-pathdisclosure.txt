@@ -1,0 +1,24 @@
+# Bukti F3 — include/*.php diakses langsung: fatal error PHP + path absolut
+
+### GET /siswamugeb/include/appsettings.php  -> 200
+<br />
+<b>Fatal error</b>:  Uncaught Error: Call to undefined function getabspath() in /home2/pcmgkbmy/public_html/siswamugeb/include/appsettings.php:45
+Stack trace:
+#0 {main}
+  thrown in <b>/home2/pcmgkbmy/public_html/siswamugeb/include/appsettings.php</b> on line <b>45</b><br />
+
+### GET /siswamugeb/include/commonfunctions.php  -> 200
+<br />
+<b>Fatal error</b>:  Uncaught Error: Call to undefined function getabspath() in /home2/pcmgkbmy/public_html/siswamugeb/include/commonfunctions.php:3
+Stack trace:
+#0 {main}
+  thrown in <b>/home2/pcmgkbmy/public_html/siswamugeb/include/commonfunctions.php</b> on line <b>3</b><br />
+
+### GET /siswamugeb/include/belum_input_pembiasaan_settings.php  -> 200
+<br />
+<b>Fatal error</b>:  Uncaught Error: Call to undefined function getabspath() in /home2/pcmgkbmy/public_html/siswamugeb/include/belum_input_pembiasaan_settings.php:2
+Stack trace:
+#0 {main}
+  thrown in <b>/home2/pcmgkbmy/public_html/siswamugeb/include/belum_input_pembiasaan_settings.php</b> on line <b>2</b><br />
+
+Catatan: path absolut server terungkap (di-redact sebagian di report); display_errors=On.

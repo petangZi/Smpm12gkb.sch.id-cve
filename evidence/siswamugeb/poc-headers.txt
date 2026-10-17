@@ -1,0 +1,15 @@
+# Bukti F4 — Header keamanan (login.php) + cookie sesi
+
+HTTP 200
+content-type: <absent>
+set-cookie: pzqHmJMoE2xYWbOdHKBFh=e00f225972e66835ba9ce07cd2a97be3; path=/; secure; HttpOnly
+cache-control: <absent>
+server: <absent>
+
+Wajib ada tapi ABSEN:
+  MISS x-frame-options
+  MISS content-security-policy
+  MISS strict-transport-security
+  MISS x-content-type-options
+  MISS referrer-policy
+  MISS permissions-policy

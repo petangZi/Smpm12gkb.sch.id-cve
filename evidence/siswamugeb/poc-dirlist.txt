@@ -1,0 +1,12 @@
+# Bukti F2 — Directory listing (autoindex) tanpa autentikasi
+# base: https://pcmgkb.my.id/siswamugeb
+
+GET /siswamugeb/files/                 -> 200  title=Index of /siswamugeb/files/  entri=6
+GET /siswamugeb/include/               -> 200  title=Index of /siswamugeb/include/  entri=463
+GET /siswamugeb/images/                -> 200  title=Index of /siswamugeb/images/  entri=79
+GET /siswamugeb/styles/                -> 200  title=Index of /siswamugeb/styles/  entri=13
+GET /siswamugeb/files/files_ktp/       -> 200  title=Index of /siswamugeb/files/files_ktp/  entri=10
+GET /siswamugeb/files/files_ijazah/    -> 200  title=Index of /siswamugeb/files/files_ijazah/  entri=6
+GET /siswamugeb/files/files_fotosiswa/ -> 200  title=Index of /siswamugeb/files/files_fotosiswa/  entri=177
+GET /siswamugeb/files/files_barang/    -> 200  title=Index of /siswamugeb/files/files_barang/  entri=2
+

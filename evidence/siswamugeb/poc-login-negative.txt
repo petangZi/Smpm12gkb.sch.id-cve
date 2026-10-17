@@ -1,0 +1,7 @@
+# Bukti F5-negatif — login: kredensial default & SQLi TIDAK berhasil (dicatat jujur)
+
+admin/admin      -> HTTP 200  msg='Invalid Login'
+SQLi OR 1=1      -> HTTP 200  msg='Invalid Login'
+SQLi admin'--    -> HTTP 200  msg='Invalid Login'
+
+Kesimpulan: tidak ada bypass kredensial/SQLi pada login. Temuan berdiri pada exposure tanpa autentikasi.
