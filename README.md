@@ -10,7 +10,7 @@ Penetration test findings untuk **https://smpm12gkb.sch.id/** (SMP Muhammadiyah 
 
 - **[REPORT-3](./REPORT-3.md)** — *"Pembiasaan yang Harus Dibiasakan"*: SISWA MGKB (`https://pcmgkb.my.id/siswamugeb/`) — dokumen pribadi siswa (KTP/ijazah/foto/NISN, **186 berkas**) dapat diunduh tanpa autentikasi (HIGH), directory listing aktif (MEDIUM), path disclosure via `include/*.php` (MEDIUM), header keamanan absen (LOW). *17 Oktober 2026.*
 
-- **[REPORT-3 (PedagogiAI)](./REPORT-3-pedagogiai.md)** — *"PedagogiAI is slop"*: Verifikasi kwitansi tanpa autentikasi / IDOR enumerasi (HIGH), webhook pembayaran tanpa auth menulis DB sebelum validasi + bocor skema (MEDIUM), mode debug aktif (MEDIUM), info disclosure + CSP lemah (LOW). Sandbox `/api/execute-code` dicatat informatif (by-design). *16 Oktober 2026.*
+- **[REPORT-3 (PedagogiAI)](./REPORT-3-pedagogiai.md)** — *"PedagogiAI is slop"*: Verifikasi kwitansi tanpa autentikasi / IDOR enumerasi (HIGH), webhook pembayaran tanpa auth menulis DB sebelum validasi + bocor skema (MEDIUM), backdoor `cache.php` + unggah tanpa autentikasi → **RCE (CRITICAL)**, verifikasi kwitansi tanpa autentikasi / IDOR enumerasi (HIGH), webhook pembayaran tanpa auth menulis DB sebelum validasi + bocor skema (MEDIUM), mode debug aktif (MEDIUM), info disclosure + CSP lemah (LOW). Sandbox `/api/execute-code` dicatat informatif (by-design). *26 Oktober 2026.*
 
 - **[RECON — Attack Surface](./RECON-attack-surface.md)** — pemetaan subdomain + path: 28 aplikasi internal di `pcmgkb.my.id/app/`, semua dengan autoindex `include/`+`images/`+`styles/` dan `login.php`; subdomain `frontaccounting` (FrontAccounting 2.4.14), `cpanel`/`webmail`/`webdisk`, `synology`, `virtualclass` (Moodle), `kartuujian`, `ppdb`, `pedagogiai`, dll. *17 Oktober 2026.*
 

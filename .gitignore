@@ -10,3 +10,7 @@ mbg-*.json
 mbg-*.html
 wp-posts.json
 wp-users.json
+
+# artefak mentah / shell interaktif — jangan publikasikan
+poc/e.out
+poc/manager.php

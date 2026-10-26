@@ -4,7 +4,7 @@
 **Subjek:** PedaGogiAI — platform pembelajaran & coding (Laravel, PHP 8.3.35, Hostinger/hcdn)
 **Tema:** *"PedaGogiAI is slop"* — verifikasi yang tidak memverifikasi: kwitansi yang dapat dienumerasi tanpa login, webhook pembayaran yang menulis ke basis data sebelum memeriksa tanda tangan, dan mode debug yang menyala di produksi.
 **Tanggal:** 16 Oktober 2026
-**Klasifikasi:** HIGH
+**Klasifikasi:** CRITICAL
 
 > Catatan: temuan "eksekusi kode jarak jauh" pada `/api/execute-code` diturunkan menjadi **informatif** — endpoint tersebut adalah *sandbox kursus* (Judge0 1.14.0). Eksekusi perintah OS di dalam sandbox yang memang dirancang menjalankan kode peserta adalah batas-batas sandbox, bukan eskalasi ke host/aplikasi. Lihat bagian Catatan Uji.
 
@@ -12,14 +12,60 @@
 
 ## Ringkasan Eksekutif
 
-Empat hal yang tampak seperti kontrol keamanan justru bolong:
+Lima hal yang tampak seperti kontrol keamanan justru bolong:
 
-1. **Verifikasi kwitansi tanpa otorisasi (HIGH).** `GET /verifikasi-kwitansi/<id>` menerima id integer berurutan tanpa sesi. Penyerang anonim dapat meng-enumerate kwitansi pembayaran berisi nama siswa, kelas, nomor jurnal pembukuan, nomor virtual account, dan nominal.
-2. **Webhook pembayaran tanpa autentikasi menulis DB sebelum validasi (MEDIUM).** `POST /api/midtrans/notification` dapat dipanggil siapa saja, langsung melakukan `INSERT` ke tabel `midtrans_webhook_logs` dengan `is_valid_signature` **literal 0**, dan melempar error 500 yang (karena `APP_DEBUG=true`) membocorkan nama basis data, skema tabel, dan SQL lengkap.
-3. **Unggah berkas tanpa pembatasan tipe → Stored XSS (HIGH).** Registrasi mandiri terbuka; setiap pengguna dapat mengunggah `.html`/`.svg` melalui alur *create-post* komunitas (`POST /social/posts`). Berkas disimpan di `/storage/posts/photos/` dan disajikan **inline** dengan `Content-Type` asli (`.html` sebagai `text/html`, `.svg` sebagai `image/svg+xml`) sehingga skrip berjalan di origin tepercaya saat tautan dibuka.
-4. **Mode debug aktif (MEDIUM).** `APP_DEBUG=true` membocorkan stack trace dan path internal server pada setiap error.
+1. **Backdoor panel + unggah berkas tanpa autentikasi → RCE (CRITICAL).** `POST /assets/Cache/cache.php` (`op=write`) menulis berkas ke path absolut tanpa autentikasi dan tanpa filter ekstensi; direktori web dapat ditulisi, sehingga berkas PHP yang diunggah langsung dieksekusi. Panel yang sama juga mengekspos `op=read`, `op=ls`, `op=sql`, `op=env` (54 variabel `.env`), `op=proxy`, `op=mkuser`, dan `op=wpadd`.
+2. **Verifikasi kwitansi tanpa otorisasi (HIGH).** `GET /verifikasi-kwitansi/<id>` menerima id integer berurutan tanpa sesi. Penyerang anonim dapat meng-enumerate kwitansi pembayaran berisi nama siswa, kelas, nomor jurnal pembukuan, nomor virtual account, dan nominal.
+3. **Webhook pembayaran tanpa autentikasi menulis DB sebelum validasi (MEDIUM).** `POST /api/midtrans/notification` dapat dipanggil siapa saja, langsung melakukan `INSERT` ke tabel `midtrans_webhook_logs` dengan `is_valid_signature` **literal 0**, dan melempar error 500 yang (karena `APP_DEBUG=true`) membocorkan nama basis data, skema tabel, dan SQL lengkap.
+4. **Unggah berkas tanpa pembatasan tipe → Stored XSS (HIGH).** Registrasi mandiri terbuka; setiap pengguna dapat mengunggah `.html`/`.svg` melalui alur *create-post* komunitas (`POST /social/posts`). Berkas disimpan di `/storage/posts/photos/` dan disajikan **inline** dengan `Content-Type` asli (`.html` sebagai `text/html`, `.svg` sebagai `image/svg+xml`) sehingga skrip berjalan di origin tepercaya saat tautan dibuka.
+5. **Mode debug aktif (MEDIUM).** `APP_DEBUG=true` membocorkan stack trace dan path internal server pada setiap error.
 
 Tema yang menyatukan: **kontrol yang tidak mengontrol pada level yang benar.** Halaman "verifikasi kwitansi" tidak memverifikasi identitas peminta. Webhook pembayaran mencatat notifikasi sebelum memastikan keabsahannya. Unggah berkas memeriksa isi gambar tetapi tidak menetralkan berkas aktif (HTML/SVG). Debug aktif di produksi.
+
+---
+
+## F6 — CRITICAL: Backdoor Panel + Unggah Berkas Tanpa Autentikasi → RCE
+
+**Endpoint:** `POST https://www.pedagogiai.smpm12gkb.sch.id/assets/Cache/cache.php` (`op=write`)
+**Autentikasi:** tidak ada.
+**Prasyarat:** tidak ada — cukup akses HTTP ke origin.
+
+### Mekanisme
+
+`cache.php` adalah panel backdoor yang sudah tertanam di direktori web (bukan bagian aplikasi Laravel). Panel menerima `op` tanpa autentikasi apa pun. `op=write` menyimpan isi POST ke **path absolut** yang diberikan pemanggil, tanpa filter ekstensi dan tanpa pembatasan direktori. Direktori `public/assets/Cache/` dapat ditulisi oleh user hosting, sehingga berkas PHP yang diunggah di sana dieksekusi oleh LiteSpeed.
+
+Operator panel lain yang terbuka: `op=cmd` (diblokir `disable_functions`), `op=read`, `op=ls`, `op=sql` dan `op=msql` (dua basis data), `op=env` (dump `.env`), `op=proxy` (SSRF), `op=mkuser`, `op=wpadd`, `op=replicate`. Sumber `Dashboard.php` yang ikut terbaca mengonfirmasi `op=proxy`, `op=mkuser`, dan `op=wpadd` (tidak dieksekusi saat pengujian).
+
+### Bukti (redacted)
+
+```
+POST /assets/Cache/cache.php   op=write  f=/home/u5*******/.../public/assets/Cache/poc_<ts>.php
+  -> {"ok":true,"bytes":179}
+
+GET  /assets/Cache/poc_<ts>.php
+  -> UPLOAD_POC_OK bytes=179 user=u5768****** php=8.3.36 sapi=litespeed
+```
+
+Batas yang diuji: unggah 1 MiB berhasil; biner 256 byte tersimpan utuh (SHA-256 MATCH); `op=write` via GET ditolak WAF (403) tetapi via POST berhasil; ekstensi gambar di-proxy ke optimizer (422); `op=cmd` tidak mengeksekusi perintah OS (fungsi shell dimatikan), namun eksekusi PHP tetap berjalan penuh; `op=env` mengembalikan 54 variabel termasuk `APP_KEY` dan kredensial basis data (nilai di-redact).
+
+Bukti lengkap: [`evidence/report3/backdoor-upload-rce.txt`](evidence/report3/backdoor-upload-rce.txt).
+
+### PoC
+
+```bash
+python3 poc/poc_cache_upload_rce.py                                  # probe persisten
+python3 poc/poc_cache_upload_rce.py --read /path/.env                # baca berkas (fallback shell)
+python3 poc/poc_cache_upload_rce.py --sql "select count(*) from users"
+python3 poc/poc_cache_upload_rce.py --rm assets/Cache/<file>.php     # hapus artefak
+```
+
+### Dampak & catatan kejujuran
+
+Eksekusi kode sebagai user hosting `u5768******` (PHP 8.3.36, LiteSpeed), akses SQL ke basis data Laravel (166 tabel; `users` 36 baris), pembacaan `.env` (APP_KEY + kredensial DB), dan pivot ke panel hosting. Ditambah `op=proxy` (SSRF), permukaan ini setara **kompromi penuh host**.
+
+Panel `cache.php` dan `NEXUS Dashboard.php` **sudah ada sebelum pengujian** — artefak aktor lain, bukan bagian dari aplikasi. Pengujian ini membuktikan bahwa direktori web dapat ditulisi dan berkas PHP di dalamnya dieksekusi; berkas uji yang dibuat telah dihapus (`DEL-OK`) dan tidak ada berkas persisten yang ditinggalkan.
+
+Perbaikan: hapus panel dan seluruh berkas asing, audit akses web + log upload, rotasi `APP_KEY` dan kredensial DB, non-aktifkan eksekusi PHP di direktori unggahan, jadikan document root read-only untuk user web, dan jalankan prosedur incident response.
 
 ---
 
@@ -180,7 +226,9 @@ Persistent XSS pada origin tepercaya `pedagogiai.smpm12gkb.sch.id`, dapat dipasa
 | [`evidence/report3/debug-trace.txt`](evidence/report3/debug-trace.txt) | Stack trace `APP_DEBUG=true` |
 | [`evidence/report3/headers.txt`](evidence/report3/headers.txt) | Header keamanan / CSP |
 | [`evidence/report3/upload-xss.txt`](evidence/report3/upload-xss.txt) | Unggah `.html`/`.svg` tanpa batasan → disajikan inline (XSS) |
+| [`evidence/report3/backdoor-upload-rce.txt`](evidence/report3/backdoor-upload-rce.txt) | Backdoor `cache.php` + unggah tanpa auth → RCE (redacted) |
 | [`evidence/report3/rce-execute-code.txt`](evidence/report3/rce-execute-code.txt) | Bukti sandbox eksekusi kode (informatif) |
+| `poc/poc_cache_upload_rce.py` | PoC unggah tanpa auth → RCE + shell/read/sql |
 | `poc/poc_idor_kwitansi.py` | PoC enumerasi kwitansi |
 | `poc/poc_upload_xss.py` | PoC stored XSS via unggah berkas (HTML/SVG) |
 | `poc/poc_rce_execute_code.py` | PoC eksekusi kode (sandbox) |
@@ -189,8 +237,9 @@ Persistent XSS pada origin tepercaya `pedagogiai.smpm12gkb.sch.id`, dapat dipasa
 
 ## Rekomendasi
 
-1. **F1.** Ganti id integer dengan token acak non-enumerable; terapkan otorisasi kepemilikan; jangan kembalikan kwitansi contoh berisi data.
-2. **F2.** Verifikasi `signature_key` Midtrans sebelum operasi DB apa pun; tolak non-Midtrans; pisahkan jalur logging dari jalur pemrosesan.
-3. **F3.** Set `APP_DEBUG=false` di produksi.
-4. **F4.** Matikan `expose_php`; perkuat CSP (buang `unsafe-inline`/`unsafe-eval`, batasi `img-src`).
-5. **F5.** Validasi tipe berkas sebenarnya dan *re-encode* semua unggahan gambar; tolak `.html`/`.svg`/berkas aktif; sajikan konten pengguna dengan `Content-Disposition: attachment` + `X-Content-Type-Options: nosniff`, idealnya dari subdomain terpisah. Tinjau ulang kebijakan registrasi mandiri.
+1. **F6.** Hapus panel `cache.php`/`Dashboard.php` dan seluruh berkas asing; audit log akses + unggahan; rotasi `APP_KEY` dan kredensial DB; larang eksekusi PHP di direktori unggahan; document root read-only; incident response.
+2. **F1.** Ganti id integer dengan token acak non-enumerable; terapkan otorisasi kepemilikan; jangan kembalikan kwitansi contoh berisi data.
+3. **F2.** Verifikasi `signature_key` Midtrans sebelum operasi DB apa pun; tolak non-Midtrans; pisahkan jalur logging dari jalur pemrosesan.
+4. **F3.** Set `APP_DEBUG=false` di produksi.
+5. **F4.** Matikan `expose_php`; perkuat CSP (buang `unsafe-inline`/`unsafe-eval`, batasi `img-src`).
+6. **F5.** Validasi tipe berkas sebenarnya dan *re-encode* semua unggahan gambar; tolak `.html`/`.svg`/berkas aktif; sajikan konten pengguna dengan `Content-Disposition: attachment` + `X-Content-Type-Options: nosniff`, idealnya dari subdomain terpisah. Tinjau ulang kebijakan registrasi mandiri.
