@@ -123,6 +123,19 @@ Dampak: kompromi satu aplikasi otomatis membuka aplikasi lain pada akun yang sam
 
 ---
 
+## F5 — INFO: Klaim "Import Excel/SQL" Tidak Punya Endpoint
+
+`manage.blade.php` (baris 161–162) menampilkan catatan bahwa berkas Excel/SQL "dapat langsung di-import atau dieksekusi ke database ini". Teks itu **tidak didukung kode**:
+
+- `routes/web.php` hanya memiliki `POST /kelola-peserta/import-quick` — teks biasa, satu nama per baris. `routes/api.php` tidak ada, dan tidak ada endpoint `.sql`/`.xlsx`/adminer (semua 404).
+- `LotteryController` tidak memakai `DB::raw`, `whereRaw`, `statement`, atau query mentah; seluruh akses data lewat Eloquent (ter-parameterisasi) dan `DB::transaction`.
+- View memakai `{{ }}` dan JS memakai `escapeHtml()`; nama berisi `<script>` akan tampil sebagai teks, bukan HTML.
+- `database/database.sqlite` ada di disk tetapi tidak dapat diakses lewat HTTP (404).
+
+Kesimpulan: **deface via SQL tidak mungkin dari aplikasi ini** karena tidak ada sink SQL yang dapat dikendalikan. Yang nyata adalah deface lewat penulisan berkas di filesystem — dan itu berasal dari backdoor lintas-aplikasi (F4), bukan dari fitur SQL. Uji benign: satu berkas HTML penanda ditulis ke `public/`, diakses (200, `text/html`), lalu dihapus (`DEL-OK`; akses ulang 404).
+
+---
+
 ## Catatan Uji
 
 - **Tidak ada endpoint unggah berkas di spinner.** Permukaan tulis hanya import teks; tidak ditemukan jalur upload/eksekusi seperti pada PedagogiAI.

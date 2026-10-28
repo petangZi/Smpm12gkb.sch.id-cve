@@ -51,3 +51,21 @@ Backdoor pedagogiai (user u5768******) dapat membaca berkas spinner:
 - /home/u5*******/domains/spinner.smpm12gkb.sch.id/public_html/.env -> 24 variabel
 - DB_CONNECTION=sqlite; APP_ENV=production; APP_DEBUG=false
 -> satu aplikasi yang kompromi = seluruh aplikasi pada akun hosting tersebut.
+
+## 8. Klaim "import Excel/SQL" di UI vs kode — dan uji deface
+manage.blade.php baris 161-162 memuat teks:
+  "Catatan Data Asli: Saat file Excel atau SQL Anda sudah siap, file tersebut dapat
+   langsung di-import atau dieksekusi ke database ini tanpa mengubah logika antarmuka."
+Fakta kode:
+- routes/web.php hanya punya POST /kelola-peserta/import-quick (teks, satu nama per baris).
+- routes/api.php tidak ada; tidak ada endpoint .sql/.xlsx/adminer (semua 404).
+- LotteryController tidak memakai DB::raw/whereRaw/statement; hanya Eloquent + DB::transaction.
+- View memakai {{ }} dan JS memakai escapeHtml(); <script> pada nama tidak dirender sebagai HTML.
+- database/database.sqlite ada di disk tetapi 404 lewat HTTP.
+-> Tidak ada jalur "eksekusi SQL" dari aplikasi. Teks di UI adalah sisa copy, bukan fitur.
+
+Uji deface lewat tulis berkas (bukan SQL), benign dan sudah dihapus:
+  write /public/deface_proof_<ts>.html  -> ok=true 67 bytes
+  GET https://spinner.smpm12gkb.sch.id/deface_proof_<ts>.html
+      -> 200 text/html "POC-DEFACE-CHECK"
+  rm  -> DEL-OK; GET ulang -> 404
