@@ -69,3 +69,15 @@ Uji deface lewat tulis berkas (bukan SQL), benign dan sudah dihapus:
   GET https://spinner.smpm12gkb.sch.id/deface_proof_<ts>.html
       -> 200 text/html "POC-DEFACE-CHECK"
   rm  -> DEL-OK; GET ulang -> 404
+
+## 9. PHP di docroot spinner: eksekusi benar, `manager.php` di-truncate scanner
+Upload PHP ke public/ lewat op=write, lalu GET:
+- probe.php (echo)            -> 200 "PHP_EXEC_OK v=8.4.27 sapi=litespeed"
+- manager.php (file manager)  -> 200 6323B (UI tampil), lalu berkas di disk
+                                 menjadi 0 byte; GET berikutnya 200 0B
+- files_<ts>.php (panel baru) -> 200 5199B, tetap 1608B di disk
+- upload via panel (multipart)-> "upload ok", berkas 30B, GET 200
+
+Kesimpulan: eksekusi PHP aktif dan unggah multipart berfungsi. `manager.php`
+dinetralkan oleh scanner malware host (signature file-manager), bukan karena
+PHP dimatikan atau ekstensi dibatasi.
