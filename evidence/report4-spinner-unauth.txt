@@ -1,0 +1,53 @@
+# Report-4 — spinner.smpm12gkb.sch.id: panel undian tanpa autentikasi
+# Transkrip bukti (redacted). Diambil 28 Oktober 2026.
+# Nama peserta/pemenang dan nomor identitas diganti [REDACTED].
+
+## 1. Route tanpa middleware auth (routes/web.php, dibaca via filesystem)
+Route::get('/', [LotteryController::class, 'index']);
+Route::prefix('api/lottery')->group(function () {
+    Route::get('/stats', ...); Route::get('/wheel-names', ...);
+    Route::post('/spin', ...); Route::post('/mark-absent', ...);
+    Route::post('/respin-shortfall', ...); Route::post('/commit-batch', ...);
+    Route::post('/reset-all', ...);
+});
+Route::get('/riwayat', ...); Route::get('/riwayat/export-csv', ...);
+Route::get('/kelola-peserta', ...); Route::post('/kelola-peserta/import-quick', ...);
+# Tidak ada ->middleware('auth') pada satu pun route.
+
+## 2. GET /api/lottery/stats tanpa cookie login
+HTTP/2 200
+{"total_participants":897,"total_available":862,"total_winners":25,"total_absent":10,
+ "total_batches":2,"by_category":{"guru":{"total":59,...},"karyawan":{"total":31,...},
+ "kelas_7":{"total":276,...},"kelas_8":{"total":269,...},"kelas_9":{"total":262,...}}}
+
+## 3. GET /kelola-peserta tanpa login — 45 halaman data peserta
+<h1>KELOLA DATA PESERTA UNDIAN</h1>
+<p>Total Terdaftar: <b>897 Nama</b></p>
+Kolom: No | Nama Lengkap | Kategori | No. Identitas | Status Undian
+Contoh baris (redacted): 881 | [REDACTED] | Siswa Kelas 9 | 9 Cordoba (ID: [REDACTED]) | Siap Diundi
+
+## 4. GET /riwayat/export-csv tanpa login — CSV pemenang + PII
+HTTP/2 200
+content-type: text/csv; charset=UTF-8
+content-disposition: attachment; filename="Pemenang_Undian_Batch_<ts>.csv"
+Header: No,"Batch #","Nama Lengkap",Kategori,"No. Identitas/NIP/NIS",Status,"Waktu Undi"
+Baris (redacted): 1,"Batch 1","[REDACTED]","Siswa Kelas 7","[REDACTED]","Pemenang Sah (Hadir)","<ts>"
+Jumlah baris data: 25
+
+## 5. POST /kelola-peserta/import-quick tanpa login
+Handler (LotteryController::importQuick) memvalidasi category + names_text, lalu
+Participant::create() untuk SETIAP baris — tanpa batas jumlah, tanpa rate limit.
+POST dengan names_text kosong dari sesi anonim -> 302 ke /kelola-peserta
+(handler dieksekusi, validasi gagal). POST tanpa _token -> 419 (CSRF aktif).
+Tidak ada percobaan insert yang dilakukan saat pengujian (menghindari polusi data).
+
+## 6. POST /api/lottery/reset-all tanpa login (DESTRUKTIF — tidak dijalankan)
+Participant::query()->update(['status'=>'available','draw_batch_id'=>null,'drawn_at'=>null]);
+DrawBatch::query()->delete();
+-> menghapus seluruh riwayat pemenang dan batch undian, satu request tanpa auth.
+
+## 7. Lintas-aplikasi (hosting user sama)
+Backdoor pedagogiai (user u5768******) dapat membaca berkas spinner:
+- /home/u5*******/domains/spinner.smpm12gkb.sch.id/public_html/.env -> 24 variabel
+- DB_CONNECTION=sqlite; APP_ENV=production; APP_DEBUG=false
+-> satu aplikasi yang kompromi = seluruh aplikasi pada akun hosting tersebut.
